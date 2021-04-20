@@ -211,7 +211,7 @@ class GridViewApi(object):
             >>> result = thread.get()
 
             Args:
-                context (str):
+                context (str, none_type):
                 version (str):
 
             Keyword Args:
@@ -289,6 +289,7 @@ class GridViewApi(object):
                     'version',
                 ],
                 'nullable': [
+                    'context',
                 ],
                 'enum': [
                 ],
@@ -302,7 +303,7 @@ class GridViewApi(object):
                 },
                 'openapi_types': {
                     'context':
-                        (str,),
+                        (str, none_type,),
                     'version':
                         (str,),
                     'change_data_request':
@@ -378,7 +379,7 @@ class GridViewApi(object):
             >>> result = thread.get()
 
             Args:
-                name (str):
+                name (str, none_type):
                 version (str):
 
             Keyword Args:
@@ -454,6 +455,7 @@ class GridViewApi(object):
                     'version',
                 ],
                 'nullable': [
+                    'name',
                 ],
                 'enum': [
                 ],
@@ -467,7 +469,7 @@ class GridViewApi(object):
                 },
                 'openapi_types': {
                     'name':
-                        (str,),
+                        (str, none_type,),
                     'version':
                         (str,),
                 },
@@ -522,7 +524,7 @@ class GridViewApi(object):
             >>> result = thread.get()
 
             Args:
-                name (str):
+                name (str, none_type):
                 version (str):
 
             Keyword Args:
@@ -600,6 +602,7 @@ class GridViewApi(object):
                     'version',
                 ],
                 'nullable': [
+                    'name',
                 ],
                 'enum': [
                 ],
@@ -613,7 +616,7 @@ class GridViewApi(object):
                 },
                 'openapi_types': {
                     'name':
-                        (str,),
+                        (str, none_type,),
                     'version':
                         (str,),
                     'edit_context_request':
@@ -689,7 +692,7 @@ class GridViewApi(object):
             >>> result = thread.get()
 
             Args:
-                name (str):
+                name (str, none_type):
                 version (str):
 
             Keyword Args:
@@ -765,6 +768,7 @@ class GridViewApi(object):
                     'version',
                 ],
                 'nullable': [
+                    'name',
                 ],
                 'enum': [
                 ],
@@ -778,7 +782,7 @@ class GridViewApi(object):
                 },
                 'openapi_types': {
                     'name':
-                        (str,),
+                        (str, none_type,),
                     'version':
                         (str,),
                 },
@@ -933,7 +937,7 @@ class GridViewApi(object):
             >>> result = thread.get()
 
             Args:
-                context (str):
+                context (str, none_type):
                 version (str):
 
             Keyword Args:
@@ -1009,6 +1013,7 @@ class GridViewApi(object):
                     'version',
                 ],
                 'nullable': [
+                    'context',
                 ],
                 'enum': [
                 ],
@@ -1022,7 +1027,7 @@ class GridViewApi(object):
                 },
                 'openapi_types': {
                     'context':
-                        (str,),
+                        (str, none_type,),
                     'version':
                         (str,),
                 },
@@ -1060,7 +1065,7 @@ class GridViewApi(object):
             >>> result = thread.get()
 
             Args:
-                context (str):
+                context (str, none_type):
                 version (str):
 
             Keyword Args:
@@ -1136,6 +1141,7 @@ class GridViewApi(object):
                     'version',
                 ],
                 'nullable': [
+                    'context',
                 ],
                 'enum': [
                 ],
@@ -1149,7 +1155,7 @@ class GridViewApi(object):
                 },
                 'openapi_types': {
                     'context':
-                        (str,),
+                        (str, none_type,),
                     'version':
                         (str,),
                 },

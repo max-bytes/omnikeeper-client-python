@@ -10,6 +10,7 @@
 # sys.setrecursionlimit(n)
 
 from okclient.model.add_context_request import AddContextRequest
+from okclient.model.ansible_inventory_scan_dto import AnsibleInventoryScanDTO
 from okclient.model.attribute_state import AttributeState
 from okclient.model.attribute_value_dto import AttributeValueDTO
 from okclient.model.attribute_value_type import AttributeValueType
@@ -18,12 +19,14 @@ from okclient.model.ci_attribute_dto import CIAttributeDTO
 from okclient.model.cidto import CIDTO
 from okclient.model.change_data_cell import ChangeDataCell
 from okclient.model.change_data_request import ChangeDataRequest
+from okclient.model.context import Context
 from okclient.model.edit_context_request import EditContextRequest
 from okclient.model.effective_trait_dto import EffectiveTraitDTO
 from okclient.model.fragment_dto import FragmentDTO
 from okclient.model.graph_ql_query import GraphQLQuery
 from okclient.model.grid_view_column import GridViewColumn
 from okclient.model.grid_view_configuration import GridViewConfiguration
+from okclient.model.i_load_config import ILoadConfig
 from okclient.model.layer_dto import LayerDTO
 from okclient.model.predicate_dto import PredicateDTO
 from okclient.model.problem_details import ProblemDetails

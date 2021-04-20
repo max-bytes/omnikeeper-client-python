@@ -56,7 +56,7 @@ with okclient.ApiClient(configuration) as api_client:
     ] # [int] | 
     version = "version_example" # str | 
     index = 0 # int |  (optional) if omitted the server will use the default value of 0
-    at_time = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime |  (optional)
+    at_time = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type |  (optional)
 
     # example passing only required values which don't have defaults set
     try:
@@ -82,7 +82,7 @@ Name | Type | Description  | Notes
  **layer_ids** | **[int]**|  |
  **version** | **str**|  |
  **index** | **int**|  | [optional] if omitted the server will use the default value of 0
- **at_time** | **datetime**|  | [optional]
+ **at_time** | **datetime, none_type**|  | [optional]
 
 ### Return type
 

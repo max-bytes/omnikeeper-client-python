@@ -191,7 +191,7 @@ class CIApi(object):
                 version (str):
 
             Keyword Args:
-                at_time (datetime): Specify datetime, for which point in time to get the data; leave empty to use current time (https://www.newtonsoft.com/json/help/html/DatesInJSON.htm). [optional]
+                at_time (datetime, none_type): Specify datetime, for which point in time to get the data; leave empty to use current time (https://www.newtonsoft.com/json/help/html/DatesInJSON.htm). [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -269,6 +269,7 @@ class CIApi(object):
                     'version',
                 ],
                 'nullable': [
+                    'at_time',
                 ],
                 'enum': [
                 ],
@@ -288,7 +289,7 @@ class CIApi(object):
                     'version':
                         (str,),
                     'at_time':
-                        (datetime,),
+                        (datetime, none_type,),
                 },
                 'attribute_map': {
                     'layer_ids': 'layerIDs',
@@ -352,7 +353,7 @@ class CIApi(object):
                 version (str):
 
             Keyword Args:
-                at_time (datetime): Specify datetime, for which point in time to get the data; leave empty to use current time (https://www.newtonsoft.com/json/help/html/DatesInJSON.htm). [optional]
+                at_time (datetime, none_type): Specify datetime, for which point in time to get the data; leave empty to use current time (https://www.newtonsoft.com/json/help/html/DatesInJSON.htm). [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -430,6 +431,7 @@ class CIApi(object):
                     'version',
                 ],
                 'nullable': [
+                    'at_time',
                 ],
                 'enum': [
                 ],
@@ -449,7 +451,7 @@ class CIApi(object):
                     'version':
                         (str,),
                     'at_time':
-                        (datetime,),
+                        (datetime, none_type,),
                 },
                 'attribute_map': {
                     'layer_ids': 'layerIDs',

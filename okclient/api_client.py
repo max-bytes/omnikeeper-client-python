@@ -76,7 +76,7 @@ class ApiClient(object):
             self.default_headers[header_name] = header_value
         self.cookie = cookie
         # Set default User-Agent.
-        self.user_agent = 'OpenAPI-Generator/0.11.3/python'
+        self.user_agent = 'OpenAPI-Generator/0.11.5/python'
 
     def __enter__(self):
         return self
@@ -761,11 +761,11 @@ class Endpoint(object):
         """ This method is invoked when endpoints are called
         Example:
 
-        api_instance = AttributeApi()
-        api_instance.bulk_replace_attributes_in_layer  # this is an instance of the class Endpoint
-        api_instance.bulk_replace_attributes_in_layer()  # this invokes api_instance.bulk_replace_attributes_in_layer.__call__()
+        api_instance = ActiveDirectoryXMLIngestApi()
+        api_instance.ingest_xml  # this is an instance of the class Endpoint
+        api_instance.ingest_xml()  # this invokes api_instance.ingest_xml.__call__()
         which then invokes the callable functions stored in that endpoint at
-        api_instance.bulk_replace_attributes_in_layer.callable or self.callable in this class
+        api_instance.ingest_xml.callable or self.callable in this class
 
         """
         return self.callable(self, *args, **kwargs)

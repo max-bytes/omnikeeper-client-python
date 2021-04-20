@@ -169,7 +169,7 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with okclient.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = grid_view_api.GridViewApi(api_client)
-    context = "context_example" # str | 
+    context = "context_example" # str, none_type | 
     version = "version_example" # str | 
     change_data_request = ChangeDataRequest(
         sparse_rows=[
@@ -213,7 +213,7 @@ with okclient.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **context** | **str**|  |
+ **context** | **str, none_type**|  |
  **version** | **str**|  |
  **change_data_request** | [**ChangeDataRequest**](ChangeDataRequest.md)|  | [optional]
 
@@ -282,7 +282,7 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with okclient.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = grid_view_api.GridViewApi(api_client)
-    name = "name_example" # str | 
+    name = "name_example" # str, none_type | 
     version = "version_example" # str | 
 
     # example passing only required values which don't have defaults set
@@ -298,7 +298,7 @@ with okclient.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**|  |
+ **name** | **str, none_type**|  |
  **version** | **str**|  |
 
 ### Return type
@@ -366,7 +366,7 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with okclient.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = grid_view_api.GridViewApi(api_client)
-    name = "name_example" # str | 
+    name = "name_example" # str, none_type | 
     version = "version_example" # str | 
     edit_context_request = EditContextRequest(
         speaking_name="speaking_name_example",
@@ -410,7 +410,7 @@ with okclient.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**|  |
+ **name** | **str, none_type**|  |
  **version** | **str**|  |
  **edit_context_request** | [**EditContextRequest**](EditContextRequest.md)|  | [optional]
 
@@ -477,7 +477,7 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with okclient.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = grid_view_api.GridViewApi(api_client)
-    name = "name_example" # str | 
+    name = "name_example" # str, none_type | 
     version = "version_example" # str | 
 
     # example passing only required values which don't have defaults set
@@ -493,7 +493,7 @@ with okclient.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**|  |
+ **name** | **str, none_type**|  |
  **version** | **str**|  |
 
 ### Return type
@@ -638,7 +638,7 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with okclient.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = grid_view_api.GridViewApi(api_client)
-    context = "context_example" # str | 
+    context = "context_example" # str, none_type | 
     version = "version_example" # str | 
 
     # example passing only required values which don't have defaults set
@@ -654,7 +654,7 @@ with okclient.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **context** | **str**|  |
+ **context** | **str, none_type**|  |
  **version** | **str**|  |
 
 ### Return type
@@ -720,7 +720,7 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with okclient.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = grid_view_api.GridViewApi(api_client)
-    context = "context_example" # str | 
+    context = "context_example" # str, none_type | 
     version = "version_example" # str | 
 
     # example passing only required values which don't have defaults set
@@ -736,7 +736,7 @@ with okclient.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **context** | **str**|  |
+ **context** | **str, none_type**|  |
  **version** | **str**|  |
 
 ### Return type

@@ -59,7 +59,7 @@ class AttributeValueImageApi(object):
 
             Keyword Args:
                 index (int): [optional] if omitted the server will use the default value of 0
-                at_time (datetime): [optional]
+                at_time (datetime, none_type): [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -142,6 +142,7 @@ class AttributeValueImageApi(object):
                     'version',
                 ],
                 'nullable': [
+                    'at_time',
                 ],
                 'enum': [
                 ],
@@ -165,7 +166,7 @@ class AttributeValueImageApi(object):
                     'index':
                         (int,),
                     'at_time':
-                        (datetime,),
+                        (datetime, none_type,),
                 },
                 'attribute_map': {
                     'ciid': 'ciid',

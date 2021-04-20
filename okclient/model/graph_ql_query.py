@@ -75,7 +75,7 @@ class GraphQLQuery(ModelNormal):
             'operation_name': (str, none_type,),  # noqa: E501
             'named_query': (str, none_type,),  # noqa: E501
             'query': (str, none_type,),  # noqa: E501
-            'variables': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'variables': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -139,7 +139,7 @@ class GraphQLQuery(ModelNormal):
             operation_name (str, none_type): [optional]  # noqa: E501
             named_query (str, none_type): [optional]  # noqa: E501
             query (str, none_type): [optional]  # noqa: E501
-            variables (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
+            variables ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

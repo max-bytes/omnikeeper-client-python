@@ -57,7 +57,7 @@ class TraitApi(object):
                 version (str):
 
             Keyword Args:
-                at_time (datetime): [optional]
+                at_time (datetime, none_type): [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -135,6 +135,7 @@ class TraitApi(object):
                     'version',
                 ],
                 'nullable': [
+                    'at_time',
                 ],
                 'enum': [
                 ],
@@ -154,7 +155,7 @@ class TraitApi(object):
                     'version':
                         (str,),
                     'at_time':
-                        (datetime,),
+                        (datetime, none_type,),
                 },
                 'attribute_map': {
                     'layer_ids': 'layerIDs',
