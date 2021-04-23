@@ -92,10 +92,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_active_directory_xml_ingest_api.py
-test/test_ansible_inventory_scan_dto.py
-test/test_ansible_inventory_scan_ingest_api.py
-test/test_context.py
-test/test_i_load_config.py
-test/test_ok_plugin_generic_json_ingest_api.py
 tox.ini
