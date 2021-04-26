@@ -11,7 +11,7 @@
 from setuptools import setup, find_packages  # noqa: H301
 
 NAME = "okclient"
-VERSION = "0.0.36-frontend-plugins"
+VERSION = "0.0.37-frontend-plugins"
 # To install the library, run the following
 #
 # python setup.py install
