@@ -10,7 +10,7 @@
 """
 
 
-__version__ = "0.0.37-frontend-plugins"
+__version__ = "0.12.0"
 
 # import ApiClient
 from okclient.api_client import ApiClient
