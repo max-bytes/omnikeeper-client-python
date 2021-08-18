@@ -18,6 +18,7 @@ list of all CI-IDs
 
 * OAuth Authentication (oauth2):
 * OAuth Authentication (oauth2):
+
 ```python
 import time
 import okclient
@@ -83,6 +84,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -98,6 +100,7 @@ single CI by CI-ID
 
 * OAuth Authentication (oauth2):
 * OAuth Authentication (oauth2):
+
 ```python
 import time
 import okclient
@@ -181,6 +184,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -196,6 +200,7 @@ multiple CIs by CI-ID  !Watch out for the query URL getting too long because of 
 
 * OAuth Authentication (oauth2):
 * OAuth Authentication (oauth2):
+
 ```python
 import time
 import okclient
@@ -281,6 +286,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |

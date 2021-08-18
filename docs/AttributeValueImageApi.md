@@ -17,6 +17,7 @@ Method | HTTP request | Description
 
 * OAuth Authentication (oauth2):
 * OAuth Authentication (oauth2):
+
 ```python
 import time
 import okclient
@@ -99,6 +100,7 @@ void (empty response body)
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -114,6 +116,7 @@ void (empty response body)
 
 * OAuth Authentication (oauth2):
 * OAuth Authentication (oauth2):
+
 ```python
 import time
 import okclient
@@ -194,6 +197,7 @@ void (empty response body)
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |

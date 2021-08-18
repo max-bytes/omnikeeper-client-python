@@ -18,6 +18,7 @@ list of all layers
 
 * OAuth Authentication (oauth2):
 * OAuth Authentication (oauth2):
+
 ```python
 import time
 import okclient
@@ -84,6 +85,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -99,6 +101,7 @@ get a layer by name
 
 * OAuth Authentication (oauth2):
 * OAuth Authentication (oauth2):
+
 ```python
 import time
 import okclient
@@ -167,6 +170,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -182,6 +186,7 @@ get layers by name
 
 * OAuth Authentication (oauth2):
 * OAuth Authentication (oauth2):
+
 ```python
 import time
 import okclient
@@ -252,6 +257,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |

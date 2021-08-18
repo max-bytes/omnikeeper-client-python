@@ -23,6 +23,7 @@ Adds new context
 
 * OAuth Authentication (oauth2):
 * OAuth Authentication (oauth2):
+
 ```python
 import time
 import okclient
@@ -119,6 +120,7 @@ void (empty response body)
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Returns the newly created context |  -  |
@@ -135,6 +137,7 @@ Saves grid view row changes and returns change results
 
 * OAuth Authentication (oauth2):
 * OAuth Authentication (oauth2):
+
 ```python
 import time
 import okclient
@@ -232,6 +235,7 @@ void (empty response body)
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | If request is successful |  -  |
@@ -249,6 +253,7 @@ Deletes specific context
 
 * OAuth Authentication (oauth2):
 * OAuth Authentication (oauth2):
+
 ```python
 import time
 import okclient
@@ -316,6 +321,7 @@ void (empty response body)
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | If request is successful |  -  |
@@ -332,6 +338,7 @@ Edits specific context
 
 * OAuth Authentication (oauth2):
 * OAuth Authentication (oauth2):
+
 ```python
 import time
 import okclient
@@ -429,6 +436,7 @@ void (empty response body)
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | If request is successful |  -  |
@@ -445,6 +453,7 @@ Returns a single context in full
 
 * OAuth Authentication (oauth2):
 * OAuth Authentication (oauth2):
+
 ```python
 import time
 import okclient
@@ -511,6 +520,7 @@ void (empty response body)
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -527,6 +537,7 @@ Returns a list of contexts for grid view.
 
 * OAuth Authentication (oauth2):
 * OAuth Authentication (oauth2):
+
 ```python
 import time
 import okclient
@@ -591,6 +602,7 @@ void (empty response body)
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -606,6 +618,7 @@ Returns grid view data for specific context
 
 * OAuth Authentication (oauth2):
 * OAuth Authentication (oauth2):
+
 ```python
 import time
 import okclient
@@ -672,6 +685,7 @@ void (empty response body)
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | If request is successful |  -  |
@@ -688,6 +702,7 @@ Returns grid view schema for specific context
 
 * OAuth Authentication (oauth2):
 * OAuth Authentication (oauth2):
+
 ```python
 import time
 import okclient
@@ -754,6 +769,7 @@ void (empty response body)
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |

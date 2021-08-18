@@ -20,6 +20,7 @@ Method | HTTP request | Description
 
 * OAuth Authentication (oauth2):
 * OAuth Authentication (oauth2):
+
 ```python
 import time
 import okclient
@@ -99,6 +100,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -114,6 +116,7 @@ Name | Type | Description  | Notes
 
 * OAuth Authentication (oauth2):
 * OAuth Authentication (oauth2):
+
 ```python
 import time
 import okclient
@@ -199,6 +202,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -214,6 +218,7 @@ Name | Type | Description  | Notes
 
 * OAuth Authentication (oauth2):
 * OAuth Authentication (oauth2):
+
 ```python
 import time
 import okclient
@@ -295,6 +300,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -310,6 +316,7 @@ Name | Type | Description  | Notes
 
 * OAuth Authentication (oauth2):
 * OAuth Authentication (oauth2):
+
 ```python
 import time
 import okclient
@@ -391,6 +398,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -406,6 +414,7 @@ Name | Type | Description  | Notes
 
 * OAuth Authentication (oauth2):
 * OAuth Authentication (oauth2):
+
 ```python
 import time
 import okclient
@@ -487,6 +496,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
