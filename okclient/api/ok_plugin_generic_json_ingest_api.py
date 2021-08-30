@@ -36,150 +36,6 @@ class OKPluginGenericJSONIngestApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-        def __add_new_context(
-            self,
-            version,
-            context,
-            **kwargs
-        ):
-            """add_new_context  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.add_new_context(version, context, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                version (str):
-                context (Context):
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (int/float/tuple): timeout setting for this request. If
-                    one number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                None
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['version'] = \
-                version
-            kwargs['context'] = \
-                context
-            return self.call_with_http_info(**kwargs)
-
-        self.add_new_context = _Endpoint(
-            settings={
-                'response_type': None,
-                'auth': [
-                    'oauth2',
-                    'oauth2'
-                ],
-                'endpoint_path': '/api/v{version}/ingest/genericJSON/manage/context',
-                'operation_id': 'add_new_context',
-                'http_method': 'POST',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'version',
-                    'context',
-                ],
-                'required': [
-                    'version',
-                    'context',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'version':
-                        (str,),
-                    'context':
-                        (Context,),
-                },
-                'attribute_map': {
-                    'version': 'version',
-                },
-                'location_map': {
-                    'version': 'path',
-                    'context': 'body',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [],
-                'content_type': [
-                    'application/json;odata.metadata=minimal;odata.streaming=true',
-                    'application/json;odata.metadata=minimal;odata.streaming=false',
-                    'application/json;odata.metadata=minimal',
-                    'application/json;odata.metadata=full;odata.streaming=true',
-                    'application/json;odata.metadata=full;odata.streaming=false',
-                    'application/json;odata.metadata=full',
-                    'application/json;odata.metadata=none;odata.streaming=true',
-                    'application/json;odata.metadata=none;odata.streaming=false',
-                    'application/json;odata.metadata=none',
-                    'application/json;odata.streaming=true',
-                    'application/json;odata.streaming=false',
-                    'application/json',
-                    'application/xml',
-                    'application/odata',
-                    'application/json-patch+json',
-                    'text/json',
-                    'application/*+json'
-                ]
-            },
-            api_client=api_client,
-            callable=__add_new_context
-        )
-
         def __get_all_contexts(
             self,
             version,
@@ -218,7 +74,7 @@ class OKPluginGenericJSONIngestApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                None
+                [Context]
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -247,7 +103,7 @@ class OKPluginGenericJSONIngestApi(object):
 
         self.get_all_contexts = _Endpoint(
             settings={
-                'response_type': None,
+                'response_type': ([Context],),
                 'auth': [
                     'oauth2',
                     'oauth2'
@@ -290,29 +146,46 @@ class OKPluginGenericJSONIngestApi(object):
                 }
             },
             headers_map={
-                'accept': [],
+                'accept': [
+                    'application/json;odata.metadata=minimal;odata.streaming=true',
+                    'application/json;odata.metadata=minimal;odata.streaming=false',
+                    'application/json;odata.metadata=minimal',
+                    'application/json;odata.metadata=full;odata.streaming=true',
+                    'application/json;odata.metadata=full;odata.streaming=false',
+                    'application/json;odata.metadata=full',
+                    'application/json;odata.metadata=none;odata.streaming=true',
+                    'application/json;odata.metadata=none;odata.streaming=false',
+                    'application/json;odata.metadata=none',
+                    'application/json;odata.streaming=true',
+                    'application/json;odata.streaming=false',
+                    'application/json',
+                    'application/xml',
+                    'application/odata',
+                    'text/plain',
+                    'text/json'
+                ],
                 'content_type': [],
             },
             api_client=api_client,
             callable=__get_all_contexts
         )
 
-        def __get_context_by_name(
+        def __get_context(
             self,
-            name,
+            id,
             version,
             **kwargs
         ):
-            """get_context_by_name  # noqa: E501
+            """get_context  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.get_context_by_name(name, version, async_req=True)
+            >>> thread = api.get_context(id, version, async_req=True)
             >>> result = thread.get()
 
             Args:
-                name (str):
+                id (str):
                 version (str):
 
             Keyword Args:
@@ -337,7 +210,7 @@ class OKPluginGenericJSONIngestApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                None
+                Context
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -360,31 +233,31 @@ class OKPluginGenericJSONIngestApi(object):
                 '_check_return_type', True
             )
             kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['name'] = \
-                name
+            kwargs['id'] = \
+                id
             kwargs['version'] = \
                 version
             return self.call_with_http_info(**kwargs)
 
-        self.get_context_by_name = _Endpoint(
+        self.get_context = _Endpoint(
             settings={
-                'response_type': None,
+                'response_type': (Context,),
                 'auth': [
                     'oauth2',
                     'oauth2'
                 ],
-                'endpoint_path': '/api/v{version}/ingest/genericJSON/manage/context/{name}',
-                'operation_id': 'get_context_by_name',
+                'endpoint_path': '/api/v{version}/ingest/genericJSON/manage/context/{id}',
+                'operation_id': 'get_context',
                 'http_method': 'GET',
                 'servers': None,
             },
             params_map={
                 'all': [
-                    'name',
+                    'id',
                     'version',
                 ],
                 'required': [
-                    'name',
+                    'id',
                     'version',
                 ],
                 'nullable': [
@@ -400,28 +273,45 @@ class OKPluginGenericJSONIngestApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'name':
+                    'id':
                         (str,),
                     'version':
                         (str,),
                 },
                 'attribute_map': {
-                    'name': 'name',
+                    'id': 'id',
                     'version': 'version',
                 },
                 'location_map': {
-                    'name': 'path',
+                    'id': 'path',
                     'version': 'path',
                 },
                 'collection_format_map': {
                 }
             },
             headers_map={
-                'accept': [],
+                'accept': [
+                    'application/json;odata.metadata=minimal;odata.streaming=true',
+                    'application/json;odata.metadata=minimal;odata.streaming=false',
+                    'application/json;odata.metadata=minimal',
+                    'application/json;odata.metadata=full;odata.streaming=true',
+                    'application/json;odata.metadata=full;odata.streaming=false',
+                    'application/json;odata.metadata=full',
+                    'application/json;odata.metadata=none;odata.streaming=true',
+                    'application/json;odata.metadata=none;odata.streaming=false',
+                    'application/json;odata.metadata=none',
+                    'application/json;odata.streaming=true',
+                    'application/json;odata.streaming=false',
+                    'application/json',
+                    'application/xml',
+                    'application/odata',
+                    'text/plain',
+                    'text/json'
+                ],
                 'content_type': [],
             },
             api_client=api_client,
-            callable=__get_context_by_name
+            callable=__get_context
         )
 
         def __ingest(
@@ -566,7 +456,7 @@ class OKPluginGenericJSONIngestApi(object):
 
         def __remove_context(
             self,
-            name,
+            id,
             version,
             **kwargs
         ):
@@ -575,11 +465,11 @@ class OKPluginGenericJSONIngestApi(object):
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.remove_context(name, version, async_req=True)
+            >>> thread = api.remove_context(id, version, async_req=True)
             >>> result = thread.get()
 
             Args:
-                name (str):
+                id (str):
                 version (str):
 
             Keyword Args:
@@ -604,7 +494,7 @@ class OKPluginGenericJSONIngestApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                None
+                Context
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -627,31 +517,31 @@ class OKPluginGenericJSONIngestApi(object):
                 '_check_return_type', True
             )
             kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['name'] = \
-                name
+            kwargs['id'] = \
+                id
             kwargs['version'] = \
                 version
             return self.call_with_http_info(**kwargs)
 
         self.remove_context = _Endpoint(
             settings={
-                'response_type': None,
+                'response_type': (Context,),
                 'auth': [
                     'oauth2',
                     'oauth2'
                 ],
-                'endpoint_path': '/api/v{version}/ingest/genericJSON/manage/context/{name}',
+                'endpoint_path': '/api/v{version}/ingest/genericJSON/manage/context/{id}',
                 'operation_id': 'remove_context',
                 'http_method': 'DELETE',
                 'servers': None,
             },
             params_map={
                 'all': [
-                    'name',
+                    'id',
                     'version',
                 ],
                 'required': [
-                    'name',
+                    'id',
                     'version',
                 ],
                 'nullable': [
@@ -667,26 +557,204 @@ class OKPluginGenericJSONIngestApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'name':
+                    'id':
                         (str,),
                     'version':
                         (str,),
                 },
                 'attribute_map': {
-                    'name': 'name',
+                    'id': 'id',
                     'version': 'version',
                 },
                 'location_map': {
-                    'name': 'path',
+                    'id': 'path',
                     'version': 'path',
                 },
                 'collection_format_map': {
                 }
             },
             headers_map={
-                'accept': [],
+                'accept': [
+                    'application/json;odata.metadata=minimal;odata.streaming=true',
+                    'application/json;odata.metadata=minimal;odata.streaming=false',
+                    'application/json;odata.metadata=minimal',
+                    'application/json;odata.metadata=full;odata.streaming=true',
+                    'application/json;odata.metadata=full;odata.streaming=false',
+                    'application/json;odata.metadata=full',
+                    'application/json;odata.metadata=none;odata.streaming=true',
+                    'application/json;odata.metadata=none;odata.streaming=false',
+                    'application/json;odata.metadata=none',
+                    'application/json;odata.streaming=true',
+                    'application/json;odata.streaming=false',
+                    'application/json',
+                    'application/xml',
+                    'application/odata',
+                    'text/plain',
+                    'text/json'
+                ],
                 'content_type': [],
             },
             api_client=api_client,
             callable=__remove_context
+        )
+
+        def __upsert_context(
+            self,
+            version,
+            context,
+            **kwargs
+        ):
+            """upsert_context  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.upsert_context(version, context, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                version (str):
+                context (Context):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (int/float/tuple): timeout setting for this request. If
+                    one number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                Context
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['version'] = \
+                version
+            kwargs['context'] = \
+                context
+            return self.call_with_http_info(**kwargs)
+
+        self.upsert_context = _Endpoint(
+            settings={
+                'response_type': (Context,),
+                'auth': [
+                    'oauth2',
+                    'oauth2'
+                ],
+                'endpoint_path': '/api/v{version}/ingest/genericJSON/manage/context',
+                'operation_id': 'upsert_context',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'version',
+                    'context',
+                ],
+                'required': [
+                    'version',
+                    'context',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'version':
+                        (str,),
+                    'context':
+                        (Context,),
+                },
+                'attribute_map': {
+                    'version': 'version',
+                },
+                'location_map': {
+                    'version': 'path',
+                    'context': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json;odata.metadata=minimal;odata.streaming=true',
+                    'application/json;odata.metadata=minimal;odata.streaming=false',
+                    'application/json;odata.metadata=minimal',
+                    'application/json;odata.metadata=full;odata.streaming=true',
+                    'application/json;odata.metadata=full;odata.streaming=false',
+                    'application/json;odata.metadata=full',
+                    'application/json;odata.metadata=none;odata.streaming=true',
+                    'application/json;odata.metadata=none;odata.streaming=false',
+                    'application/json;odata.metadata=none',
+                    'application/json;odata.streaming=true',
+                    'application/json;odata.streaming=false',
+                    'application/json',
+                    'application/xml',
+                    'application/odata',
+                    'text/plain',
+                    'text/json'
+                ],
+                'content_type': [
+                    'application/json;odata.metadata=minimal;odata.streaming=true',
+                    'application/json;odata.metadata=minimal;odata.streaming=false',
+                    'application/json;odata.metadata=minimal',
+                    'application/json;odata.metadata=full;odata.streaming=true',
+                    'application/json;odata.metadata=full;odata.streaming=false',
+                    'application/json;odata.metadata=full',
+                    'application/json;odata.metadata=none;odata.streaming=true',
+                    'application/json;odata.metadata=none;odata.streaming=false',
+                    'application/json;odata.metadata=none',
+                    'application/json;odata.streaming=true',
+                    'application/json;odata.streaming=false',
+                    'application/json',
+                    'application/xml',
+                    'application/odata',
+                    'application/json-patch+json',
+                    'text/json',
+                    'application/*+json'
+                ]
+            },
+            api_client=api_client,
+            callable=__upsert_context
         )

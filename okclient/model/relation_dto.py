@@ -30,9 +30,7 @@ from okclient.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from okclient.model.predicate_dto import PredicateDTO
     from okclient.model.relation_state import RelationState
-    globals()['PredicateDTO'] = PredicateDTO
     globals()['RelationState'] = RelationState
 
 
@@ -66,14 +64,7 @@ class RelationDTO(ModelNormal):
     validations = {
     }
 
-    @cached_property
-    def additional_properties_type():
-        """
-        This must be a method because a model may have properties that are
-        of type self, this must run after the class is loaded
-        """
-        lazy_import()
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+    additional_properties_type = None
 
     _nullable = False
 
@@ -93,7 +84,6 @@ class RelationDTO(ModelNormal):
             'from_ciid': (str,),  # noqa: E501
             'to_ciid': (str,),  # noqa: E501
             'predicate_id': (str,),  # noqa: E501
-            'predicate': (PredicateDTO,),  # noqa: E501
             'state': (RelationState,),  # noqa: E501
         }
 
@@ -107,19 +97,17 @@ class RelationDTO(ModelNormal):
         'from_ciid': 'fromCIID',  # noqa: E501
         'to_ciid': 'toCIID',  # noqa: E501
         'predicate_id': 'predicateID',  # noqa: E501
-        'predicate': 'predicate',  # noqa: E501
         'state': 'state',  # noqa: E501
     }
 
     read_only_vars = {
-        'predicate_id',  # noqa: E501
     }
 
     _composed_schemas = {}
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, id, from_ciid, to_ciid, predicate_id, predicate, state, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, id, from_ciid, to_ciid, predicate_id, state, *args, **kwargs):  # noqa: E501
         """RelationDTO - a model defined in OpenAPI
 
         Args:
@@ -127,7 +115,6 @@ class RelationDTO(ModelNormal):
             from_ciid (str):
             to_ciid (str):
             predicate_id (str):
-            predicate (PredicateDTO):
             state (RelationState):
 
         Keyword Args:
@@ -192,7 +179,6 @@ class RelationDTO(ModelNormal):
         self.from_ciid = from_ciid
         self.to_ciid = to_ciid
         self.predicate_id = predicate_id
-        self.predicate = predicate
         self.state = state
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
@@ -214,14 +200,14 @@ class RelationDTO(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, id, from_ciid, to_ciid, predicate, state, *args, **kwargs):  # noqa: E501
+    def __init__(self, id, from_ciid, to_ciid, predicate_id, state, *args, **kwargs):  # noqa: E501
         """RelationDTO - a model defined in OpenAPI
 
         Args:
             id (str):
             from_ciid (str):
             to_ciid (str):
-            predicate (PredicateDTO):
+            predicate_id (str):
             state (RelationState):
 
         Keyword Args:
@@ -283,7 +269,7 @@ class RelationDTO(ModelNormal):
         self.id = id
         self.from_ciid = from_ciid
         self.to_ciid = to_ciid
-        self.predicate = predicate
+        self.predicate_id = predicate_id
         self.state = state
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \

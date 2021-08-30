@@ -64,14 +64,7 @@ class GridViewConfiguration(ModelNormal):
     validations = {
     }
 
-    @cached_property
-    def additional_properties_type():
-        """
-        This must be a method because a model may have properties that are
-        of type self, this must run after the class is loaded
-        """
-        lazy_import()
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+    additional_properties_type = None
 
     _nullable = False
 
@@ -88,8 +81,8 @@ class GridViewConfiguration(ModelNormal):
         lazy_import()
         return {
             'show_ciid_column': (bool,),  # noqa: E501
-            'write_layer': (int,),  # noqa: E501
-            'read_layerset': ([int], none_type,),  # noqa: E501
+            'write_layer': (str, none_type,),  # noqa: E501
+            'read_layerset': ([str], none_type,),  # noqa: E501
             'columns': ([GridViewColumn], none_type,),  # noqa: E501
             'trait': (str, none_type,),  # noqa: E501
         }
@@ -149,8 +142,8 @@ class GridViewConfiguration(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             show_ciid_column (bool): [optional]  # noqa: E501
-            write_layer (int): [optional]  # noqa: E501
-            read_layerset ([int], none_type): [optional]  # noqa: E501
+            write_layer (str, none_type): [optional]  # noqa: E501
+            read_layerset ([str], none_type): [optional]  # noqa: E501
             columns ([GridViewColumn], none_type): [optional]  # noqa: E501
             trait (str, none_type): [optional]  # noqa: E501
         """
@@ -235,8 +228,8 @@ class GridViewConfiguration(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             show_ciid_column (bool): [optional]  # noqa: E501
-            write_layer (int): [optional]  # noqa: E501
-            read_layerset ([int], none_type): [optional]  # noqa: E501
+            write_layer (str, none_type): [optional]  # noqa: E501
+            read_layerset ([str], none_type): [optional]  # noqa: E501
             columns ([GridViewColumn], none_type): [optional]  # noqa: E501
             trait (str, none_type): [optional]  # noqa: E501
         """

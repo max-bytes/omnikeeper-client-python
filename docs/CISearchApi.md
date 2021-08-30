@@ -51,8 +51,8 @@ with okclient.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = ci_search_api.CISearchApi(api_client)
     layer_ids = [
-        1,
-    ] # [int] | 
+        "layerIDs_example",
+    ] # [str] | 
     with_traits = [
         "withTraits_example",
     ] # [str] | 
@@ -60,7 +60,7 @@ with okclient.ApiClient(configuration) as api_client:
         "withoutTraits_example",
     ] # [str] | 
     version = "version_example" # str | 
-    at_time = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type |  (optional)
+    at_time = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime |  (optional)
 
     # example passing only required values which don't have defaults set
     try:
@@ -83,11 +83,11 @@ with okclient.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **layer_ids** | **[int]**|  |
+ **layer_ids** | **[str]**|  |
  **with_traits** | **[str]**|  |
  **without_traits** | **[str]**|  |
  **version** | **str**|  |
- **at_time** | **datetime, none_type**|  | [optional]
+ **at_time** | **datetime**|  | [optional]
 
 ### Return type
 

@@ -211,7 +211,7 @@ class GridViewApi(object):
             >>> result = thread.get()
 
             Args:
-                context (str, none_type):
+                context (str):
                 version (str):
 
             Keyword Args:
@@ -289,7 +289,6 @@ class GridViewApi(object):
                     'version',
                 ],
                 'nullable': [
-                    'context',
                 ],
                 'enum': [
                 ],
@@ -303,7 +302,7 @@ class GridViewApi(object):
                 },
                 'openapi_types': {
                     'context':
-                        (str, none_type,),
+                        (str,),
                     'version':
                         (str,),
                     'change_data_request':
@@ -379,7 +378,7 @@ class GridViewApi(object):
             >>> result = thread.get()
 
             Args:
-                name (str, none_type):
+                name (str):
                 version (str):
 
             Keyword Args:
@@ -455,7 +454,6 @@ class GridViewApi(object):
                     'version',
                 ],
                 'nullable': [
-                    'name',
                 ],
                 'enum': [
                 ],
@@ -469,7 +467,7 @@ class GridViewApi(object):
                 },
                 'openapi_types': {
                     'name':
-                        (str, none_type,),
+                        (str,),
                     'version':
                         (str,),
                 },
@@ -524,7 +522,7 @@ class GridViewApi(object):
             >>> result = thread.get()
 
             Args:
-                name (str, none_type):
+                name (str):
                 version (str):
 
             Keyword Args:
@@ -602,7 +600,6 @@ class GridViewApi(object):
                     'version',
                 ],
                 'nullable': [
-                    'name',
                 ],
                 'enum': [
                 ],
@@ -616,7 +613,7 @@ class GridViewApi(object):
                 },
                 'openapi_types': {
                     'name':
-                        (str, none_type,),
+                        (str,),
                     'version':
                         (str,),
                     'edit_context_request':
@@ -677,251 +674,6 @@ class GridViewApi(object):
             callable=__edit_context
         )
 
-        def __get_context(
-            self,
-            name,
-            version,
-            **kwargs
-        ):
-            """Returns a single context in full  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.get_context(name, version, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                name (str, none_type):
-                version (str):
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (int/float/tuple): timeout setting for this request. If
-                    one number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                None
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['name'] = \
-                name
-            kwargs['version'] = \
-                version
-            return self.call_with_http_info(**kwargs)
-
-        self.get_context = _Endpoint(
-            settings={
-                'response_type': None,
-                'auth': [
-                    'oauth2',
-                    'oauth2'
-                ],
-                'endpoint_path': '/api/v{version}/GridView/context/{name}',
-                'operation_id': 'get_context',
-                'http_method': 'GET',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'name',
-                    'version',
-                ],
-                'required': [
-                    'name',
-                    'version',
-                ],
-                'nullable': [
-                    'name',
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'name':
-                        (str, none_type,),
-                    'version':
-                        (str,),
-                },
-                'attribute_map': {
-                    'name': 'name',
-                    'version': 'version',
-                },
-                'location_map': {
-                    'name': 'path',
-                    'version': 'path',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [],
-                'content_type': [],
-            },
-            api_client=api_client,
-            callable=__get_context
-        )
-
-        def __get_contexts(
-            self,
-            version,
-            **kwargs
-        ):
-            """Returns a list of contexts for grid view.  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.get_contexts(version, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                version (str):
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (int/float/tuple): timeout setting for this request. If
-                    one number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                None
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['version'] = \
-                version
-            return self.call_with_http_info(**kwargs)
-
-        self.get_contexts = _Endpoint(
-            settings={
-                'response_type': None,
-                'auth': [
-                    'oauth2',
-                    'oauth2'
-                ],
-                'endpoint_path': '/api/v{version}/GridView/contexts',
-                'operation_id': 'get_contexts',
-                'http_method': 'GET',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'version',
-                ],
-                'required': [
-                    'version',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'version':
-                        (str,),
-                },
-                'attribute_map': {
-                    'version': 'version',
-                },
-                'location_map': {
-                    'version': 'path',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [],
-                'content_type': [],
-            },
-            api_client=api_client,
-            callable=__get_contexts
-        )
-
         def __get_data(
             self,
             context,
@@ -937,7 +689,7 @@ class GridViewApi(object):
             >>> result = thread.get()
 
             Args:
-                context (str, none_type):
+                context (str):
                 version (str):
 
             Keyword Args:
@@ -1013,7 +765,6 @@ class GridViewApi(object):
                     'version',
                 ],
                 'nullable': [
-                    'context',
                 ],
                 'enum': [
                 ],
@@ -1027,7 +778,7 @@ class GridViewApi(object):
                 },
                 'openapi_types': {
                     'context':
-                        (str, none_type,),
+                        (str,),
                     'version':
                         (str,),
                 },
@@ -1050,6 +801,250 @@ class GridViewApi(object):
             callable=__get_data
         )
 
+        def __get_grid_view_context(
+            self,
+            name,
+            version,
+            **kwargs
+        ):
+            """Returns a single context in full  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_grid_view_context(name, version, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                name (str):
+                version (str):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (int/float/tuple): timeout setting for this request. If
+                    one number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                None
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['name'] = \
+                name
+            kwargs['version'] = \
+                version
+            return self.call_with_http_info(**kwargs)
+
+        self.get_grid_view_context = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'oauth2',
+                    'oauth2'
+                ],
+                'endpoint_path': '/api/v{version}/GridView/context/{name}',
+                'operation_id': 'get_grid_view_context',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'name',
+                    'version',
+                ],
+                'required': [
+                    'name',
+                    'version',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'name':
+                        (str,),
+                    'version':
+                        (str,),
+                },
+                'attribute_map': {
+                    'name': 'name',
+                    'version': 'version',
+                },
+                'location_map': {
+                    'name': 'path',
+                    'version': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_grid_view_context
+        )
+
+        def __get_grid_view_contexts(
+            self,
+            version,
+            **kwargs
+        ):
+            """Returns a list of contexts for grid view.  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_grid_view_contexts(version, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                version (str):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (int/float/tuple): timeout setting for this request. If
+                    one number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                None
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['version'] = \
+                version
+            return self.call_with_http_info(**kwargs)
+
+        self.get_grid_view_contexts = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'oauth2',
+                    'oauth2'
+                ],
+                'endpoint_path': '/api/v{version}/GridView/contexts',
+                'operation_id': 'get_grid_view_contexts',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'version',
+                ],
+                'required': [
+                    'version',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'version':
+                        (str,),
+                },
+                'attribute_map': {
+                    'version': 'version',
+                },
+                'location_map': {
+                    'version': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_grid_view_contexts
+        )
+
         def __get_schema(
             self,
             context,
@@ -1065,7 +1060,7 @@ class GridViewApi(object):
             >>> result = thread.get()
 
             Args:
-                context (str, none_type):
+                context (str):
                 version (str):
 
             Keyword Args:
@@ -1141,7 +1136,6 @@ class GridViewApi(object):
                     'version',
                 ],
                 'nullable': [
-                    'context',
                 ],
                 'enum': [
                 ],
@@ -1155,7 +1149,7 @@ class GridViewApi(object):
                 },
                 'openapi_types': {
                     'context':
-                        (str, none_type,),
+                        (str,),
                     'version':
                         (str,),
                 },

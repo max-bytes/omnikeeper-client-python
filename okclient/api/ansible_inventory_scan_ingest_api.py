@@ -53,8 +53,8 @@ class AnsibleInventoryScanIngestApi(object):
             >>> result = thread.get()
 
             Args:
-                write_layer_id (int):
-                search_layer_ids ([int]):
+                write_layer_id (str):
+                search_layer_ids ([str]):
                 version (str):
                 ansible_inventory_scan_dto (AnsibleInventoryScanDTO):
 
@@ -152,9 +152,9 @@ class AnsibleInventoryScanIngestApi(object):
                 },
                 'openapi_types': {
                     'write_layer_id':
-                        (int,),
+                        (str,),
                     'search_layer_ids':
-                        ([int],),
+                        ([str],),
                     'version':
                         (str,),
                     'ansible_inventory_scan_dto':

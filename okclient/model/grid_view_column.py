@@ -64,14 +64,7 @@ class GridViewColumn(ModelNormal):
     validations = {
     }
 
-    @cached_property
-    def additional_properties_type():
-        """
-        This must be a method because a model may have properties that are
-        of type self, this must run after the class is loaded
-        """
-        lazy_import()
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+    additional_properties_type = None
 
     _nullable = False
 
@@ -90,7 +83,7 @@ class GridViewColumn(ModelNormal):
             'source_attribute_name': (str, none_type,),  # noqa: E501
             'column_description': (str, none_type,),  # noqa: E501
             'value_type': (AttributeValueType,),  # noqa: E501
-            'write_layer': (int, none_type,),  # noqa: E501
+            'write_layer': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -149,7 +142,7 @@ class GridViewColumn(ModelNormal):
             source_attribute_name (str, none_type): [optional]  # noqa: E501
             column_description (str, none_type): [optional]  # noqa: E501
             value_type (AttributeValueType): [optional]  # noqa: E501
-            write_layer (int, none_type): [optional]  # noqa: E501
+            write_layer (str, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -234,7 +227,7 @@ class GridViewColumn(ModelNormal):
             source_attribute_name (str, none_type): [optional]  # noqa: E501
             column_description (str, none_type): [optional]  # noqa: E501
             value_type (AttributeValueType): [optional]  # noqa: E501
-            write_layer (int, none_type): [optional]  # noqa: E501
+            write_layer (str, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

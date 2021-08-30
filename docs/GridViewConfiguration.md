@@ -5,11 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **show_ciid_column** | **bool** |  | [optional] 
-**write_layer** | **int** |  | [optional] 
-**read_layerset** | **[int], none_type** |  | [optional] 
+**write_layer** | **str, none_type** |  | [optional] 
+**read_layerset** | **[str], none_type** |  | [optional] 
 **columns** | [**[GridViewColumn], none_type**](GridViewColumn.md) |  | [optional] 
 **trait** | **str, none_type** |  | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

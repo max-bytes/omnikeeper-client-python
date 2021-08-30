@@ -64,14 +64,7 @@ class BulkCIAttributeLayerScopeDTO(ModelNormal):
     validations = {
     }
 
-    @cached_property
-    def additional_properties_type():
-        """
-        This must be a method because a model may have properties that are
-        of type self, this must run after the class is loaded
-        """
-        lazy_import()
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+    additional_properties_type = None
 
     _nullable = False
 
@@ -88,7 +81,7 @@ class BulkCIAttributeLayerScopeDTO(ModelNormal):
         lazy_import()
         return {
             'name_prefix': (str,),  # noqa: E501
-            'layer_id': (int,),  # noqa: E501
+            'layer_id': (str,),  # noqa: E501
             'fragments': ([FragmentDTO],),  # noqa: E501
         }
 
@@ -115,7 +108,7 @@ class BulkCIAttributeLayerScopeDTO(ModelNormal):
 
         Args:
             name_prefix (str):
-            layer_id (int):
+            layer_id (str):
             fragments ([FragmentDTO]):
 
         Keyword Args:
@@ -204,7 +197,7 @@ class BulkCIAttributeLayerScopeDTO(ModelNormal):
 
         Args:
             name_prefix (str):
-            layer_id (int):
+            layer_id (str):
             fragments ([FragmentDTO]):
 
         Keyword Args:

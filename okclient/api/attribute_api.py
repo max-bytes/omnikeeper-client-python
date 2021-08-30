@@ -198,12 +198,12 @@ class AttributeApi(object):
 
             Args:
                 regex (str):
-                layer_ids ([int]):
+                layer_ids ([str]):
                 version (str):
 
             Keyword Args:
-                ciids ([str], none_type): [optional]
-                at_time (datetime, none_type): [optional]
+                ciids ([str]): [optional]
+                at_time (datetime): [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -282,8 +282,6 @@ class AttributeApi(object):
                     'version',
                 ],
                 'nullable': [
-                    'ciids',
-                    'at_time',
                 ],
                 'enum': [
                 ],
@@ -299,13 +297,13 @@ class AttributeApi(object):
                     'regex':
                         (str,),
                     'layer_ids':
-                        ([int],),
+                        ([str],),
                     'version':
                         (str,),
                     'ciids':
-                        ([str], none_type,),
+                        ([str],),
                     'at_time':
-                        (datetime, none_type,),
+                        (datetime,),
                 },
                 'attribute_map': {
                     'regex': 'regex',
@@ -370,11 +368,11 @@ class AttributeApi(object):
             Args:
                 ciid (str):
                 name (str):
-                layer_ids ([int]):
+                layer_ids ([str]):
                 version (str):
 
             Keyword Args:
-                at_time (datetime, none_type): [optional]
+                at_time (datetime): [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -456,7 +454,6 @@ class AttributeApi(object):
                     'version',
                 ],
                 'nullable': [
-                    'at_time',
                 ],
                 'enum': [
                 ],
@@ -474,11 +471,11 @@ class AttributeApi(object):
                     'name':
                         (str,),
                     'layer_ids':
-                        ([int],),
+                        ([str],),
                     'version':
                         (str,),
                     'at_time':
-                        (datetime, none_type,),
+                        (datetime,),
                 },
                 'attribute_map': {
                     'ciid': 'ciid',
@@ -540,11 +537,11 @@ class AttributeApi(object):
 
             Args:
                 ciids ([str]):
-                layer_ids ([int]):
+                layer_ids ([str]):
                 version (str):
 
             Keyword Args:
-                at_time (datetime, none_type): [optional]
+                at_time (datetime): [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -622,7 +619,6 @@ class AttributeApi(object):
                     'version',
                 ],
                 'nullable': [
-                    'at_time',
                 ],
                 'enum': [
                 ],
@@ -638,11 +634,11 @@ class AttributeApi(object):
                     'ciids':
                         ([str],),
                     'layer_ids':
-                        ([int],),
+                        ([str],),
                     'version':
                         (str,),
                     'at_time':
-                        (datetime, none_type,),
+                        (datetime,),
                 },
                 'attribute_map': {
                     'ciids': 'ciids',
@@ -703,11 +699,11 @@ class AttributeApi(object):
 
             Args:
                 name (str):
-                layer_ids ([int]):
+                layer_ids ([str]):
                 version (str):
 
             Keyword Args:
-                at_time (datetime, none_type): [optional]
+                at_time (datetime): [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -785,7 +781,6 @@ class AttributeApi(object):
                     'version',
                 ],
                 'nullable': [
-                    'at_time',
                 ],
                 'enum': [
                 ],
@@ -801,11 +796,11 @@ class AttributeApi(object):
                     'name':
                         (str,),
                     'layer_ids':
-                        ([int],),
+                        ([str],),
                     'version':
                         (str,),
                     'at_time':
-                        (datetime, none_type,),
+                        (datetime,),
                 },
                 'attribute_map': {
                     'name': 'name',

@@ -28,7 +28,6 @@ from okclient.model.grid_view_column import GridViewColumn
 from okclient.model.grid_view_configuration import GridViewConfiguration
 from okclient.model.i_load_config import ILoadConfig
 from okclient.model.layer_dto import LayerDTO
-from okclient.model.predicate_dto import PredicateDTO
 from okclient.model.problem_details import ProblemDetails
 from okclient.model.related_cidto import RelatedCIDTO
 from okclient.model.relation_dto import RelationDTO

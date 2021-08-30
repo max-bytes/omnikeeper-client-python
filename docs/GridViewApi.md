@@ -8,9 +8,9 @@ Method | HTTP request | Description
 [**change_data**](GridViewApi.md#change_data) | **POST** /api/v{version}/GridView/contexts/{context}/change | Saves grid view row changes and returns change results
 [**delete_context**](GridViewApi.md#delete_context) | **DELETE** /api/v{version}/GridView/context/{name} | Deletes specific context
 [**edit_context**](GridViewApi.md#edit_context) | **PUT** /api/v{version}/GridView/context/{name} | Edits specific context
-[**get_context**](GridViewApi.md#get_context) | **GET** /api/v{version}/GridView/context/{name} | Returns a single context in full
-[**get_contexts**](GridViewApi.md#get_contexts) | **GET** /api/v{version}/GridView/contexts | Returns a list of contexts for grid view.
 [**get_data**](GridViewApi.md#get_data) | **GET** /api/v{version}/GridView/contexts/{context}/data | Returns grid view data for specific context
+[**get_grid_view_context**](GridViewApi.md#get_grid_view_context) | **GET** /api/v{version}/GridView/context/{name} | Returns a single context in full
+[**get_grid_view_contexts**](GridViewApi.md#get_grid_view_contexts) | **GET** /api/v{version}/GridView/contexts | Returns a list of contexts for grid view.
 [**get_schema**](GridViewApi.md#get_schema) | **GET** /api/v{version}/GridView/contexts/{context}/schema | Returns grid view schema for specific context
 
 
@@ -60,21 +60,21 @@ with okclient.ApiClient(configuration) as api_client:
     api_instance = grid_view_api.GridViewApi(api_client)
     version = "version_example" # str | 
     add_context_request = AddContextRequest(
-        name="name_example",
+        id="id_example",
         speaking_name="speaking_name_example",
         description="description_example",
         configuration=GridViewConfiguration(
             show_ciid_column=True,
-            write_layer=1,
+            write_layer="write_layer_example",
             read_layerset=[
-                1,
+                "read_layerset_example",
             ],
             columns=[
                 GridViewColumn(
                     source_attribute_name="source_attribute_name_example",
                     column_description="column_description_example",
                     value_type=AttributeValueType("Text"),
-                    write_layer=1,
+                    write_layer="write_layer_example",
                 ),
             ],
             trait="trait_example",
@@ -172,7 +172,7 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with okclient.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = grid_view_api.GridViewApi(api_client)
-    context = "context_example" # str, none_type | 
+    context = "context_example" # str | 
     version = "version_example" # str | 
     change_data_request = ChangeDataRequest(
         sparse_rows=[
@@ -216,7 +216,7 @@ with okclient.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **context** | **str, none_type**|  |
+ **context** | **str**|  |
  **version** | **str**|  |
  **change_data_request** | [**ChangeDataRequest**](ChangeDataRequest.md)|  | [optional]
 
@@ -287,7 +287,7 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with okclient.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = grid_view_api.GridViewApi(api_client)
-    name = "name_example" # str, none_type | 
+    name = "name_example" # str | 
     version = "version_example" # str | 
 
     # example passing only required values which don't have defaults set
@@ -303,7 +303,7 @@ with okclient.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str, none_type**|  |
+ **name** | **str**|  |
  **version** | **str**|  |
 
 ### Return type
@@ -373,23 +373,23 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with okclient.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = grid_view_api.GridViewApi(api_client)
-    name = "name_example" # str, none_type | 
+    name = "name_example" # str | 
     version = "version_example" # str | 
     edit_context_request = EditContextRequest(
         speaking_name="speaking_name_example",
         description="description_example",
         configuration=GridViewConfiguration(
             show_ciid_column=True,
-            write_layer=1,
+            write_layer="write_layer_example",
             read_layerset=[
-                1,
+                "read_layerset_example",
             ],
             columns=[
                 GridViewColumn(
                     source_attribute_name="source_attribute_name_example",
                     column_description="column_description_example",
                     value_type=AttributeValueType("Text"),
-                    write_layer=1,
+                    write_layer="write_layer_example",
                 ),
             ],
             trait="trait_example",
@@ -417,7 +417,7 @@ with okclient.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str, none_type**|  |
+ **name** | **str**|  |
  **version** | **str**|  |
  **edit_context_request** | [**EditContextRequest**](EditContextRequest.md)|  | [optional]
 
@@ -441,171 +441,6 @@ void (empty response body)
 |-------------|-------------|------------------|
 **200** | If request is successful |  -  |
 **400** | If editing the context fails |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_context**
-> get_context(name, version)
-
-Returns a single context in full
-
-### Example
-
-* OAuth Authentication (oauth2):
-* OAuth Authentication (oauth2):
-
-```python
-import time
-import okclient
-from okclient.api import grid_view_api
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = okclient.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure OAuth2 access token for authorization: oauth2
-configuration = okclient.Configuration(
-    host = "http://localhost"
-)
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
-
-# Configure OAuth2 access token for authorization: oauth2
-configuration = okclient.Configuration(
-    host = "http://localhost"
-)
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
-
-# Enter a context with an instance of the API client
-with okclient.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = grid_view_api.GridViewApi(api_client)
-    name = "name_example" # str, none_type | 
-    version = "version_example" # str | 
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Returns a single context in full
-        api_instance.get_context(name, version)
-    except okclient.ApiException as e:
-        print("Exception when calling GridViewApi->get_context: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **str, none_type**|  |
- **version** | **str**|  |
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[oauth2](../README.md#oauth2), [oauth2](../README.md#oauth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: Not defined
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**400** | If the name was not found or any other error occurred |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_contexts**
-> get_contexts(version)
-
-Returns a list of contexts for grid view.
-
-### Example
-
-* OAuth Authentication (oauth2):
-* OAuth Authentication (oauth2):
-
-```python
-import time
-import okclient
-from okclient.api import grid_view_api
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = okclient.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure OAuth2 access token for authorization: oauth2
-configuration = okclient.Configuration(
-    host = "http://localhost"
-)
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
-
-# Configure OAuth2 access token for authorization: oauth2
-configuration = okclient.Configuration(
-    host = "http://localhost"
-)
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
-
-# Enter a context with an instance of the API client
-with okclient.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = grid_view_api.GridViewApi(api_client)
-    version = "version_example" # str | 
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Returns a list of contexts for grid view.
-        api_instance.get_contexts(version)
-    except okclient.ApiException as e:
-        print("Exception when calling GridViewApi->get_contexts: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **version** | **str**|  |
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[oauth2](../README.md#oauth2), [oauth2](../README.md#oauth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: Not defined
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -651,7 +486,7 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with okclient.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = grid_view_api.GridViewApi(api_client)
-    context = "context_example" # str, none_type | 
+    context = "context_example" # str | 
     version = "version_example" # str | 
 
     # example passing only required values which don't have defaults set
@@ -667,7 +502,7 @@ with okclient.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **context** | **str, none_type**|  |
+ **context** | **str**|  |
  **version** | **str**|  |
 
 ### Return type
@@ -690,6 +525,171 @@ void (empty response body)
 |-------------|-------------|------------------|
 **200** | If request is successful |  -  |
 **400** | If trait is not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_grid_view_context**
+> get_grid_view_context(name, version)
+
+Returns a single context in full
+
+### Example
+
+* OAuth Authentication (oauth2):
+* OAuth Authentication (oauth2):
+
+```python
+import time
+import okclient
+from okclient.api import grid_view_api
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = okclient.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure OAuth2 access token for authorization: oauth2
+configuration = okclient.Configuration(
+    host = "http://localhost"
+)
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Configure OAuth2 access token for authorization: oauth2
+configuration = okclient.Configuration(
+    host = "http://localhost"
+)
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Enter a context with an instance of the API client
+with okclient.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = grid_view_api.GridViewApi(api_client)
+    name = "name_example" # str | 
+    version = "version_example" # str | 
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Returns a single context in full
+        api_instance.get_grid_view_context(name, version)
+    except okclient.ApiException as e:
+        print("Exception when calling GridViewApi->get_grid_view_context: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **name** | **str**|  |
+ **version** | **str**|  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[oauth2](../README.md#oauth2), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**400** | If the name was not found or any other error occurred |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_grid_view_contexts**
+> get_grid_view_contexts(version)
+
+Returns a list of contexts for grid view.
+
+### Example
+
+* OAuth Authentication (oauth2):
+* OAuth Authentication (oauth2):
+
+```python
+import time
+import okclient
+from okclient.api import grid_view_api
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = okclient.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure OAuth2 access token for authorization: oauth2
+configuration = okclient.Configuration(
+    host = "http://localhost"
+)
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Configure OAuth2 access token for authorization: oauth2
+configuration = okclient.Configuration(
+    host = "http://localhost"
+)
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Enter a context with an instance of the API client
+with okclient.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = grid_view_api.GridViewApi(api_client)
+    version = "version_example" # str | 
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Returns a list of contexts for grid view.
+        api_instance.get_grid_view_contexts(version)
+    except okclient.ApiException as e:
+        print("Exception when calling GridViewApi->get_grid_view_contexts: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **version** | **str**|  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[oauth2](../README.md#oauth2), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -735,7 +735,7 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with okclient.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = grid_view_api.GridViewApi(api_client)
-    context = "context_example" # str, none_type | 
+    context = "context_example" # str | 
     version = "version_example" # str | 
 
     # example passing only required values which don't have defaults set
@@ -751,7 +751,7 @@ with okclient.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **context** | **str, none_type**|  |
+ **context** | **str**|  |
  **version** | **str**|  |
 
 ### Return type

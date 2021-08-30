@@ -64,14 +64,7 @@ class AddContextRequest(ModelNormal):
     validations = {
     }
 
-    @cached_property
-    def additional_properties_type():
-        """
-        This must be a method because a model may have properties that are
-        of type self, this must run after the class is loaded
-        """
-        lazy_import()
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+    additional_properties_type = None
 
     _nullable = False
 
@@ -87,7 +80,7 @@ class AddContextRequest(ModelNormal):
         """
         lazy_import()
         return {
-            'name': (str, none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
             'speaking_name': (str, none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
             'configuration': (GridViewConfiguration,),  # noqa: E501
@@ -99,7 +92,7 @@ class AddContextRequest(ModelNormal):
 
 
     attribute_map = {
-        'name': 'name',  # noqa: E501
+        'id': 'id',  # noqa: E501
         'speaking_name': 'speakingName',  # noqa: E501
         'description': 'description',  # noqa: E501
         'configuration': 'configuration',  # noqa: E501
@@ -146,7 +139,7 @@ class AddContextRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            name (str, none_type): [optional]  # noqa: E501
+            id (str, none_type): [optional]  # noqa: E501
             speaking_name (str, none_type): [optional]  # noqa: E501
             description (str, none_type): [optional]  # noqa: E501
             configuration (GridViewConfiguration): [optional]  # noqa: E501
@@ -231,7 +224,7 @@ class AddContextRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            name (str, none_type): [optional]  # noqa: E501
+            id (str, none_type): [optional]  # noqa: E501
             speaking_name (str, none_type): [optional]  # noqa: E501
             description (str, none_type): [optional]  # noqa: E501
             configuration (GridViewConfiguration): [optional]  # noqa: E501

@@ -135,11 +135,11 @@ with okclient.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = ci_api.CIApi(api_client)
     layer_ids = [
-        1,
-    ] # [int] | Specifies which layers contribute to the result, and in which order
+        "layerIDs_example",
+    ] # [str] | Specifies which layers contribute to the result, and in which order
     ciid = "CIID_example" # str | 
     version = "version_example" # str | 
-    at_time = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type | Specify datetime, for which point in time to get the data; leave empty to use current time (https://www.newtonsoft.com/json/help/html/DatesInJSON.htm) (optional)
+    at_time = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | Specify datetime, for which point in time to get the data; leave empty to use current time (https://www.newtonsoft.com/json/help/html/DatesInJSON.htm) (optional)
 
     # example passing only required values which don't have defaults set
     try:
@@ -164,10 +164,10 @@ with okclient.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **layer_ids** | **[int]**| Specifies which layers contribute to the result, and in which order |
+ **layer_ids** | **[str]**| Specifies which layers contribute to the result, and in which order |
  **ciid** | **str**|  |
  **version** | **str**|  |
- **at_time** | **datetime, none_type**| Specify datetime, for which point in time to get the data; leave empty to use current time (https://www.newtonsoft.com/json/help/html/DatesInJSON.htm) | [optional]
+ **at_time** | **datetime**| Specify datetime, for which point in time to get the data; leave empty to use current time (https://www.newtonsoft.com/json/help/html/DatesInJSON.htm) | [optional]
 
 ### Return type
 
@@ -235,13 +235,13 @@ with okclient.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = ci_api.CIApi(api_client)
     layer_ids = [
-        1,
-    ] # [int] | Specifies which layers contribute to the result, and in which order
+        "layerIDs_example",
+    ] # [str] | Specifies which layers contribute to the result, and in which order
     ciids = [
         "CIIDs_example",
     ] # [str] | 
     version = "version_example" # str | 
-    at_time = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type | Specify datetime, for which point in time to get the data; leave empty to use current time (https://www.newtonsoft.com/json/help/html/DatesInJSON.htm) (optional)
+    at_time = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | Specify datetime, for which point in time to get the data; leave empty to use current time (https://www.newtonsoft.com/json/help/html/DatesInJSON.htm) (optional)
 
     # example passing only required values which don't have defaults set
     try:
@@ -266,10 +266,10 @@ with okclient.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **layer_ids** | **[int]**| Specifies which layers contribute to the result, and in which order |
+ **layer_ids** | **[str]**| Specifies which layers contribute to the result, and in which order |
  **ciids** | **[str]**|  |
  **version** | **str**|  |
- **at_time** | **datetime, none_type**| Specify datetime, for which point in time to get the data; leave empty to use current time (https://www.newtonsoft.com/json/help/html/DatesInJSON.htm) | [optional]
+ **at_time** | **datetime**| Specify datetime, for which point in time to get the data; leave empty to use current time (https://www.newtonsoft.com/json/help/html/DatesInJSON.htm) | [optional]
 
 ### Return type
 

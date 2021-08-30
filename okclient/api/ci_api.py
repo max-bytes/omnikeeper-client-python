@@ -186,12 +186,12 @@ class CIApi(object):
             >>> result = thread.get()
 
             Args:
-                layer_ids ([int]): Specifies which layers contribute to the result, and in which order
+                layer_ids ([str]): Specifies which layers contribute to the result, and in which order
                 ciid (str):
                 version (str):
 
             Keyword Args:
-                at_time (datetime, none_type): Specify datetime, for which point in time to get the data; leave empty to use current time (https://www.newtonsoft.com/json/help/html/DatesInJSON.htm). [optional]
+                at_time (datetime): Specify datetime, for which point in time to get the data; leave empty to use current time (https://www.newtonsoft.com/json/help/html/DatesInJSON.htm). [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -269,7 +269,6 @@ class CIApi(object):
                     'version',
                 ],
                 'nullable': [
-                    'at_time',
                 ],
                 'enum': [
                 ],
@@ -283,13 +282,13 @@ class CIApi(object):
                 },
                 'openapi_types': {
                     'layer_ids':
-                        ([int],),
+                        ([str],),
                     'ciid':
                         (str,),
                     'version':
                         (str,),
                     'at_time':
-                        (datetime, none_type,),
+                        (datetime,),
                 },
                 'attribute_map': {
                     'layer_ids': 'layerIDs',
@@ -348,12 +347,12 @@ class CIApi(object):
             >>> result = thread.get()
 
             Args:
-                layer_ids ([int]): Specifies which layers contribute to the result, and in which order
+                layer_ids ([str]): Specifies which layers contribute to the result, and in which order
                 ciids ([str]):
                 version (str):
 
             Keyword Args:
-                at_time (datetime, none_type): Specify datetime, for which point in time to get the data; leave empty to use current time (https://www.newtonsoft.com/json/help/html/DatesInJSON.htm). [optional]
+                at_time (datetime): Specify datetime, for which point in time to get the data; leave empty to use current time (https://www.newtonsoft.com/json/help/html/DatesInJSON.htm). [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -431,7 +430,6 @@ class CIApi(object):
                     'version',
                 ],
                 'nullable': [
-                    'at_time',
                 ],
                 'enum': [
                 ],
@@ -445,13 +443,13 @@ class CIApi(object):
                 },
                 'openapi_types': {
                     'layer_ids':
-                        ([int],),
+                        ([str],),
                     'ciids':
                         ([str],),
                     'version':
                         (str,),
                     'at_time':
-                        (datetime, none_type,),
+                        (datetime,),
                 },
                 'attribute_map': {
                     'layer_ids': 'layerIDs',

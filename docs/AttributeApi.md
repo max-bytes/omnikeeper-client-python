@@ -57,7 +57,7 @@ with okclient.ApiClient(configuration) as api_client:
     version = "version_example" # str | 
     bulk_ci_attribute_layer_scope_dto = BulkCIAttributeLayerScopeDTO(
         name_prefix="name_prefix_example",
-        layer_id=1,
+        layer_id="layer_id_example",
         fragments=[
             FragmentDTO(
                 name="name_example",
@@ -156,13 +156,13 @@ with okclient.ApiClient(configuration) as api_client:
     api_instance = attribute_api.AttributeApi(api_client)
     regex = "regex_example" # str | 
     layer_ids = [
-        1,
-    ] # [int] | 
+        "layerIDs_example",
+    ] # [str] | 
     version = "version_example" # str | 
     ciids = [
         "ciids_example",
-    ] # [str], none_type |  (optional)
-    at_time = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type |  (optional)
+    ] # [str] |  (optional)
+    at_time = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime |  (optional)
 
     # example passing only required values which don't have defaults set
     try:
@@ -186,10 +186,10 @@ with okclient.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **regex** | **str**|  |
- **layer_ids** | **[int]**|  |
+ **layer_ids** | **[str]**|  |
  **version** | **str**|  |
- **ciids** | **[str], none_type**|  | [optional]
- **at_time** | **datetime, none_type**|  | [optional]
+ **ciids** | **[str]**|  | [optional]
+ **at_time** | **datetime**|  | [optional]
 
 ### Return type
 
@@ -259,10 +259,10 @@ with okclient.ApiClient(configuration) as api_client:
     ciid = "ciid_example" # str | 
     name = "name_example" # str | 
     layer_ids = [
-        1,
-    ] # [int] | 
+        "layerIDs_example",
+    ] # [str] | 
     version = "version_example" # str | 
-    at_time = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type |  (optional)
+    at_time = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime |  (optional)
 
     # example passing only required values which don't have defaults set
     try:
@@ -287,9 +287,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ciid** | **str**|  |
  **name** | **str**|  |
- **layer_ids** | **[int]**|  |
+ **layer_ids** | **[str]**|  |
  **version** | **str**|  |
- **at_time** | **datetime, none_type**|  | [optional]
+ **at_time** | **datetime**|  | [optional]
 
 ### Return type
 
@@ -360,10 +360,10 @@ with okclient.ApiClient(configuration) as api_client:
         "ciids_example",
     ] # [str] | 
     layer_ids = [
-        1,
-    ] # [int] | 
+        "layerIDs_example",
+    ] # [str] | 
     version = "version_example" # str | 
-    at_time = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type |  (optional)
+    at_time = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime |  (optional)
 
     # example passing only required values which don't have defaults set
     try:
@@ -387,9 +387,9 @@ with okclient.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ciids** | **[str]**|  |
- **layer_ids** | **[int]**|  |
+ **layer_ids** | **[str]**|  |
  **version** | **str**|  |
- **at_time** | **datetime, none_type**|  | [optional]
+ **at_time** | **datetime**|  | [optional]
 
 ### Return type
 
@@ -458,10 +458,10 @@ with okclient.ApiClient(configuration) as api_client:
     api_instance = attribute_api.AttributeApi(api_client)
     name = "name_example" # str | 
     layer_ids = [
-        1,
-    ] # [int] | 
+        "layerIDs_example",
+    ] # [str] | 
     version = "version_example" # str | 
-    at_time = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type |  (optional)
+    at_time = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime |  (optional)
 
     # example passing only required values which don't have defaults set
     try:
@@ -485,9 +485,9 @@ with okclient.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**|  |
- **layer_ids** | **[int]**|  |
+ **layer_ids** | **[str]**|  |
  **version** | **str**|  |
- **at_time** | **datetime, none_type**|  | [optional]
+ **at_time** | **datetime**|  | [optional]
 
 ### Return type
 

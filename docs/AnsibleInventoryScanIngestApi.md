@@ -50,23 +50,23 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with okclient.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = ansible_inventory_scan_ingest_api.AnsibleInventoryScanIngestApi(api_client)
-    write_layer_id = 1 # int | 
+    write_layer_id = "writeLayerID_example" # str | 
     search_layer_ids = [
-        1,
-    ] # [int] | 
+        "searchLayerIDs_example",
+    ] # [str] | 
     version = "version_example" # str | 
     ansible_inventory_scan_dto = AnsibleInventoryScanDTO(
         setup_facts={
-            "key": {},
+            "key": None,
         },
         yum_installed={
-            "key": {},
+            "key": None,
         },
         yum_repos={
-            "key": {},
+            "key": None,
         },
         yum_updates={
-            "key": {},
+            "key": None,
         },
     ) # AnsibleInventoryScanDTO | 
 
@@ -82,8 +82,8 @@ with okclient.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **write_layer_id** | **int**|  |
- **search_layer_ids** | **[int]**|  |
+ **write_layer_id** | **str**|  |
+ **search_layer_ids** | **[str]**|  |
  **version** | **str**|  |
  **ansible_inventory_scan_dto** | [**AnsibleInventoryScanDTO**](AnsibleInventoryScanDTO.md)|  |
 

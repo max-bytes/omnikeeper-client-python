@@ -51,11 +51,11 @@ class RelationApi(object):
             >>> result = thread.get()
 
             Args:
-                layer_ids ([int]):
+                layer_ids ([str]):
                 version (str):
 
             Keyword Args:
-                at_time (datetime, none_type): [optional]
+                at_time (datetime): [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -129,7 +129,6 @@ class RelationApi(object):
                     'version',
                 ],
                 'nullable': [
-                    'at_time',
                 ],
                 'enum': [
                 ],
@@ -143,11 +142,11 @@ class RelationApi(object):
                 },
                 'openapi_types': {
                     'layer_ids':
-                        ([int],),
+                        ([str],),
                     'version':
                         (str,),
                     'at_time':
-                        (datetime, none_type,),
+                        (datetime,),
                 },
                 'attribute_map': {
                     'layer_ids': 'layerIDs',
@@ -209,11 +208,11 @@ class RelationApi(object):
                 from_ciid (str):
                 to_ciid (str):
                 predicate_id (str):
-                layer_ids ([int]):
+                layer_ids ([str]):
                 version (str):
 
             Keyword Args:
-                at_time (datetime, none_type): [optional]
+                at_time (datetime): [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -299,7 +298,6 @@ class RelationApi(object):
                     'version',
                 ],
                 'nullable': [
-                    'at_time',
                 ],
                 'enum': [
                 ],
@@ -319,11 +317,11 @@ class RelationApi(object):
                     'predicate_id':
                         (str,),
                     'layer_ids':
-                        ([int],),
+                        ([str],),
                     'version':
                         (str,),
                     'at_time':
-                        (datetime, none_type,),
+                        (datetime,),
                 },
                 'attribute_map': {
                     'from_ciid': 'fromCIID',
@@ -387,11 +385,11 @@ class RelationApi(object):
 
             Args:
                 ciid (str):
-                layer_ids ([int]):
+                layer_ids ([str]):
                 version (str):
 
             Keyword Args:
-                at_time (datetime, none_type): [optional]
+                at_time (datetime): [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -469,7 +467,6 @@ class RelationApi(object):
                     'version',
                 ],
                 'nullable': [
-                    'at_time',
                 ],
                 'enum': [
                 ],
@@ -485,11 +482,11 @@ class RelationApi(object):
                     'ciid':
                         (str,),
                     'layer_ids':
-                        ([int],),
+                        ([str],),
                     'version':
                         (str,),
                     'at_time':
-                        (datetime, none_type,),
+                        (datetime,),
                 },
                 'attribute_map': {
                     'ciid': 'ciid',
@@ -549,11 +546,11 @@ class RelationApi(object):
 
             Args:
                 from_ciid (str):
-                layer_ids ([int]):
+                layer_ids ([str]):
                 version (str):
 
             Keyword Args:
-                at_time (datetime, none_type): [optional]
+                at_time (datetime): [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -631,7 +628,6 @@ class RelationApi(object):
                     'version',
                 ],
                 'nullable': [
-                    'at_time',
                 ],
                 'enum': [
                 ],
@@ -647,11 +643,11 @@ class RelationApi(object):
                     'from_ciid':
                         (str,),
                     'layer_ids':
-                        ([int],),
+                        ([str],),
                     'version':
                         (str,),
                     'at_time':
-                        (datetime, none_type,),
+                        (datetime,),
                 },
                 'attribute_map': {
                     'from_ciid': 'fromCIID',
@@ -711,11 +707,11 @@ class RelationApi(object):
 
             Args:
                 predicate_id (str):
-                layer_ids ([int]):
+                layer_ids ([str]):
                 version (str):
 
             Keyword Args:
-                at_time (datetime, none_type): [optional]
+                at_time (datetime): [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -793,7 +789,6 @@ class RelationApi(object):
                     'version',
                 ],
                 'nullable': [
-                    'at_time',
                 ],
                 'enum': [
                 ],
@@ -809,11 +804,11 @@ class RelationApi(object):
                     'predicate_id':
                         (str,),
                     'layer_ids':
-                        ([int],),
+                        ([str],),
                     'version':
                         (str,),
                     'at_time':
-                        (datetime, none_type,),
+                        (datetime,),
                 },
                 'attribute_map': {
                     'predicate_id': 'predicateID',

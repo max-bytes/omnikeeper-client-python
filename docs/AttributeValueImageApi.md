@@ -53,11 +53,11 @@ with okclient.ApiClient(configuration) as api_client:
     ciid = "ciid_example" # str | 
     attribute_name = "attributeName_example" # str | 
     layer_ids = [
-        1,
-    ] # [int] | 
+        "layerIDs_example",
+    ] # [str] | 
     version = "version_example" # str | 
     index = 0 # int |  (optional) if omitted the server will use the default value of 0
-    at_time = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type |  (optional)
+    at_time = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime |  (optional)
 
     # example passing only required values which don't have defaults set
     try:
@@ -80,10 +80,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ciid** | **str**|  |
  **attribute_name** | **str**|  |
- **layer_ids** | **[int]**|  |
+ **layer_ids** | **[str]**|  |
  **version** | **str**|  |
  **index** | **int**|  | [optional] if omitted the server will use the default value of 0
- **at_time** | **datetime, none_type**|  | [optional]
+ **at_time** | **datetime**|  | [optional]
 
 ### Return type
 
@@ -151,7 +151,7 @@ with okclient.ApiClient(configuration) as api_client:
     api_instance = attribute_value_image_api.AttributeValueImageApi(api_client)
     ciid = "ciid_example" # str | 
     attribute_name = "attributeName_example" # str | 
-    layer_id = 1 # int | 
+    layer_id = "layerID_example" # str | 
     version = "version_example" # str | 
     files = open('/path/to/file', 'rb') # [file_type] | 
     force_array = False # bool |  (optional) if omitted the server will use the default value of False
@@ -177,7 +177,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ciid** | **str**|  |
  **attribute_name** | **str**|  |
- **layer_id** | **int**|  |
+ **layer_id** | **str**|  |
  **version** | **str**|  |
  **files** | **[file_type]**|  |
  **force_array** | **bool**|  | [optional] if omitted the server will use the default value of False

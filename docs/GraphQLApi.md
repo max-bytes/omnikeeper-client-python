@@ -55,7 +55,7 @@ with okclient.ApiClient(configuration) as api_client:
         operation_name="operation_name_example",
         named_query="named_query_example",
         query="query_example",
-        variables={},
+        variables=None,
     ) # GraphQLQuery |  (optional)
 
     # example passing only required values which don't have defaults set
@@ -142,7 +142,7 @@ with okclient.ApiClient(configuration) as api_client:
         operation_name="operation_name_example",
         named_query="named_query_example",
         query="query_example",
-        variables={},
+        variables=None,
     ) # GraphQLQuery |  (optional)
 
     # example passing only required values which don't have defaults set

@@ -64,14 +64,7 @@ class Context(ModelNormal):
     validations = {
     }
 
-    @cached_property
-    def additional_properties_type():
-        """
-        This must be a method because a model may have properties that are
-        of type self, this must run after the class is loaded
-        """
-        lazy_import()
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+    additional_properties_type = None
 
     _nullable = False
 
@@ -87,9 +80,9 @@ class Context(ModelNormal):
         """
         lazy_import()
         return {
-            'name': (str, none_type,),  # noqa: E501
-            'extract_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'transform_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'extract_config': (dict,),  # noqa: E501
+            'transform_config': (dict,),  # noqa: E501
             'load_config': (ILoadConfig,),  # noqa: E501
         }
 
@@ -99,7 +92,7 @@ class Context(ModelNormal):
 
 
     attribute_map = {
-        'name': 'name',  # noqa: E501
+        'id': 'id',  # noqa: E501
         'extract_config': 'extractConfig',  # noqa: E501
         'transform_config': 'transformConfig',  # noqa: E501
         'load_config': 'loadConfig',  # noqa: E501
@@ -146,9 +139,9 @@ class Context(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            name (str, none_type): [optional]  # noqa: E501
-            extract_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
-            transform_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
+            id (str, none_type): [optional]  # noqa: E501
+            extract_config (dict): [optional]  # noqa: E501
+            transform_config (dict): [optional]  # noqa: E501
             load_config (ILoadConfig): [optional]  # noqa: E501
         """
 
@@ -231,9 +224,9 @@ class Context(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            name (str, none_type): [optional]  # noqa: E501
-            extract_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
-            transform_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
+            id (str, none_type): [optional]  # noqa: E501
+            extract_config (dict): [optional]  # noqa: E501
+            transform_config (dict): [optional]  # noqa: E501
             load_config (ILoadConfig): [optional]  # noqa: E501
         """
 

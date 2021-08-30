@@ -60,13 +60,7 @@ class AnsibleInventoryScanDTO(ModelNormal):
     validations = {
     }
 
-    @cached_property
-    def additional_properties_type():
-        """
-        This must be a method because a model may have properties that are
-        of type self, this must run after the class is loaded
-        """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+    additional_properties_type = None
 
     _nullable = False
 
@@ -81,10 +75,10 @@ class AnsibleInventoryScanDTO(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'setup_facts': ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)},),  # noqa: E501
-            'yum_installed': ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)},),  # noqa: E501
-            'yum_repos': ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)},),  # noqa: E501
-            'yum_updates': ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)},),  # noqa: E501
+            'setup_facts': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'yum_installed': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'yum_repos': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'yum_updates': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
         }
 
     @cached_property
@@ -110,10 +104,10 @@ class AnsibleInventoryScanDTO(ModelNormal):
         """AnsibleInventoryScanDTO - a model defined in OpenAPI
 
         Args:
-            setup_facts ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)}):
-            yum_installed ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)}):
-            yum_repos ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)}):
-            yum_updates ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)}):
+            setup_facts ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}):
+            yum_installed ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}):
+            yum_repos ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}):
+            yum_updates ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -201,10 +195,10 @@ class AnsibleInventoryScanDTO(ModelNormal):
         """AnsibleInventoryScanDTO - a model defined in OpenAPI
 
         Args:
-            setup_facts ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)}):
-            yum_installed ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)}):
-            yum_repos ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)}):
-            yum_updates ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)}):
+            setup_facts ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}):
+            yum_installed ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}):
+            yum_repos ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}):
+            yum_updates ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

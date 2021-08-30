@@ -31,7 +31,6 @@ docs/ILoadConfig.md
 docs/LayerApi.md
 docs/LayerDTO.md
 docs/OKPluginGenericJSONIngestApi.md
-docs/PredicateDTO.md
 docs/ProblemDetails.md
 docs/RelatedCIDTO.md
 docs/RelationApi.md
@@ -78,7 +77,6 @@ okclient/model/grid_view_column.py
 okclient/model/grid_view_configuration.py
 okclient/model/i_load_config.py
 okclient/model/layer_dto.py
-okclient/model/predicate_dto.py
 okclient/model/problem_details.py
 okclient/model/related_cidto.py
 okclient/model/relation_dto.py

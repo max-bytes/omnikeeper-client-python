@@ -50,8 +50,8 @@ with okclient.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = active_directory_xml_ingest_api.ActiveDirectoryXMLIngestApi(api_client)
     version = "version_example" # str | 
-    write_layer_id = 1 # int | 
-    search_layer_ids = 1 # [int] | 
+    write_layer_id = "write_layer_id_example" # str | 
+    search_layer_ids = "search_layer_ids_example" # [str] | 
     files = open('/path/to/file', 'rb') # [file_type] | 
 
     # example passing only required values which don't have defaults set
@@ -67,8 +67,8 @@ with okclient.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **version** | **str**|  |
- **write_layer_id** | **int**|  |
- **search_layer_ids** | **[int]**|  |
+ **write_layer_id** | **str**|  |
+ **search_layer_ids** | **[str]**|  |
  **files** | **[file_type]**|  |
 
 ### Return type

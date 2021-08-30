@@ -60,13 +60,7 @@ class ILoadConfig(ModelNormal):
     validations = {
     }
 
-    @cached_property
-    def additional_properties_type():
-        """
-        This must be a method because a model may have properties that are
-        of type self, this must run after the class is loaded
-        """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+    additional_properties_type = None
 
     _nullable = False
 
@@ -81,8 +75,8 @@ class ILoadConfig(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'search_layer_ids': ([int], none_type,),  # noqa: E501
-            'write_layer_id': (int,),  # noqa: E501
+            'search_layer_ids': ([str], none_type,),  # noqa: E501
+            'write_layer_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -138,8 +132,8 @@ class ILoadConfig(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            search_layer_ids ([int], none_type): [optional]  # noqa: E501
-            write_layer_id (int): [optional]  # noqa: E501
+            search_layer_ids ([str], none_type): [optional]  # noqa: E501
+            write_layer_id (str, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -221,8 +215,8 @@ class ILoadConfig(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            search_layer_ids ([int], none_type): [optional]  # noqa: E501
-            write_layer_id (int): [optional]  # noqa: E501
+            search_layer_ids ([str], none_type): [optional]  # noqa: E501
+            write_layer_id (str, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

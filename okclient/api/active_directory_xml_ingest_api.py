@@ -53,8 +53,8 @@ class ActiveDirectoryXMLIngestApi(object):
 
             Args:
                 version (str):
-                write_layer_id (int):
-                search_layer_ids ([int]):
+                write_layer_id (str):
+                search_layer_ids ([str]):
                 files ([file_type]):
 
             Keyword Args:
@@ -153,9 +153,9 @@ class ActiveDirectoryXMLIngestApi(object):
                     'version':
                         (str,),
                     'write_layer_id':
-                        (int,),
+                        (str,),
                     'search_layer_ids':
-                        ([int],),
+                        ([str],),
                     'files':
                         ([file_type],),
                 },

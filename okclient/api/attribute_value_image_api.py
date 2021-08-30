@@ -54,12 +54,12 @@ class AttributeValueImageApi(object):
             Args:
                 ciid (str):
                 attribute_name (str):
-                layer_ids ([int]):
+                layer_ids ([str]):
                 version (str):
 
             Keyword Args:
                 index (int): [optional] if omitted the server will use the default value of 0
-                at_time (datetime, none_type): [optional]
+                at_time (datetime): [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -142,7 +142,6 @@ class AttributeValueImageApi(object):
                     'version',
                 ],
                 'nullable': [
-                    'at_time',
                 ],
                 'enum': [
                 ],
@@ -160,13 +159,13 @@ class AttributeValueImageApi(object):
                     'attribute_name':
                         (str,),
                     'layer_ids':
-                        ([int],),
+                        ([str],),
                     'version':
                         (str,),
                     'index':
                         (int,),
                     'at_time':
-                        (datetime, none_type,),
+                        (datetime,),
                 },
                 'attribute_map': {
                     'ciid': 'ciid',
@@ -216,7 +215,7 @@ class AttributeValueImageApi(object):
             Args:
                 ciid (str):
                 attribute_name (str):
-                layer_id (int):
+                layer_id (str):
                 version (str):
                 files ([file_type]):
 
@@ -324,7 +323,7 @@ class AttributeValueImageApi(object):
                     'attribute_name':
                         (str,),
                     'layer_id':
-                        (int,),
+                        (str,),
                     'version':
                         (str,),
                     'files':
