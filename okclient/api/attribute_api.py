@@ -36,77 +36,7 @@ class AttributeApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
-
-        def __bulk_replace_attributes_in_layer(
-            self,
-            version,
-            bulk_ci_attribute_layer_scope_dto,
-            **kwargs
-        ):
-            """bulk replace all attributes in specified layer  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.bulk_replace_attributes_in_layer(version, bulk_ci_attribute_layer_scope_dto, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                version (str):
-                bulk_ci_attribute_layer_scope_dto (BulkCIAttributeLayerScopeDTO):
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (int/float/tuple): timeout setting for this request. If
-                    one number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                None
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['version'] = \
-                version
-            kwargs['bulk_ci_attribute_layer_scope_dto'] = \
-                bulk_ci_attribute_layer_scope_dto
-            return self.call_with_http_info(**kwargs)
-
-        self.bulk_replace_attributes_in_layer = _Endpoint(
+        self.bulk_replace_attributes_in_layer_endpoint = _Endpoint(
             settings={
                 'response_type': None,
                 'auth': [
@@ -177,86 +107,9 @@ class AttributeApi(object):
                     'application/*+json'
                 ]
             },
-            api_client=api_client,
-            callable=__bulk_replace_attributes_in_layer
+            api_client=api_client
         )
-
-        def __find_merged_attributes_by_name(
-            self,
-            regex,
-            layer_ids,
-            version,
-            **kwargs
-        ):
-            """find_merged_attributes_by_name  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.find_merged_attributes_by_name(regex, layer_ids, version, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                regex (str):
-                layer_ids ([str]):
-                version (str):
-
-            Keyword Args:
-                ciids ([str]): [optional]
-                at_time (datetime): [optional]
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (int/float/tuple): timeout setting for this request. If
-                    one number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                [CIAttributeDTO]
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['regex'] = \
-                regex
-            kwargs['layer_ids'] = \
-                layer_ids
-            kwargs['version'] = \
-                version
-            return self.call_with_http_info(**kwargs)
-
-        self.find_merged_attributes_by_name = _Endpoint(
+        self.find_merged_attributes_by_name_endpoint = _Endpoint(
             settings={
                 'response_type': ([CIAttributeDTO],),
                 'auth': [
@@ -345,89 +198,9 @@ class AttributeApi(object):
                 ],
                 'content_type': [],
             },
-            api_client=api_client,
-            callable=__find_merged_attributes_by_name
+            api_client=api_client
         )
-
-        def __get_merged_attribute(
-            self,
-            ciid,
-            name,
-            layer_ids,
-            version,
-            **kwargs
-        ):
-            """get_merged_attribute  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.get_merged_attribute(ciid, name, layer_ids, version, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                ciid (str):
-                name (str):
-                layer_ids ([str]):
-                version (str):
-
-            Keyword Args:
-                at_time (datetime): [optional]
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (int/float/tuple): timeout setting for this request. If
-                    one number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                CIAttributeDTO
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['ciid'] = \
-                ciid
-            kwargs['name'] = \
-                name
-            kwargs['layer_ids'] = \
-                layer_ids
-            kwargs['version'] = \
-                version
-            return self.call_with_http_info(**kwargs)
-
-        self.get_merged_attribute = _Endpoint(
+        self.get_merged_attribute_endpoint = _Endpoint(
             settings={
                 'response_type': (CIAttributeDTO,),
                 'auth': [
@@ -516,85 +289,9 @@ class AttributeApi(object):
                 ],
                 'content_type': [],
             },
-            api_client=api_client,
-            callable=__get_merged_attribute
+            api_client=api_client
         )
-
-        def __get_merged_attributes(
-            self,
-            ciids,
-            layer_ids,
-            version,
-            **kwargs
-        ):
-            """get_merged_attributes  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.get_merged_attributes(ciids, layer_ids, version, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                ciids ([str]):
-                layer_ids ([str]):
-                version (str):
-
-            Keyword Args:
-                at_time (datetime): [optional]
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (int/float/tuple): timeout setting for this request. If
-                    one number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                [CIAttributeDTO]
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['ciids'] = \
-                ciids
-            kwargs['layer_ids'] = \
-                layer_ids
-            kwargs['version'] = \
-                version
-            return self.call_with_http_info(**kwargs)
-
-        self.get_merged_attributes = _Endpoint(
+        self.get_merged_attributes_endpoint = _Endpoint(
             settings={
                 'response_type': ([CIAttributeDTO],),
                 'auth': [
@@ -678,85 +375,9 @@ class AttributeApi(object):
                 ],
                 'content_type': [],
             },
-            api_client=api_client,
-            callable=__get_merged_attributes
+            api_client=api_client
         )
-
-        def __get_merged_attributes_with_name(
-            self,
-            name,
-            layer_ids,
-            version,
-            **kwargs
-        ):
-            """get_merged_attributes_with_name  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.get_merged_attributes_with_name(name, layer_ids, version, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                name (str):
-                layer_ids ([str]):
-                version (str):
-
-            Keyword Args:
-                at_time (datetime): [optional]
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (int/float/tuple): timeout setting for this request. If
-                    one number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                [CIAttributeDTO]
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['name'] = \
-                name
-            kwargs['layer_ids'] = \
-                layer_ids
-            kwargs['version'] = \
-                version
-            return self.call_with_http_info(**kwargs)
-
-        self.get_merged_attributes_with_name = _Endpoint(
+        self.get_merged_attributes_with_name_endpoint = _Endpoint(
             settings={
                 'response_type': ([CIAttributeDTO],),
                 'auth': [
@@ -839,6 +460,376 @@ class AttributeApi(object):
                 ],
                 'content_type': [],
             },
-            api_client=api_client,
-            callable=__get_merged_attributes_with_name
+            api_client=api_client
         )
+
+    def bulk_replace_attributes_in_layer(
+        self,
+        version,
+        bulk_ci_attribute_layer_scope_dto,
+        **kwargs
+    ):
+        """bulk replace all attributes in specified layer  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.bulk_replace_attributes_in_layer(version, bulk_ci_attribute_layer_scope_dto, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            version (str):
+            bulk_ci_attribute_layer_scope_dto (BulkCIAttributeLayerScopeDTO):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            None
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['version'] = \
+            version
+        kwargs['bulk_ci_attribute_layer_scope_dto'] = \
+            bulk_ci_attribute_layer_scope_dto
+        return self.bulk_replace_attributes_in_layer_endpoint.call_with_http_info(**kwargs)
+
+    def find_merged_attributes_by_name(
+        self,
+        regex,
+        layer_ids,
+        version,
+        **kwargs
+    ):
+        """find_merged_attributes_by_name  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.find_merged_attributes_by_name(regex, layer_ids, version, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            regex (str):
+            layer_ids ([str]):
+            version (str):
+
+        Keyword Args:
+            ciids ([str]): [optional]
+            at_time (datetime): [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            [CIAttributeDTO]
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['regex'] = \
+            regex
+        kwargs['layer_ids'] = \
+            layer_ids
+        kwargs['version'] = \
+            version
+        return self.find_merged_attributes_by_name_endpoint.call_with_http_info(**kwargs)
+
+    def get_merged_attribute(
+        self,
+        ciid,
+        name,
+        layer_ids,
+        version,
+        **kwargs
+    ):
+        """get_merged_attribute  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_merged_attribute(ciid, name, layer_ids, version, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            ciid (str):
+            name (str):
+            layer_ids ([str]):
+            version (str):
+
+        Keyword Args:
+            at_time (datetime): [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            CIAttributeDTO
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['ciid'] = \
+            ciid
+        kwargs['name'] = \
+            name
+        kwargs['layer_ids'] = \
+            layer_ids
+        kwargs['version'] = \
+            version
+        return self.get_merged_attribute_endpoint.call_with_http_info(**kwargs)
+
+    def get_merged_attributes(
+        self,
+        ciids,
+        layer_ids,
+        version,
+        **kwargs
+    ):
+        """get_merged_attributes  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_merged_attributes(ciids, layer_ids, version, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            ciids ([str]):
+            layer_ids ([str]):
+            version (str):
+
+        Keyword Args:
+            at_time (datetime): [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            [CIAttributeDTO]
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['ciids'] = \
+            ciids
+        kwargs['layer_ids'] = \
+            layer_ids
+        kwargs['version'] = \
+            version
+        return self.get_merged_attributes_endpoint.call_with_http_info(**kwargs)
+
+    def get_merged_attributes_with_name(
+        self,
+        name,
+        layer_ids,
+        version,
+        **kwargs
+    ):
+        """get_merged_attributes_with_name  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_merged_attributes_with_name(name, layer_ids, version, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            name (str):
+            layer_ids ([str]):
+            version (str):
+
+        Keyword Args:
+            at_time (datetime): [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            [CIAttributeDTO]
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['name'] = \
+            name
+        kwargs['layer_ids'] = \
+            layer_ids
+        kwargs['version'] = \
+            version
+        return self.get_merged_attributes_with_name_endpoint.call_with_http_info(**kwargs)
+

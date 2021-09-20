@@ -35,78 +35,7 @@ class RelationApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
-
-        def __get_all_merged_relations(
-            self,
-            layer_ids,
-            version,
-            **kwargs
-        ):
-            """get_all_merged_relations  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.get_all_merged_relations(layer_ids, version, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                layer_ids ([str]):
-                version (str):
-
-            Keyword Args:
-                at_time (datetime): [optional]
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (int/float/tuple): timeout setting for this request. If
-                    one number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                [RelationDTO]
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['layer_ids'] = \
-                layer_ids
-            kwargs['version'] = \
-                version
-            return self.call_with_http_info(**kwargs)
-
-        self.get_all_merged_relations = _Endpoint(
+        self.get_all_merged_relations_endpoint = _Endpoint(
             settings={
                 'response_type': ([RelationDTO],),
                 'auth': [
@@ -183,93 +112,9 @@ class RelationApi(object):
                 ],
                 'content_type': [],
             },
-            api_client=api_client,
-            callable=__get_all_merged_relations
+            api_client=api_client
         )
-
-        def __get_merged_relation(
-            self,
-            from_ciid,
-            to_ciid,
-            predicate_id,
-            layer_ids,
-            version,
-            **kwargs
-        ):
-            """get_merged_relation  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.get_merged_relation(from_ciid, to_ciid, predicate_id, layer_ids, version, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                from_ciid (str):
-                to_ciid (str):
-                predicate_id (str):
-                layer_ids ([str]):
-                version (str):
-
-            Keyword Args:
-                at_time (datetime): [optional]
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (int/float/tuple): timeout setting for this request. If
-                    one number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                RelationDTO
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['from_ciid'] = \
-                from_ciid
-            kwargs['to_ciid'] = \
-                to_ciid
-            kwargs['predicate_id'] = \
-                predicate_id
-            kwargs['layer_ids'] = \
-                layer_ids
-            kwargs['version'] = \
-                version
-            return self.call_with_http_info(**kwargs)
-
-        self.get_merged_relation = _Endpoint(
+        self.get_merged_relation_endpoint = _Endpoint(
             settings={
                 'response_type': (RelationDTO,),
                 'auth': [
@@ -364,85 +209,9 @@ class RelationApi(object):
                 ],
                 'content_type': [],
             },
-            api_client=api_client,
-            callable=__get_merged_relation
+            api_client=api_client
         )
-
-        def __get_merged_relations_from_or_to_ci(
-            self,
-            ciid,
-            layer_ids,
-            version,
-            **kwargs
-        ):
-            """get_merged_relations_from_or_to_ci  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.get_merged_relations_from_or_to_ci(ciid, layer_ids, version, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                ciid (str):
-                layer_ids ([str]):
-                version (str):
-
-            Keyword Args:
-                at_time (datetime): [optional]
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (int/float/tuple): timeout setting for this request. If
-                    one number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                [RelationDTO]
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['ciid'] = \
-                ciid
-            kwargs['layer_ids'] = \
-                layer_ids
-            kwargs['version'] = \
-                version
-            return self.call_with_http_info(**kwargs)
-
-        self.get_merged_relations_from_or_to_ci = _Endpoint(
+        self.get_merged_relations_from_or_to_ci_endpoint = _Endpoint(
             settings={
                 'response_type': ([RelationDTO],),
                 'auth': [
@@ -525,85 +294,9 @@ class RelationApi(object):
                 ],
                 'content_type': [],
             },
-            api_client=api_client,
-            callable=__get_merged_relations_from_or_to_ci
+            api_client=api_client
         )
-
-        def __get_merged_relations_outgoing_from_ci(
-            self,
-            from_ciid,
-            layer_ids,
-            version,
-            **kwargs
-        ):
-            """get_merged_relations_outgoing_from_ci  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.get_merged_relations_outgoing_from_ci(from_ciid, layer_ids, version, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                from_ciid (str):
-                layer_ids ([str]):
-                version (str):
-
-            Keyword Args:
-                at_time (datetime): [optional]
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (int/float/tuple): timeout setting for this request. If
-                    one number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                [RelationDTO]
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['from_ciid'] = \
-                from_ciid
-            kwargs['layer_ids'] = \
-                layer_ids
-            kwargs['version'] = \
-                version
-            return self.call_with_http_info(**kwargs)
-
-        self.get_merged_relations_outgoing_from_ci = _Endpoint(
+        self.get_merged_relations_outgoing_from_ci_endpoint = _Endpoint(
             settings={
                 'response_type': ([RelationDTO],),
                 'auth': [
@@ -686,85 +379,9 @@ class RelationApi(object):
                 ],
                 'content_type': [],
             },
-            api_client=api_client,
-            callable=__get_merged_relations_outgoing_from_ci
+            api_client=api_client
         )
-
-        def __get_merged_relations_with_predicate(
-            self,
-            predicate_id,
-            layer_ids,
-            version,
-            **kwargs
-        ):
-            """get_merged_relations_with_predicate  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.get_merged_relations_with_predicate(predicate_id, layer_ids, version, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                predicate_id (str):
-                layer_ids ([str]):
-                version (str):
-
-            Keyword Args:
-                at_time (datetime): [optional]
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (int/float/tuple): timeout setting for this request. If
-                    one number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                [RelationDTO]
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['predicate_id'] = \
-                predicate_id
-            kwargs['layer_ids'] = \
-                layer_ids
-            kwargs['version'] = \
-                version
-            return self.call_with_http_info(**kwargs)
-
-        self.get_merged_relations_with_predicate = _Endpoint(
+        self.get_merged_relations_with_predicate_endpoint = _Endpoint(
             settings={
                 'response_type': ([RelationDTO],),
                 'auth': [
@@ -847,6 +464,380 @@ class RelationApi(object):
                 ],
                 'content_type': [],
             },
-            api_client=api_client,
-            callable=__get_merged_relations_with_predicate
+            api_client=api_client
         )
+
+    def get_all_merged_relations(
+        self,
+        layer_ids,
+        version,
+        **kwargs
+    ):
+        """get_all_merged_relations  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_all_merged_relations(layer_ids, version, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            layer_ids ([str]):
+            version (str):
+
+        Keyword Args:
+            at_time (datetime): [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            [RelationDTO]
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['layer_ids'] = \
+            layer_ids
+        kwargs['version'] = \
+            version
+        return self.get_all_merged_relations_endpoint.call_with_http_info(**kwargs)
+
+    def get_merged_relation(
+        self,
+        from_ciid,
+        to_ciid,
+        predicate_id,
+        layer_ids,
+        version,
+        **kwargs
+    ):
+        """get_merged_relation  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_merged_relation(from_ciid, to_ciid, predicate_id, layer_ids, version, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            from_ciid (str):
+            to_ciid (str):
+            predicate_id (str):
+            layer_ids ([str]):
+            version (str):
+
+        Keyword Args:
+            at_time (datetime): [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            RelationDTO
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['from_ciid'] = \
+            from_ciid
+        kwargs['to_ciid'] = \
+            to_ciid
+        kwargs['predicate_id'] = \
+            predicate_id
+        kwargs['layer_ids'] = \
+            layer_ids
+        kwargs['version'] = \
+            version
+        return self.get_merged_relation_endpoint.call_with_http_info(**kwargs)
+
+    def get_merged_relations_from_or_to_ci(
+        self,
+        ciid,
+        layer_ids,
+        version,
+        **kwargs
+    ):
+        """get_merged_relations_from_or_to_ci  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_merged_relations_from_or_to_ci(ciid, layer_ids, version, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            ciid (str):
+            layer_ids ([str]):
+            version (str):
+
+        Keyword Args:
+            at_time (datetime): [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            [RelationDTO]
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['ciid'] = \
+            ciid
+        kwargs['layer_ids'] = \
+            layer_ids
+        kwargs['version'] = \
+            version
+        return self.get_merged_relations_from_or_to_ci_endpoint.call_with_http_info(**kwargs)
+
+    def get_merged_relations_outgoing_from_ci(
+        self,
+        from_ciid,
+        layer_ids,
+        version,
+        **kwargs
+    ):
+        """get_merged_relations_outgoing_from_ci  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_merged_relations_outgoing_from_ci(from_ciid, layer_ids, version, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            from_ciid (str):
+            layer_ids ([str]):
+            version (str):
+
+        Keyword Args:
+            at_time (datetime): [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            [RelationDTO]
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['from_ciid'] = \
+            from_ciid
+        kwargs['layer_ids'] = \
+            layer_ids
+        kwargs['version'] = \
+            version
+        return self.get_merged_relations_outgoing_from_ci_endpoint.call_with_http_info(**kwargs)
+
+    def get_merged_relations_with_predicate(
+        self,
+        predicate_id,
+        layer_ids,
+        version,
+        **kwargs
+    ):
+        """get_merged_relations_with_predicate  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_merged_relations_with_predicate(predicate_id, layer_ids, version, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            predicate_id (str):
+            layer_ids ([str]):
+            version (str):
+
+        Keyword Args:
+            at_time (datetime): [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            [RelationDTO]
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['predicate_id'] = \
+            predicate_id
+        kwargs['layer_ids'] = \
+            layer_ids
+        kwargs['version'] = \
+            version
+        return self.get_merged_relations_with_predicate_endpoint.call_with_http_info(**kwargs)
+
