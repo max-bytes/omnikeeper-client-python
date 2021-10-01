@@ -51,8 +51,12 @@ with okclient.ApiClient(configuration) as api_client:
     api_instance = active_directory_xml_ingest_api.ActiveDirectoryXMLIngestApi(api_client)
     version = "version_example" # str | 
     write_layer_id = "write_layer_id_example" # str | 
-    search_layer_ids = "search_layer_ids_example" # [str] | 
-    files = open('/path/to/file', 'rb') # [file_type] | 
+    search_layer_ids = [
+        "search_layer_ids_example",
+    ] # [str] | 
+    files = [
+        open('/path/to/file', 'rb'),
+    ] # [file_type] | 
 
     # example passing only required values which don't have defaults set
     try:

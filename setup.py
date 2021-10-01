@@ -11,7 +11,7 @@
 from setuptools import setup, find_packages  # noqa: H301
 
 NAME = "okclient"
-VERSION = "1.5.1"
+VERSION = "1.6.0"
 # To install the library, run the following
 #
 # python setup.py install

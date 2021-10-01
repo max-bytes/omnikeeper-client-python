@@ -153,7 +153,9 @@ with okclient.ApiClient(configuration) as api_client:
     attribute_name = "attributeName_example" # str | 
     layer_id = "layerID_example" # str | 
     version = "version_example" # str | 
-    files = open('/path/to/file', 'rb') # [file_type] | 
+    files = [
+        open('/path/to/file', 'rb'),
+    ] # [file_type] | 
     force_array = False # bool |  (optional) if omitted the server will use the default value of False
 
     # example passing only required values which don't have defaults set

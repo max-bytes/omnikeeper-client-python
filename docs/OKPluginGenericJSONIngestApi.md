@@ -221,7 +221,9 @@ with okclient.ApiClient(configuration) as api_client:
     api_instance = ok_plugin_generic_json_ingest_api.OKPluginGenericJSONIngestApi(api_client)
     context = "context_example" # str | 
     version = "version_example" # str | 
-    files = open('/path/to/file', 'rb') # [file_type] | 
+    files = [
+        open('/path/to/file', 'rb'),
+    ] # [file_type] | 
 
     # example passing only required values which don't have defaults set
     try:
