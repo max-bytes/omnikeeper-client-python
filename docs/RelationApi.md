@@ -62,6 +62,7 @@ with okclient.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
+        # 
         api_response = api_instance.get_all_merged_relations(layer_ids, version)
         pprint(api_response)
     except okclient.ApiException as e:
@@ -70,6 +71,7 @@ with okclient.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
+        # 
         api_response = api_instance.get_all_merged_relations(layer_ids, version, at_time=at_time)
         pprint(api_response)
     except okclient.ApiException as e:
@@ -161,6 +163,7 @@ with okclient.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
+        # 
         api_response = api_instance.get_merged_relation(from_ciid, to_ciid, predicate_id, layer_ids, version)
         pprint(api_response)
     except okclient.ApiException as e:
@@ -169,6 +172,7 @@ with okclient.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
+        # 
         api_response = api_instance.get_merged_relation(from_ciid, to_ciid, predicate_id, layer_ids, version, at_time=at_time)
         pprint(api_response)
     except okclient.ApiException as e:
@@ -261,6 +265,7 @@ with okclient.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
+        # 
         api_response = api_instance.get_merged_relations_from_or_to_ci(ciid, layer_ids, version)
         pprint(api_response)
     except okclient.ApiException as e:
@@ -269,6 +274,7 @@ with okclient.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
+        # 
         api_response = api_instance.get_merged_relations_from_or_to_ci(ciid, layer_ids, version, at_time=at_time)
         pprint(api_response)
     except okclient.ApiException as e:
@@ -359,6 +365,7 @@ with okclient.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
+        # 
         api_response = api_instance.get_merged_relations_outgoing_from_ci(from_ciid, layer_ids, version)
         pprint(api_response)
     except okclient.ApiException as e:
@@ -367,6 +374,7 @@ with okclient.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
+        # 
         api_response = api_instance.get_merged_relations_outgoing_from_ci(from_ciid, layer_ids, version, at_time=at_time)
         pprint(api_response)
     except okclient.ApiException as e:
@@ -457,6 +465,7 @@ with okclient.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
+        # 
         api_response = api_instance.get_merged_relations_with_predicate(predicate_id, layer_ids, version)
         pprint(api_response)
     except okclient.ApiException as e:
@@ -465,6 +474,7 @@ with okclient.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
+        # 
         api_response = api_instance.get_merged_relations_with_predicate(predicate_id, layer_ids, version, at_time=at_time)
         pprint(api_response)
     except okclient.ApiException as e:

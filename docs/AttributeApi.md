@@ -166,6 +166,7 @@ with okclient.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
+        # 
         api_response = api_instance.find_merged_attributes_by_name(regex, layer_ids, version)
         pprint(api_response)
     except okclient.ApiException as e:
@@ -174,6 +175,7 @@ with okclient.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
+        # 
         api_response = api_instance.find_merged_attributes_by_name(regex, layer_ids, version, ciids=ciids, at_time=at_time)
         pprint(api_response)
     except okclient.ApiException as e:
@@ -266,6 +268,7 @@ with okclient.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
+        # 
         api_response = api_instance.get_merged_attribute(ciid, name, layer_ids, version)
         pprint(api_response)
     except okclient.ApiException as e:
@@ -274,6 +277,7 @@ with okclient.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
+        # 
         api_response = api_instance.get_merged_attribute(ciid, name, layer_ids, version, at_time=at_time)
         pprint(api_response)
     except okclient.ApiException as e:
@@ -367,6 +371,7 @@ with okclient.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
+        # 
         api_response = api_instance.get_merged_attributes(ciids, layer_ids, version)
         pprint(api_response)
     except okclient.ApiException as e:
@@ -375,6 +380,7 @@ with okclient.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
+        # 
         api_response = api_instance.get_merged_attributes(ciids, layer_ids, version, at_time=at_time)
         pprint(api_response)
     except okclient.ApiException as e:
@@ -465,6 +471,7 @@ with okclient.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
+        # 
         api_response = api_instance.get_merged_attributes_with_name(name, layer_ids, version)
         pprint(api_response)
     except okclient.ApiException as e:
@@ -473,6 +480,7 @@ with okclient.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
+        # 
         api_response = api_instance.get_merged_attributes_with_name(name, layer_ids, version, at_time=at_time)
         pprint(api_response)
     except okclient.ApiException as e:

@@ -479,7 +479,7 @@ class AttributeApi(object):
 
         Args:
             version (str):
-            bulk_ci_attribute_layer_scope_dto (BulkCIAttributeLayerScopeDTO):
+            bulk_ci_attribute_layer_scope_dto (BulkCIAttributeLayerScopeDTO): 
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -551,7 +551,7 @@ class AttributeApi(object):
         version,
         **kwargs
     ):
-        """find_merged_attributes_by_name  # noqa: E501
+        """  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -560,13 +560,13 @@ class AttributeApi(object):
         >>> result = thread.get()
 
         Args:
-            regex (str):
-            layer_ids ([str]):
+            regex (str): 
+            layer_ids ([str]): 
             version (str):
 
         Keyword Args:
-            ciids ([str]): [optional]
-            at_time (datetime): [optional]
+            ciids ([str]): . [optional]
+            at_time (datetime): . [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -639,7 +639,7 @@ class AttributeApi(object):
         version,
         **kwargs
     ):
-        """get_merged_attribute  # noqa: E501
+        """  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -648,13 +648,13 @@ class AttributeApi(object):
         >>> result = thread.get()
 
         Args:
-            ciid (str):
-            name (str):
-            layer_ids ([str]):
+            ciid (str): 
+            name (str): 
+            layer_ids ([str]): 
             version (str):
 
         Keyword Args:
-            at_time (datetime): [optional]
+            at_time (datetime): . [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -728,7 +728,7 @@ class AttributeApi(object):
         version,
         **kwargs
     ):
-        """get_merged_attributes  # noqa: E501
+        """  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -737,12 +737,12 @@ class AttributeApi(object):
         >>> result = thread.get()
 
         Args:
-            ciids ([str]):
-            layer_ids ([str]):
+            ciids ([str]): 
+            layer_ids ([str]): 
             version (str):
 
         Keyword Args:
-            at_time (datetime): [optional]
+            at_time (datetime): . [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -814,7 +814,7 @@ class AttributeApi(object):
         version,
         **kwargs
     ):
-        """get_merged_attributes_with_name  # noqa: E501
+        """  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -823,12 +823,12 @@ class AttributeApi(object):
         >>> result = thread.get()
 
         Args:
-            name (str):
-            layer_ids ([str]):
+            name (str): 
+            layer_ids ([str]): 
             version (str):
 
         Keyword Args:
-            at_time (datetime): [optional]
+            at_time (datetime): . [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

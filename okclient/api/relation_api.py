@@ -473,7 +473,7 @@ class RelationApi(object):
         version,
         **kwargs
     ):
-        """get_all_merged_relations  # noqa: E501
+        """  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -482,11 +482,11 @@ class RelationApi(object):
         >>> result = thread.get()
 
         Args:
-            layer_ids ([str]):
+            layer_ids ([str]): 
             version (str):
 
         Keyword Args:
-            at_time (datetime): [optional]
+            at_time (datetime): . [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -558,7 +558,7 @@ class RelationApi(object):
         version,
         **kwargs
     ):
-        """get_merged_relation  # noqa: E501
+        """  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -567,14 +567,14 @@ class RelationApi(object):
         >>> result = thread.get()
 
         Args:
-            from_ciid (str):
-            to_ciid (str):
-            predicate_id (str):
-            layer_ids ([str]):
+            from_ciid (str): 
+            to_ciid (str): 
+            predicate_id (str): 
+            layer_ids ([str]): 
             version (str):
 
         Keyword Args:
-            at_time (datetime): [optional]
+            at_time (datetime): . [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -650,7 +650,7 @@ class RelationApi(object):
         version,
         **kwargs
     ):
-        """get_merged_relations_from_or_to_ci  # noqa: E501
+        """  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -659,12 +659,12 @@ class RelationApi(object):
         >>> result = thread.get()
 
         Args:
-            ciid (str):
-            layer_ids ([str]):
+            ciid (str): 
+            layer_ids ([str]): 
             version (str):
 
         Keyword Args:
-            at_time (datetime): [optional]
+            at_time (datetime): . [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -736,7 +736,7 @@ class RelationApi(object):
         version,
         **kwargs
     ):
-        """get_merged_relations_outgoing_from_ci  # noqa: E501
+        """  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -745,12 +745,12 @@ class RelationApi(object):
         >>> result = thread.get()
 
         Args:
-            from_ciid (str):
-            layer_ids ([str]):
+            from_ciid (str): 
+            layer_ids ([str]): 
             version (str):
 
         Keyword Args:
-            at_time (datetime): [optional]
+            at_time (datetime): . [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -822,7 +822,7 @@ class RelationApi(object):
         version,
         **kwargs
     ):
-        """get_merged_relations_with_predicate  # noqa: E501
+        """  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -831,12 +831,12 @@ class RelationApi(object):
         >>> result = thread.get()
 
         Args:
-            predicate_id (str):
-            layer_ids ([str]):
+            predicate_id (str): 
+            layer_ids ([str]): 
             version (str):
 
         Keyword Args:
-            at_time (datetime): [optional]
+            at_time (datetime): . [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

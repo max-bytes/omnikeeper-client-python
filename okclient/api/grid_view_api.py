@@ -626,7 +626,7 @@ class GridViewApi(object):
             version (str):
 
         Keyword Args:
-            add_context_request (AddContextRequest): [optional]
+            add_context_request (AddContextRequest): . [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -702,11 +702,11 @@ class GridViewApi(object):
         >>> result = thread.get()
 
         Args:
-            context (str):
+            context (str): 
             version (str):
 
         Keyword Args:
-            change_data_request (ChangeDataRequest): [optional]
+            change_data_request (ChangeDataRequest): . [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -784,7 +784,7 @@ class GridViewApi(object):
         >>> result = thread.get()
 
         Args:
-            name (str):
+            name (str): 
             version (str):
 
         Keyword Args:
@@ -865,11 +865,11 @@ class GridViewApi(object):
         >>> result = thread.get()
 
         Args:
-            name (str):
+            name (str): 
             version (str):
 
         Keyword Args:
-            edit_context_request (EditContextRequest): [optional]
+            edit_context_request (EditContextRequest): . [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -947,7 +947,7 @@ class GridViewApi(object):
         >>> result = thread.get()
 
         Args:
-            context (str):
+            context (str): 
             version (str):
 
         Keyword Args:
@@ -1186,7 +1186,7 @@ class GridViewApi(object):
         >>> result = thread.get()
 
         Args:
-            context (str):
+            context (str): 
             version (str):
 
         Keyword Args:

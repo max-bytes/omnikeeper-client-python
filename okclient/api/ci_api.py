@@ -368,7 +368,7 @@ class CIApi(object):
 
         Args:
             layer_ids ([str]): Specifies which layers contribute to the result, and in which order
-            ciid (str):
+            ciid (str): 
             version (str):
 
         Keyword Args:
@@ -454,7 +454,7 @@ class CIApi(object):
 
         Args:
             layer_ids ([str]): Specifies which layers contribute to the result, and in which order
-            ciids ([str]):
+            ciids ([str]): 
             version (str):
 
         Keyword Args:
