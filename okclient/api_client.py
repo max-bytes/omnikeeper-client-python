@@ -76,7 +76,7 @@ class ApiClient(object):
             self.default_headers[header_name] = header_value
         self.cookie = cookie
         # Set default User-Agent.
-        self.user_agent = 'OpenAPI-Generator/13.0.0-rc13/python'
+        self.user_agent = 'OpenAPI-Generator/13.0.0-rc14/python'
 
     def __enter__(self):
         return self
@@ -582,7 +582,7 @@ class ApiClient(object):
         :return: Content-Type (e.g. application/json).
         """
         if not content_types:
-            return 'application/json'
+            return None
 
         content_types = [x.lower() for x in content_types]
 
@@ -842,10 +842,11 @@ class Endpoint(object):
             content_type_headers_list = self.headers_map['content_type']
             if content_type_headers_list:
                 if params['body'] != "":
-                    header_list = self.api_client.select_header_content_type(
+                    content_types_list = self.api_client.select_header_content_type(
                         content_type_headers_list, self.settings['http_method'],
                         params['body'])
-                    params['header']['Content-Type'] = header_list
+                    if content_types_list:
+                        params['header']['Content-Type'] = content_types_list
 
         return self.api_client.call_api(
             self.settings['endpoint_path'], self.settings['http_method'],
