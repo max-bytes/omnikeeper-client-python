@@ -6,7 +6,7 @@
 # raise a `RecursionError`.
 # In order to avoid this, import only the API that you directly need like:
 #
-#   from .api.active_directory_xml_ingest_api import ActiveDirectoryXMLIngestApi
+#   from okclient.api.active_directory_xml_ingest_api import ActiveDirectoryXMLIngestApi
 #
 # or import this package, but before doing it, use:
 #
