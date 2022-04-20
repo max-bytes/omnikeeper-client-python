@@ -10,7 +10,7 @@
 """
 
 
-__version__ = "16.0.0-rc19"
+__version__ = "16.0.0"
 
 # import ApiClient
 from okclient.api_client import ApiClient
