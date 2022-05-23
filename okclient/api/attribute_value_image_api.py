@@ -184,7 +184,7 @@ class AttributeValueImageApi(object):
                     'force_array': 'query',
                 },
                 'collection_format_map': {
-                    'files': 'csv',
+                    'files': 'multi',
                 }
             },
             headers_map={

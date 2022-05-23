@@ -94,8 +94,8 @@ class ActiveDirectoryXMLIngestApi(object):
                     'files': 'form',
                 },
                 'collection_format_map': {
-                    'search_layer_ids': 'csv',
-                    'files': 'csv',
+                    'search_layer_ids': 'multi',
+                    'files': 'multi',
                 }
             },
             headers_map={

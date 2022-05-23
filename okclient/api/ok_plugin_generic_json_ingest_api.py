@@ -229,7 +229,7 @@ class OKPluginGenericJSONIngestApi(object):
                     'files': 'form',
                 },
                 'collection_format_map': {
-                    'files': 'csv',
+                    'files': 'multi',
                 }
             },
             headers_map={
