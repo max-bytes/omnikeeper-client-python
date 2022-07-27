@@ -31,7 +31,19 @@ from okclient.exceptions import ApiAttributeError
 
 def lazy_import():
     from okclient.model.abstract_inbound_id_method import AbstractInboundIDMethod
+    from okclient.model.inbound_id_method_by_attribute import InboundIDMethodByAttribute
+    from okclient.model.inbound_id_method_by_by_union import InboundIDMethodByByUnion
+    from okclient.model.inbound_id_method_by_data import InboundIDMethodByData
+    from okclient.model.inbound_id_method_by_intersect import InboundIDMethodByIntersect
+    from okclient.model.inbound_id_method_by_related_temp_id import InboundIDMethodByRelatedTempID
+    from okclient.model.inbound_id_method_by_temporary_ciid import InboundIDMethodByTemporaryCIID
     globals()['AbstractInboundIDMethod'] = AbstractInboundIDMethod
+    globals()['InboundIDMethodByAttribute'] = InboundIDMethodByAttribute
+    globals()['InboundIDMethodByByUnion'] = InboundIDMethodByByUnion
+    globals()['InboundIDMethodByData'] = InboundIDMethodByData
+    globals()['InboundIDMethodByIntersect'] = InboundIDMethodByIntersect
+    globals()['InboundIDMethodByRelatedTempID'] = InboundIDMethodByRelatedTempID
+    globals()['InboundIDMethodByTemporaryCIID'] = InboundIDMethodByTemporaryCIID
 
 
 class InboundIDMethodByRelatedTempID(ModelComposed):
@@ -89,7 +101,14 @@ class InboundIDMethodByRelatedTempID(ModelComposed):
 
     @cached_property
     def discriminator():
+        lazy_import()
         val = {
+            'OKPluginGenericJSONIngest.InboundIDMethodByAttribute, OKPluginGenericJSONIngest': InboundIDMethodByAttribute,
+            'OKPluginGenericJSONIngest.InboundIDMethodByByUnion, OKPluginGenericJSONIngest': InboundIDMethodByByUnion,
+            'OKPluginGenericJSONIngest.InboundIDMethodByData, OKPluginGenericJSONIngest': InboundIDMethodByData,
+            'OKPluginGenericJSONIngest.InboundIDMethodByIntersect, OKPluginGenericJSONIngest': InboundIDMethodByIntersect,
+            'OKPluginGenericJSONIngest.InboundIDMethodByRelatedTempID, OKPluginGenericJSONIngest': InboundIDMethodByRelatedTempID,
+            'OKPluginGenericJSONIngest.InboundIDMethodByTemporaryCIID, OKPluginGenericJSONIngest': InboundIDMethodByTemporaryCIID,
         }
         if not val:
             return None

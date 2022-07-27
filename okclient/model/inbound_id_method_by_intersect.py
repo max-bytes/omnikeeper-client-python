@@ -101,7 +101,14 @@ class InboundIDMethodByIntersect(ModelComposed):
 
     @cached_property
     def discriminator():
+        lazy_import()
         val = {
+            'OKPluginGenericJSONIngest.InboundIDMethodByAttribute, OKPluginGenericJSONIngest': InboundIDMethodByAttribute,
+            'OKPluginGenericJSONIngest.InboundIDMethodByByUnion, OKPluginGenericJSONIngest': InboundIDMethodByByUnion,
+            'OKPluginGenericJSONIngest.InboundIDMethodByData, OKPluginGenericJSONIngest': InboundIDMethodByData,
+            'OKPluginGenericJSONIngest.InboundIDMethodByIntersect, OKPluginGenericJSONIngest': InboundIDMethodByIntersect,
+            'OKPluginGenericJSONIngest.InboundIDMethodByRelatedTempID, OKPluginGenericJSONIngest': InboundIDMethodByRelatedTempID,
+            'OKPluginGenericJSONIngest.InboundIDMethodByTemporaryCIID, OKPluginGenericJSONIngest': InboundIDMethodByTemporaryCIID,
         }
         if not val:
             return None

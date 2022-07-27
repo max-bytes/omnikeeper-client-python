@@ -136,5 +136,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_abstract_inbound_id_method.py
 tox.ini
