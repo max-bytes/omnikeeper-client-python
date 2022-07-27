@@ -34,7 +34,7 @@ class AttributeValueImageApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
-        self.get_endpoint = _Endpoint(
+        self.attribute_value_image_get_endpoint = _Endpoint(
             settings={
                 'response_type': None,
                 'auth': [
@@ -42,7 +42,7 @@ class AttributeValueImageApi(object):
                     'oauth2'
                 ],
                 'endpoint_path': '/api/v{version}/AttributeValueImage',
-                'operation_id': 'get',
+                'operation_id': 'attribute_value_image_get',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -113,7 +113,7 @@ class AttributeValueImageApi(object):
             },
             api_client=api_client
         )
-        self.post_endpoint = _Endpoint(
+        self.attribute_value_image_post_endpoint = _Endpoint(
             settings={
                 'response_type': None,
                 'auth': [
@@ -121,7 +121,7 @@ class AttributeValueImageApi(object):
                     'oauth2'
                 ],
                 'endpoint_path': '/api/v{version}/AttributeValueImage',
-                'operation_id': 'post',
+                'operation_id': 'attribute_value_image_post',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -196,7 +196,7 @@ class AttributeValueImageApi(object):
             api_client=api_client
         )
 
-    def get(
+    def attribute_value_image_get(
         self,
         ciid,
         attribute_name,
@@ -204,12 +204,12 @@ class AttributeValueImageApi(object):
         version,
         **kwargs
     ):
-        """get  # noqa: E501
+        """attribute_value_image_get  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get(ciid, attribute_name, layer_ids, version, async_req=True)
+        >>> thread = api.attribute_value_image_get(ciid, attribute_name, layer_ids, version, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -290,9 +290,9 @@ class AttributeValueImageApi(object):
             layer_ids
         kwargs['version'] = \
             version
-        return self.get_endpoint.call_with_http_info(**kwargs)
+        return self.attribute_value_image_get_endpoint.call_with_http_info(**kwargs)
 
-    def post(
+    def attribute_value_image_post(
         self,
         ciid,
         attribute_name,
@@ -301,12 +301,12 @@ class AttributeValueImageApi(object):
         files,
         **kwargs
     ):
-        """post  # noqa: E501
+        """attribute_value_image_post  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.post(ciid, attribute_name, layer_id, version, files, async_req=True)
+        >>> thread = api.attribute_value_image_post(ciid, attribute_name, layer_id, version, files, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -389,5 +389,5 @@ class AttributeValueImageApi(object):
             version
         kwargs['files'] = \
             files
-        return self.post_endpoint.call_with_http_info(**kwargs)
+        return self.attribute_value_image_post_endpoint.call_with_http_info(**kwargs)
 

@@ -76,9 +76,8 @@ class GraphQLQuery(ModelNormal):
         """
         return {
             'operation_name': (str, none_type,),  # noqa: E501
-            'named_query': (str, none_type,),  # noqa: E501
             'query': (str, none_type,),  # noqa: E501
-            'variables': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'variables': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -88,7 +87,6 @@ class GraphQLQuery(ModelNormal):
 
     attribute_map = {
         'operation_name': 'operationName',  # noqa: E501
-        'named_query': 'namedQuery',  # noqa: E501
         'query': 'query',  # noqa: E501
         'variables': 'variables',  # noqa: E501
     }
@@ -135,9 +133,8 @@ class GraphQLQuery(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             operation_name (str, none_type): [optional]  # noqa: E501
-            named_query (str, none_type): [optional]  # noqa: E501
             query (str, none_type): [optional]  # noqa: E501
-            variables (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
+            variables ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -224,9 +221,8 @@ class GraphQLQuery(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             operation_name (str, none_type): [optional]  # noqa: E501
-            named_query (str, none_type): [optional]  # noqa: E501
             query (str, none_type): [optional]  # noqa: E501
-            variables (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
+            variables ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

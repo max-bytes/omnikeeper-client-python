@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**value** | **str** |  |  must be one of ["Text", "MultilineText", "Integer", "JSON", "YAML", "Image", ]
+**value** | **str** |  |  must be one of ["Text", "MultilineText", "Integer", "JSON", "YAML", "Image", "Mask", "Double", "Boolean", "DateTimeWithOffset", ]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -81,6 +81,7 @@ class GridViewColumn(ModelNormal):
         lazy_import()
         return {
             'source_attribute_name': (str, none_type,),  # noqa: E501
+            'source_attribute_path': ([str], none_type,),  # noqa: E501
             'column_description': (str, none_type,),  # noqa: E501
             'value_type': (AttributeValueType,),  # noqa: E501
             'write_layer': (str, none_type,),  # noqa: E501
@@ -93,6 +94,7 @@ class GridViewColumn(ModelNormal):
 
     attribute_map = {
         'source_attribute_name': 'sourceAttributeName',  # noqa: E501
+        'source_attribute_path': 'sourceAttributePath',  # noqa: E501
         'column_description': 'columnDescription',  # noqa: E501
         'value_type': 'valueType',  # noqa: E501
         'write_layer': 'writeLayer',  # noqa: E501
@@ -140,6 +142,7 @@ class GridViewColumn(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             source_attribute_name (str, none_type): [optional]  # noqa: E501
+            source_attribute_path ([str], none_type): [optional]  # noqa: E501
             column_description (str, none_type): [optional]  # noqa: E501
             value_type (AttributeValueType): [optional]  # noqa: E501
             write_layer (str, none_type): [optional]  # noqa: E501
@@ -229,6 +232,7 @@ class GridViewColumn(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             source_attribute_name (str, none_type): [optional]  # noqa: E501
+            source_attribute_path ([str], none_type): [optional]  # noqa: E501
             column_description (str, none_type): [optional]  # noqa: E501
             value_type (AttributeValueType): [optional]  # noqa: E501
             write_layer (str, none_type): [optional]  # noqa: E501

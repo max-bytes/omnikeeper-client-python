@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str, none_type** |  | [optional] 
+**id** | **str, none_type** |  | [optional] 
 **value** | [**AttributeValueDTO**](AttributeValueDTO.md) |  | [optional] 
 **changeable** | **bool** |  | [optional] 
 

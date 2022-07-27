@@ -38,7 +38,7 @@ class GridViewApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
-        self.add_context_endpoint = _Endpoint(
+        self.grid_view_add_context_endpoint = _Endpoint(
             settings={
                 'response_type': None,
                 'auth': [
@@ -46,7 +46,7 @@ class GridViewApi(object):
                     'oauth2'
                 ],
                 'endpoint_path': '/api/v{version}/GridView/context',
-                'operation_id': 'add_context',
+                'operation_id': 'grid_view_add_context',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -88,6 +88,8 @@ class GridViewApi(object):
             },
             headers_map={
                 'accept': [
+                    'application/json',
+                    'application/xml',
                     'application/json;odata.metadata=minimal;odata.streaming=true',
                     'application/json;odata.metadata=minimal;odata.streaming=false',
                     'application/json;odata.metadata=minimal',
@@ -99,13 +101,12 @@ class GridViewApi(object):
                     'application/json;odata.metadata=none',
                     'application/json;odata.streaming=true',
                     'application/json;odata.streaming=false',
-                    'application/json',
-                    'application/xml',
-                    'application/odata',
                     'text/plain',
+                    'application/octet-stream',
                     'text/json'
                 ],
                 'content_type': [
+                    'application/json',
                     'application/json;odata.metadata=minimal;odata.streaming=true',
                     'application/json;odata.metadata=minimal;odata.streaming=false',
                     'application/json;odata.metadata=minimal',
@@ -117,17 +118,15 @@ class GridViewApi(object):
                     'application/json;odata.metadata=none',
                     'application/json;odata.streaming=true',
                     'application/json;odata.streaming=false',
-                    'application/json',
                     'application/xml',
-                    'application/odata',
-                    'application/json-patch+json',
+                    'text/plain',
                     'text/json',
                     'application/*+json'
                 ]
             },
             api_client=api_client
         )
-        self.change_data_endpoint = _Endpoint(
+        self.grid_view_change_data_endpoint = _Endpoint(
             settings={
                 'response_type': None,
                 'auth': [
@@ -135,7 +134,7 @@ class GridViewApi(object):
                     'oauth2'
                 ],
                 'endpoint_path': '/api/v{version}/GridView/contexts/{context}/change',
-                'operation_id': 'change_data',
+                'operation_id': 'grid_view_change_data',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -183,6 +182,8 @@ class GridViewApi(object):
             },
             headers_map={
                 'accept': [
+                    'application/json',
+                    'application/xml',
                     'application/json;odata.metadata=minimal;odata.streaming=true',
                     'application/json;odata.metadata=minimal;odata.streaming=false',
                     'application/json;odata.metadata=minimal',
@@ -194,13 +195,12 @@ class GridViewApi(object):
                     'application/json;odata.metadata=none',
                     'application/json;odata.streaming=true',
                     'application/json;odata.streaming=false',
-                    'application/json',
-                    'application/xml',
-                    'application/odata',
                     'text/plain',
+                    'application/octet-stream',
                     'text/json'
                 ],
                 'content_type': [
+                    'application/json',
                     'application/json;odata.metadata=minimal;odata.streaming=true',
                     'application/json;odata.metadata=minimal;odata.streaming=false',
                     'application/json;odata.metadata=minimal',
@@ -212,17 +212,15 @@ class GridViewApi(object):
                     'application/json;odata.metadata=none',
                     'application/json;odata.streaming=true',
                     'application/json;odata.streaming=false',
-                    'application/json',
                     'application/xml',
-                    'application/odata',
-                    'application/json-patch+json',
+                    'text/plain',
                     'text/json',
                     'application/*+json'
                 ]
             },
             api_client=api_client
         )
-        self.delete_context_endpoint = _Endpoint(
+        self.grid_view_delete_context_endpoint = _Endpoint(
             settings={
                 'response_type': None,
                 'auth': [
@@ -230,7 +228,7 @@ class GridViewApi(object):
                     'oauth2'
                 ],
                 'endpoint_path': '/api/v{version}/GridView/context/{name}',
-                'operation_id': 'delete_context',
+                'operation_id': 'grid_view_delete_context',
                 'http_method': 'DELETE',
                 'servers': None,
             },
@@ -274,6 +272,8 @@ class GridViewApi(object):
             },
             headers_map={
                 'accept': [
+                    'application/json',
+                    'application/xml',
                     'application/json;odata.metadata=minimal;odata.streaming=true',
                     'application/json;odata.metadata=minimal;odata.streaming=false',
                     'application/json;odata.metadata=minimal',
@@ -285,17 +285,15 @@ class GridViewApi(object):
                     'application/json;odata.metadata=none',
                     'application/json;odata.streaming=true',
                     'application/json;odata.streaming=false',
-                    'application/json',
-                    'application/xml',
-                    'application/odata',
                     'text/plain',
+                    'application/octet-stream',
                     'text/json'
                 ],
                 'content_type': [],
             },
             api_client=api_client
         )
-        self.edit_context_endpoint = _Endpoint(
+        self.grid_view_edit_context_endpoint = _Endpoint(
             settings={
                 'response_type': None,
                 'auth': [
@@ -303,7 +301,7 @@ class GridViewApi(object):
                     'oauth2'
                 ],
                 'endpoint_path': '/api/v{version}/GridView/context/{name}',
-                'operation_id': 'edit_context',
+                'operation_id': 'grid_view_edit_context',
                 'http_method': 'PUT',
                 'servers': None,
             },
@@ -351,6 +349,8 @@ class GridViewApi(object):
             },
             headers_map={
                 'accept': [
+                    'application/json',
+                    'application/xml',
                     'application/json;odata.metadata=minimal;odata.streaming=true',
                     'application/json;odata.metadata=minimal;odata.streaming=false',
                     'application/json;odata.metadata=minimal',
@@ -362,13 +362,12 @@ class GridViewApi(object):
                     'application/json;odata.metadata=none',
                     'application/json;odata.streaming=true',
                     'application/json;odata.streaming=false',
-                    'application/json',
-                    'application/xml',
-                    'application/odata',
                     'text/plain',
+                    'application/octet-stream',
                     'text/json'
                 ],
                 'content_type': [
+                    'application/json',
                     'application/json;odata.metadata=minimal;odata.streaming=true',
                     'application/json;odata.metadata=minimal;odata.streaming=false',
                     'application/json;odata.metadata=minimal',
@@ -380,17 +379,15 @@ class GridViewApi(object):
                     'application/json;odata.metadata=none',
                     'application/json;odata.streaming=true',
                     'application/json;odata.streaming=false',
-                    'application/json',
                     'application/xml',
-                    'application/odata',
-                    'application/json-patch+json',
+                    'text/plain',
                     'text/json',
                     'application/*+json'
                 ]
             },
             api_client=api_client
         )
-        self.get_data_endpoint = _Endpoint(
+        self.grid_view_get_data_endpoint = _Endpoint(
             settings={
                 'response_type': None,
                 'auth': [
@@ -398,7 +395,7 @@ class GridViewApi(object):
                     'oauth2'
                 ],
                 'endpoint_path': '/api/v{version}/GridView/contexts/{context}/data',
-                'operation_id': 'get_data',
+                'operation_id': 'grid_view_get_data',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -446,7 +443,7 @@ class GridViewApi(object):
             },
             api_client=api_client
         )
-        self.get_grid_view_context_endpoint = _Endpoint(
+        self.grid_view_get_grid_view_context_endpoint = _Endpoint(
             settings={
                 'response_type': None,
                 'auth': [
@@ -454,7 +451,7 @@ class GridViewApi(object):
                     'oauth2'
                 ],
                 'endpoint_path': '/api/v{version}/GridView/context/{name}',
-                'operation_id': 'get_grid_view_context',
+                'operation_id': 'grid_view_get_grid_view_context',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -502,7 +499,7 @@ class GridViewApi(object):
             },
             api_client=api_client
         )
-        self.get_grid_view_contexts_endpoint = _Endpoint(
+        self.grid_view_get_grid_view_contexts_endpoint = _Endpoint(
             settings={
                 'response_type': None,
                 'auth': [
@@ -510,7 +507,7 @@ class GridViewApi(object):
                     'oauth2'
                 ],
                 'endpoint_path': '/api/v{version}/GridView/contexts',
-                'operation_id': 'get_grid_view_contexts',
+                'operation_id': 'grid_view_get_grid_view_contexts',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -552,7 +549,7 @@ class GridViewApi(object):
             },
             api_client=api_client
         )
-        self.get_schema_endpoint = _Endpoint(
+        self.grid_view_get_schema_endpoint = _Endpoint(
             settings={
                 'response_type': None,
                 'auth': [
@@ -560,7 +557,7 @@ class GridViewApi(object):
                     'oauth2'
                 ],
                 'endpoint_path': '/api/v{version}/GridView/contexts/{context}/schema',
-                'operation_id': 'get_schema',
+                'operation_id': 'grid_view_get_schema',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -609,7 +606,7 @@ class GridViewApi(object):
             api_client=api_client
         )
 
-    def add_context(
+    def grid_view_add_context(
         self,
         version,
         **kwargs
@@ -619,7 +616,7 @@ class GridViewApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.add_context(version, async_req=True)
+        >>> thread = api.grid_view_add_context(version, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -690,9 +687,9 @@ class GridViewApi(object):
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
         kwargs['version'] = \
             version
-        return self.add_context_endpoint.call_with_http_info(**kwargs)
+        return self.grid_view_add_context_endpoint.call_with_http_info(**kwargs)
 
-    def change_data(
+    def grid_view_change_data(
         self,
         context,
         version,
@@ -703,7 +700,7 @@ class GridViewApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.change_data(context, version, async_req=True)
+        >>> thread = api.grid_view_change_data(context, version, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -777,9 +774,9 @@ class GridViewApi(object):
             context
         kwargs['version'] = \
             version
-        return self.change_data_endpoint.call_with_http_info(**kwargs)
+        return self.grid_view_change_data_endpoint.call_with_http_info(**kwargs)
 
-    def delete_context(
+    def grid_view_delete_context(
         self,
         name,
         version,
@@ -790,7 +787,7 @@ class GridViewApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_context(name, version, async_req=True)
+        >>> thread = api.grid_view_delete_context(name, version, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -863,9 +860,9 @@ class GridViewApi(object):
             name
         kwargs['version'] = \
             version
-        return self.delete_context_endpoint.call_with_http_info(**kwargs)
+        return self.grid_view_delete_context_endpoint.call_with_http_info(**kwargs)
 
-    def edit_context(
+    def grid_view_edit_context(
         self,
         name,
         version,
@@ -876,7 +873,7 @@ class GridViewApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.edit_context(name, version, async_req=True)
+        >>> thread = api.grid_view_edit_context(name, version, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -950,9 +947,9 @@ class GridViewApi(object):
             name
         kwargs['version'] = \
             version
-        return self.edit_context_endpoint.call_with_http_info(**kwargs)
+        return self.grid_view_edit_context_endpoint.call_with_http_info(**kwargs)
 
-    def get_data(
+    def grid_view_get_data(
         self,
         context,
         version,
@@ -963,7 +960,7 @@ class GridViewApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_data(context, version, async_req=True)
+        >>> thread = api.grid_view_get_data(context, version, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -1036,9 +1033,9 @@ class GridViewApi(object):
             context
         kwargs['version'] = \
             version
-        return self.get_data_endpoint.call_with_http_info(**kwargs)
+        return self.grid_view_get_data_endpoint.call_with_http_info(**kwargs)
 
-    def get_grid_view_context(
+    def grid_view_get_grid_view_context(
         self,
         name,
         version,
@@ -1049,7 +1046,7 @@ class GridViewApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_grid_view_context(name, version, async_req=True)
+        >>> thread = api.grid_view_get_grid_view_context(name, version, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -1122,9 +1119,9 @@ class GridViewApi(object):
             name
         kwargs['version'] = \
             version
-        return self.get_grid_view_context_endpoint.call_with_http_info(**kwargs)
+        return self.grid_view_get_grid_view_context_endpoint.call_with_http_info(**kwargs)
 
-    def get_grid_view_contexts(
+    def grid_view_get_grid_view_contexts(
         self,
         version,
         **kwargs
@@ -1134,7 +1131,7 @@ class GridViewApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_grid_view_contexts(version, async_req=True)
+        >>> thread = api.grid_view_get_grid_view_contexts(version, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -1204,9 +1201,9 @@ class GridViewApi(object):
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
         kwargs['version'] = \
             version
-        return self.get_grid_view_contexts_endpoint.call_with_http_info(**kwargs)
+        return self.grid_view_get_grid_view_contexts_endpoint.call_with_http_info(**kwargs)
 
-    def get_schema(
+    def grid_view_get_schema(
         self,
         context,
         version,
@@ -1217,7 +1214,7 @@ class GridViewApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_schema(context, version, async_req=True)
+        >>> thread = api.grid_view_get_schema(context, version, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -1290,5 +1287,5 @@ class GridViewApi(object):
             context
         kwargs['version'] = \
             version
-        return self.get_schema_endpoint.call_with_http_info(**kwargs)
+        return self.grid_view_get_schema_endpoint.call_with_http_info(**kwargs)
 

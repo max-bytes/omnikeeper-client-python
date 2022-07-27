@@ -1,14 +1,14 @@
 # okclient.AnsibleInventoryScanIngestApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://localhost:44378*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ingest_ansible_inventory_scan**](AnsibleInventoryScanIngestApi.md#ingest_ansible_inventory_scan) | **POST** /api/v{version}/Ingest/AnsibleInventoryScan | 
+[**ansible_inventory_scan_ingest_ingest_ansible_inventory_scan**](AnsibleInventoryScanIngestApi.md#ansible_inventory_scan_ingest_ingest_ansible_inventory_scan) | **POST** /api/v{version}/Ingest/AnsibleInventoryScan | 
 
 
-# **ingest_ansible_inventory_scan**
-> ingest_ansible_inventory_scan(write_layer_id, search_layer_ids, version, ansible_inventory_scan_dto)
+# **ansible_inventory_scan_ingest_ingest_ansible_inventory_scan**
+> ansible_inventory_scan_ingest_ingest_ansible_inventory_scan(write_layer_id, search_layer_ids, version, ansible_inventory_scan_dto)
 
 
 
@@ -23,10 +23,10 @@ import okclient
 from okclient.api import ansible_inventory_scan_ingest_api
 from okclient.model.ansible_inventory_scan_dto import AnsibleInventoryScanDTO
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://localhost:44378
 # See configuration.py for a list of all supported configuration parameters.
 configuration = okclient.Configuration(
-    host = "http://localhost"
+    host = "https://localhost:44378"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -36,13 +36,13 @@ configuration = okclient.Configuration(
 
 # Configure OAuth2 access token for authorization: oauth2
 configuration = okclient.Configuration(
-    host = "http://localhost"
+    host = "https://localhost:44378"
 )
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Configure OAuth2 access token for authorization: oauth2
 configuration = okclient.Configuration(
-    host = "http://localhost"
+    host = "https://localhost:44378"
 )
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
@@ -57,24 +57,24 @@ with okclient.ApiClient(configuration) as api_client:
     version = "version_example" # str | 
     ansible_inventory_scan_dto = AnsibleInventoryScanDTO(
         setup_facts={
-            "key": None,
+            "key": "key_example",
         },
         yum_installed={
-            "key": None,
+            "key": "key_example",
         },
         yum_repos={
-            "key": None,
+            "key": "key_example",
         },
         yum_updates={
-            "key": None,
+            "key": "key_example",
         },
     ) # AnsibleInventoryScanDTO | 
 
     # example passing only required values which don't have defaults set
     try:
-        api_instance.ingest_ansible_inventory_scan(write_layer_id, search_layer_ids, version, ansible_inventory_scan_dto)
+        api_instance.ansible_inventory_scan_ingest_ingest_ansible_inventory_scan(write_layer_id, search_layer_ids, version, ansible_inventory_scan_dto)
     except okclient.ApiException as e:
-        print("Exception when calling AnsibleInventoryScanIngestApi->ingest_ansible_inventory_scan: %s\n" % e)
+        print("Exception when calling AnsibleInventoryScanIngestApi->ansible_inventory_scan_ingest_ingest_ansible_inventory_scan: %s\n" % e)
 ```
 
 
@@ -97,7 +97,7 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json;odata.metadata=minimal;odata.streaming=true, application/json;odata.metadata=minimal;odata.streaming=false, application/json;odata.metadata=minimal, application/json;odata.metadata=full;odata.streaming=true, application/json;odata.metadata=full;odata.streaming=false, application/json;odata.metadata=full, application/json;odata.metadata=none;odata.streaming=true, application/json;odata.metadata=none;odata.streaming=false, application/json;odata.metadata=none, application/json;odata.streaming=true, application/json;odata.streaming=false, application/json, application/xml, application/odata, application/json-patch+json, text/json, application/*+json
+ - **Content-Type**: application/json, application/json;odata.metadata=minimal;odata.streaming=true, application/json;odata.metadata=minimal;odata.streaming=false, application/json;odata.metadata=minimal, application/json;odata.metadata=full;odata.streaming=true, application/json;odata.metadata=full;odata.streaming=false, application/json;odata.metadata=full, application/json;odata.metadata=none;odata.streaming=true, application/json;odata.metadata=none;odata.streaming=false, application/json;odata.metadata=none, application/json;odata.streaming=true, application/json;odata.streaming=false, application/xml, text/plain, text/json, application/*+json
  - **Accept**: Not defined
 
 

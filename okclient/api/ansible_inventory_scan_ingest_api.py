@@ -35,7 +35,7 @@ class AnsibleInventoryScanIngestApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
-        self.ingest_ansible_inventory_scan_endpoint = _Endpoint(
+        self.ansible_inventory_scan_ingest_ingest_ansible_inventory_scan_endpoint = _Endpoint(
             settings={
                 'response_type': None,
                 'auth': [
@@ -43,7 +43,7 @@ class AnsibleInventoryScanIngestApi(object):
                     'oauth2'
                 ],
                 'endpoint_path': '/api/v{version}/Ingest/AnsibleInventoryScan',
-                'operation_id': 'ingest_ansible_inventory_scan',
+                'operation_id': 'ansible_inventory_scan_ingest_ingest_ansible_inventory_scan',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -100,6 +100,7 @@ class AnsibleInventoryScanIngestApi(object):
             headers_map={
                 'accept': [],
                 'content_type': [
+                    'application/json',
                     'application/json;odata.metadata=minimal;odata.streaming=true',
                     'application/json;odata.metadata=minimal;odata.streaming=false',
                     'application/json;odata.metadata=minimal',
@@ -111,10 +112,8 @@ class AnsibleInventoryScanIngestApi(object):
                     'application/json;odata.metadata=none',
                     'application/json;odata.streaming=true',
                     'application/json;odata.streaming=false',
-                    'application/json',
                     'application/xml',
-                    'application/odata',
-                    'application/json-patch+json',
+                    'text/plain',
                     'text/json',
                     'application/*+json'
                 ]
@@ -122,7 +121,7 @@ class AnsibleInventoryScanIngestApi(object):
             api_client=api_client
         )
 
-    def ingest_ansible_inventory_scan(
+    def ansible_inventory_scan_ingest_ingest_ansible_inventory_scan(
         self,
         write_layer_id,
         search_layer_ids,
@@ -130,12 +129,12 @@ class AnsibleInventoryScanIngestApi(object):
         ansible_inventory_scan_dto,
         **kwargs
     ):
-        """ingest_ansible_inventory_scan  # noqa: E501
+        """ansible_inventory_scan_ingest_ingest_ansible_inventory_scan  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.ingest_ansible_inventory_scan(write_layer_id, search_layer_ids, version, ansible_inventory_scan_dto, async_req=True)
+        >>> thread = api.ansible_inventory_scan_ingest_ingest_ansible_inventory_scan(write_layer_id, search_layer_ids, version, ansible_inventory_scan_dto, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -214,5 +213,5 @@ class AnsibleInventoryScanIngestApi(object):
             version
         kwargs['ansible_inventory_scan_dto'] = \
             ansible_inventory_scan_dto
-        return self.ingest_ansible_inventory_scan_endpoint.call_with_http_info(**kwargs)
+        return self.ansible_inventory_scan_ingest_ingest_ansible_inventory_scan_endpoint.call_with_http_info(**kwargs)
 

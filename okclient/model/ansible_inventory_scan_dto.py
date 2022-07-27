@@ -75,10 +75,10 @@ class AnsibleInventoryScanDTO(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'setup_facts': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'yum_installed': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'yum_repos': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'yum_updates': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'setup_facts': ({str: (str,)},),  # noqa: E501
+            'yum_installed': ({str: (str,)},),  # noqa: E501
+            'yum_repos': ({str: (str,)},),  # noqa: E501
+            'yum_updates': ({str: (str,)},),  # noqa: E501
         }
 
     @cached_property
@@ -104,10 +104,10 @@ class AnsibleInventoryScanDTO(ModelNormal):
         """AnsibleInventoryScanDTO - a model defined in OpenAPI
 
         Args:
-            setup_facts ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}):
-            yum_installed ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}):
-            yum_repos ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}):
-            yum_updates ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}):
+            setup_facts ({str: (str,)}):
+            yum_installed ({str: (str,)}):
+            yum_repos ({str: (str,)}):
+            yum_updates ({str: (str,)}):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -199,10 +199,10 @@ class AnsibleInventoryScanDTO(ModelNormal):
         """AnsibleInventoryScanDTO - a model defined in OpenAPI
 
         Args:
-            setup_facts ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}):
-            yum_installed ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}):
-            yum_repos ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}):
-            yum_updates ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}):
+            setup_facts ({str: (str,)}):
+            yum_installed ({str: (str,)}):
+            yum_repos ({str: (str,)}):
+            yum_updates ({str: (str,)}):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

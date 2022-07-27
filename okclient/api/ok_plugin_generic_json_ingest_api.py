@@ -21,7 +21,7 @@ from okclient.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from okclient.model.context import Context
+from okclient.model.generic_inbound_data import GenericInboundData
 
 
 class OKPluginGenericJSONIngestApi(object):
@@ -35,15 +35,15 @@ class OKPluginGenericJSONIngestApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
-        self.get_all_contexts_endpoint = _Endpoint(
+        self.manage_context_get_all_contexts_endpoint = _Endpoint(
             settings={
-                'response_type': ([Context],),
+                'response_type': ([dict],),
                 'auth': [
                     'oauth2',
                     'oauth2'
                 ],
                 'endpoint_path': '/api/v{version}/ingest/genericJSON/manage/context',
-                'operation_id': 'get_all_contexts',
+                'operation_id': 'manage_context_get_all_contexts',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -81,6 +81,8 @@ class OKPluginGenericJSONIngestApi(object):
             },
             headers_map={
                 'accept': [
+                    'application/json',
+                    'application/xml',
                     'application/json;odata.metadata=minimal;odata.streaming=true',
                     'application/json;odata.metadata=minimal;odata.streaming=false',
                     'application/json;odata.metadata=minimal',
@@ -92,25 +94,23 @@ class OKPluginGenericJSONIngestApi(object):
                     'application/json;odata.metadata=none',
                     'application/json;odata.streaming=true',
                     'application/json;odata.streaming=false',
-                    'application/json',
-                    'application/xml',
-                    'application/odata',
                     'text/plain',
+                    'application/octet-stream',
                     'text/json'
                 ],
                 'content_type': [],
             },
             api_client=api_client
         )
-        self.get_context_endpoint = _Endpoint(
+        self.manage_context_get_context_endpoint = _Endpoint(
             settings={
-                'response_type': (Context,),
+                'response_type': (dict,),
                 'auth': [
                     'oauth2',
                     'oauth2'
                 ],
                 'endpoint_path': '/api/v{version}/ingest/genericJSON/manage/context/{id}',
-                'operation_id': 'get_context',
+                'operation_id': 'manage_context_get_context',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -154,6 +154,8 @@ class OKPluginGenericJSONIngestApi(object):
             },
             headers_map={
                 'accept': [
+                    'application/json',
+                    'application/xml',
                     'application/json;odata.metadata=minimal;odata.streaming=true',
                     'application/json;odata.metadata=minimal;odata.streaming=false',
                     'application/json;odata.metadata=minimal',
@@ -165,17 +167,262 @@ class OKPluginGenericJSONIngestApi(object):
                     'application/json;odata.metadata=none',
                     'application/json;odata.streaming=true',
                     'application/json;odata.streaming=false',
-                    'application/json',
-                    'application/xml',
-                    'application/odata',
                     'text/plain',
+                    'application/octet-stream',
                     'text/json'
                 ],
                 'content_type': [],
             },
             api_client=api_client
         )
-        self.ingest_endpoint = _Endpoint(
+        self.manage_context_remove_context_endpoint = _Endpoint(
+            settings={
+                'response_type': (bool,),
+                'auth': [
+                    'oauth2',
+                    'oauth2'
+                ],
+                'endpoint_path': '/api/v{version}/ingest/genericJSON/manage/context/{id}',
+                'operation_id': 'manage_context_remove_context',
+                'http_method': 'DELETE',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'id',
+                    'version',
+                ],
+                'required': [
+                    'id',
+                    'version',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'id':
+                        (str,),
+                    'version':
+                        (str,),
+                },
+                'attribute_map': {
+                    'id': 'id',
+                    'version': 'version',
+                },
+                'location_map': {
+                    'id': 'path',
+                    'version': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json',
+                    'application/xml',
+                    'application/json;odata.metadata=minimal;odata.streaming=true',
+                    'application/json;odata.metadata=minimal;odata.streaming=false',
+                    'application/json;odata.metadata=minimal',
+                    'application/json;odata.metadata=full;odata.streaming=true',
+                    'application/json;odata.metadata=full;odata.streaming=false',
+                    'application/json;odata.metadata=full',
+                    'application/json;odata.metadata=none;odata.streaming=true',
+                    'application/json;odata.metadata=none;odata.streaming=false',
+                    'application/json;odata.metadata=none',
+                    'application/json;odata.streaming=true',
+                    'application/json;odata.streaming=false',
+                    'text/plain',
+                    'application/octet-stream',
+                    'text/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.manage_context_upsert_context_endpoint = _Endpoint(
+            settings={
+                'response_type': (dict,),
+                'auth': [
+                    'oauth2',
+                    'oauth2'
+                ],
+                'endpoint_path': '/api/v{version}/ingest/genericJSON/manage/context',
+                'operation_id': 'manage_context_upsert_context',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'version',
+                    'body',
+                ],
+                'required': [
+                    'version',
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'version':
+                        (str,),
+                    'body':
+                        (dict,),
+                },
+                'attribute_map': {
+                    'version': 'version',
+                },
+                'location_map': {
+                    'version': 'path',
+                    'body': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json',
+                    'application/xml',
+                    'application/json;odata.metadata=minimal;odata.streaming=true',
+                    'application/json;odata.metadata=minimal;odata.streaming=false',
+                    'application/json;odata.metadata=minimal',
+                    'application/json;odata.metadata=full;odata.streaming=true',
+                    'application/json;odata.metadata=full;odata.streaming=false',
+                    'application/json;odata.metadata=full',
+                    'application/json;odata.metadata=none;odata.streaming=true',
+                    'application/json;odata.metadata=none;odata.streaming=false',
+                    'application/json;odata.metadata=none',
+                    'application/json;odata.streaming=true',
+                    'application/json;odata.streaming=false',
+                    'text/plain',
+                    'application/octet-stream',
+                    'text/json'
+                ],
+                'content_type': [
+                    'application/json',
+                    'application/json;odata.metadata=minimal;odata.streaming=true',
+                    'application/json;odata.metadata=minimal;odata.streaming=false',
+                    'application/json;odata.metadata=minimal',
+                    'application/json;odata.metadata=full;odata.streaming=true',
+                    'application/json;odata.metadata=full;odata.streaming=false',
+                    'application/json;odata.metadata=full',
+                    'application/json;odata.metadata=none;odata.streaming=true',
+                    'application/json;odata.metadata=none;odata.streaming=false',
+                    'application/json;odata.metadata=none',
+                    'application/json;odata.streaming=true',
+                    'application/json;odata.streaming=false',
+                    'application/xml',
+                    'text/plain',
+                    'text/json',
+                    'application/*+json'
+                ]
+            },
+            api_client=api_client
+        )
+        self.passive_data_ingest_endpoint = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'oauth2',
+                    'oauth2'
+                ],
+                'endpoint_path': '/api/v{version}/ingest/genericJSON/data',
+                'operation_id': 'passive_data_ingest',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'read_layer_ids',
+                    'write_layer_id',
+                    'version',
+                    'generic_inbound_data',
+                ],
+                'required': [
+                    'read_layer_ids',
+                    'write_layer_id',
+                    'version',
+                    'generic_inbound_data',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'read_layer_ids':
+                        ([str],),
+                    'write_layer_id':
+                        (str,),
+                    'version':
+                        (str,),
+                    'generic_inbound_data':
+                        (GenericInboundData,),
+                },
+                'attribute_map': {
+                    'read_layer_ids': 'readLayerIDs',
+                    'write_layer_id': 'writeLayerID',
+                    'version': 'version',
+                },
+                'location_map': {
+                    'read_layer_ids': 'query',
+                    'write_layer_id': 'query',
+                    'version': 'path',
+                    'generic_inbound_data': 'body',
+                },
+                'collection_format_map': {
+                    'read_layer_ids': 'multi',
+                }
+            },
+            headers_map={
+                'accept': [],
+                'content_type': [
+                    'application/json',
+                    'application/json;odata.metadata=minimal;odata.streaming=true',
+                    'application/json;odata.metadata=minimal;odata.streaming=false',
+                    'application/json;odata.metadata=minimal',
+                    'application/json;odata.metadata=full;odata.streaming=true',
+                    'application/json;odata.metadata=full;odata.streaming=false',
+                    'application/json;odata.metadata=full',
+                    'application/json;odata.metadata=none;odata.streaming=true',
+                    'application/json;odata.metadata=none;odata.streaming=false',
+                    'application/json;odata.metadata=none',
+                    'application/json;odata.streaming=true',
+                    'application/json;odata.streaming=false',
+                    'application/xml',
+                    'text/plain',
+                    'text/json',
+                    'application/*+json'
+                ]
+            },
+            api_client=api_client
+        )
+        self.passive_files_ingest_endpoint = _Endpoint(
             settings={
                 'response_type': None,
                 'auth': [
@@ -183,7 +430,7 @@ class OKPluginGenericJSONIngestApi(object):
                     'oauth2'
                 ],
                 'endpoint_path': '/api/v{version}/ingest/genericJSON/files',
-                'operation_id': 'ingest',
+                'operation_id': 'passive_files_ingest',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -240,181 +487,18 @@ class OKPluginGenericJSONIngestApi(object):
             },
             api_client=api_client
         )
-        self.remove_context_endpoint = _Endpoint(
-            settings={
-                'response_type': (Context,),
-                'auth': [
-                    'oauth2',
-                    'oauth2'
-                ],
-                'endpoint_path': '/api/v{version}/ingest/genericJSON/manage/context/{id}',
-                'operation_id': 'remove_context',
-                'http_method': 'DELETE',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'id',
-                    'version',
-                ],
-                'required': [
-                    'id',
-                    'version',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'id':
-                        (str,),
-                    'version':
-                        (str,),
-                },
-                'attribute_map': {
-                    'id': 'id',
-                    'version': 'version',
-                },
-                'location_map': {
-                    'id': 'path',
-                    'version': 'path',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json;odata.metadata=minimal;odata.streaming=true',
-                    'application/json;odata.metadata=minimal;odata.streaming=false',
-                    'application/json;odata.metadata=minimal',
-                    'application/json;odata.metadata=full;odata.streaming=true',
-                    'application/json;odata.metadata=full;odata.streaming=false',
-                    'application/json;odata.metadata=full',
-                    'application/json;odata.metadata=none;odata.streaming=true',
-                    'application/json;odata.metadata=none;odata.streaming=false',
-                    'application/json;odata.metadata=none',
-                    'application/json;odata.streaming=true',
-                    'application/json;odata.streaming=false',
-                    'application/json',
-                    'application/xml',
-                    'application/odata',
-                    'text/plain',
-                    'text/json'
-                ],
-                'content_type': [],
-            },
-            api_client=api_client
-        )
-        self.upsert_context_endpoint = _Endpoint(
-            settings={
-                'response_type': (Context,),
-                'auth': [
-                    'oauth2',
-                    'oauth2'
-                ],
-                'endpoint_path': '/api/v{version}/ingest/genericJSON/manage/context',
-                'operation_id': 'upsert_context',
-                'http_method': 'POST',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'version',
-                    'context',
-                ],
-                'required': [
-                    'version',
-                    'context',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'version':
-                        (str,),
-                    'context':
-                        (Context,),
-                },
-                'attribute_map': {
-                    'version': 'version',
-                },
-                'location_map': {
-                    'version': 'path',
-                    'context': 'body',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json;odata.metadata=minimal;odata.streaming=true',
-                    'application/json;odata.metadata=minimal;odata.streaming=false',
-                    'application/json;odata.metadata=minimal',
-                    'application/json;odata.metadata=full;odata.streaming=true',
-                    'application/json;odata.metadata=full;odata.streaming=false',
-                    'application/json;odata.metadata=full',
-                    'application/json;odata.metadata=none;odata.streaming=true',
-                    'application/json;odata.metadata=none;odata.streaming=false',
-                    'application/json;odata.metadata=none',
-                    'application/json;odata.streaming=true',
-                    'application/json;odata.streaming=false',
-                    'application/json',
-                    'application/xml',
-                    'application/odata',
-                    'text/plain',
-                    'text/json'
-                ],
-                'content_type': [
-                    'application/json;odata.metadata=minimal;odata.streaming=true',
-                    'application/json;odata.metadata=minimal;odata.streaming=false',
-                    'application/json;odata.metadata=minimal',
-                    'application/json;odata.metadata=full;odata.streaming=true',
-                    'application/json;odata.metadata=full;odata.streaming=false',
-                    'application/json;odata.metadata=full',
-                    'application/json;odata.metadata=none;odata.streaming=true',
-                    'application/json;odata.metadata=none;odata.streaming=false',
-                    'application/json;odata.metadata=none',
-                    'application/json;odata.streaming=true',
-                    'application/json;odata.streaming=false',
-                    'application/json',
-                    'application/xml',
-                    'application/odata',
-                    'application/json-patch+json',
-                    'text/json',
-                    'application/*+json'
-                ]
-            },
-            api_client=api_client
-        )
 
-    def get_all_contexts(
+    def manage_context_get_all_contexts(
         self,
         version,
         **kwargs
     ):
-        """get_all_contexts  # noqa: E501
+        """manage_context_get_all_contexts  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_all_contexts(version, async_req=True)
+        >>> thread = api.manage_context_get_all_contexts(version, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -453,7 +537,7 @@ class OKPluginGenericJSONIngestApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            [Context]
+            [dict]
                 If the method is called asynchronously, returns the request
                 thread.
         """
@@ -484,20 +568,20 @@ class OKPluginGenericJSONIngestApi(object):
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
         kwargs['version'] = \
             version
-        return self.get_all_contexts_endpoint.call_with_http_info(**kwargs)
+        return self.manage_context_get_all_contexts_endpoint.call_with_http_info(**kwargs)
 
-    def get_context(
+    def manage_context_get_context(
         self,
         id,
         version,
         **kwargs
     ):
-        """get_context  # noqa: E501
+        """manage_context_get_context  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_context(id, version, async_req=True)
+        >>> thread = api.manage_context_get_context(id, version, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -537,7 +621,7 @@ class OKPluginGenericJSONIngestApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            Context
+            dict
                 If the method is called asynchronously, returns the request
                 thread.
         """
@@ -570,21 +654,287 @@ class OKPluginGenericJSONIngestApi(object):
             id
         kwargs['version'] = \
             version
-        return self.get_context_endpoint.call_with_http_info(**kwargs)
+        return self.manage_context_get_context_endpoint.call_with_http_info(**kwargs)
 
-    def ingest(
+    def manage_context_remove_context(
+        self,
+        id,
+        version,
+        **kwargs
+    ):
+        """manage_context_remove_context  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.manage_context_remove_context(id, version, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            id (str):
+            version (str):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            bool
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['id'] = \
+            id
+        kwargs['version'] = \
+            version
+        return self.manage_context_remove_context_endpoint.call_with_http_info(**kwargs)
+
+    def manage_context_upsert_context(
+        self,
+        version,
+        body,
+        **kwargs
+    ):
+        """manage_context_upsert_context  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.manage_context_upsert_context(version, body, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            version (str):
+            body (dict):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            dict
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['version'] = \
+            version
+        kwargs['body'] = \
+            body
+        return self.manage_context_upsert_context_endpoint.call_with_http_info(**kwargs)
+
+    def passive_data_ingest(
+        self,
+        read_layer_ids,
+        write_layer_id,
+        version,
+        generic_inbound_data,
+        **kwargs
+    ):
+        """passive_data_ingest  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.passive_data_ingest(read_layer_ids, write_layer_id, version, generic_inbound_data, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            read_layer_ids ([str]):
+            write_layer_id (str):
+            version (str):
+            generic_inbound_data (GenericInboundData):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            None
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['read_layer_ids'] = \
+            read_layer_ids
+        kwargs['write_layer_id'] = \
+            write_layer_id
+        kwargs['version'] = \
+            version
+        kwargs['generic_inbound_data'] = \
+            generic_inbound_data
+        return self.passive_data_ingest_endpoint.call_with_http_info(**kwargs)
+
+    def passive_files_ingest(
         self,
         context,
         version,
         files,
         **kwargs
     ):
-        """ingest  # noqa: E501
+        """passive_files_ingest  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.ingest(context, version, files, async_req=True)
+        >>> thread = api.passive_files_ingest(context, version, files, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -660,177 +1010,5 @@ class OKPluginGenericJSONIngestApi(object):
             version
         kwargs['files'] = \
             files
-        return self.ingest_endpoint.call_with_http_info(**kwargs)
-
-    def remove_context(
-        self,
-        id,
-        version,
-        **kwargs
-    ):
-        """remove_context  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.remove_context(id, version, async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            id (str):
-            version (str):
-
-        Keyword Args:
-            _return_http_data_only (bool): response data without head status
-                code and headers. Default is True.
-            _preload_content (bool): if False, the urllib3.HTTPResponse object
-                will be returned without reading/decoding response data.
-                Default is True.
-            _request_timeout (int/float/tuple): timeout setting for this request. If
-                one number provided, it will be total request timeout. It can also
-                be a pair (tuple) of (connection, read) timeouts.
-                Default is None.
-            _check_input_type (bool): specifies if type checking
-                should be done one the data sent to the server.
-                Default is True.
-            _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is True.
-            _spec_property_naming (bool): True if the variable names in the input data
-                are serialized names, as specified in the OpenAPI document.
-                False if the variable names in the input data
-                are pythonic names, e.g. snake case (default)
-            _content_type (str/None): force body content-type.
-                Default is None and content-type will be predicted by allowed
-                content-types and body.
-            _host_index (int/None): specifies the index of the server
-                that we want to use.
-                Default is read from the configuration.
-            _request_auths (list): set to override the auth_settings for an a single
-                request; this effectively ignores the authentication
-                in the spec for a single request.
-                Default is None
-            async_req (bool): execute request asynchronously
-
-        Returns:
-            Context
-                If the method is called asynchronously, returns the request
-                thread.
-        """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['id'] = \
-            id
-        kwargs['version'] = \
-            version
-        return self.remove_context_endpoint.call_with_http_info(**kwargs)
-
-    def upsert_context(
-        self,
-        version,
-        context,
-        **kwargs
-    ):
-        """upsert_context  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.upsert_context(version, context, async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            version (str):
-            context (Context):
-
-        Keyword Args:
-            _return_http_data_only (bool): response data without head status
-                code and headers. Default is True.
-            _preload_content (bool): if False, the urllib3.HTTPResponse object
-                will be returned without reading/decoding response data.
-                Default is True.
-            _request_timeout (int/float/tuple): timeout setting for this request. If
-                one number provided, it will be total request timeout. It can also
-                be a pair (tuple) of (connection, read) timeouts.
-                Default is None.
-            _check_input_type (bool): specifies if type checking
-                should be done one the data sent to the server.
-                Default is True.
-            _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is True.
-            _spec_property_naming (bool): True if the variable names in the input data
-                are serialized names, as specified in the OpenAPI document.
-                False if the variable names in the input data
-                are pythonic names, e.g. snake case (default)
-            _content_type (str/None): force body content-type.
-                Default is None and content-type will be predicted by allowed
-                content-types and body.
-            _host_index (int/None): specifies the index of the server
-                that we want to use.
-                Default is read from the configuration.
-            _request_auths (list): set to override the auth_settings for an a single
-                request; this effectively ignores the authentication
-                in the spec for a single request.
-                Default is None
-            async_req (bool): execute request asynchronously
-
-        Returns:
-            Context
-                If the method is called asynchronously, returns the request
-                thread.
-        """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['version'] = \
-            version
-        kwargs['context'] = \
-            context
-        return self.upsert_context_endpoint.call_with_http_info(**kwargs)
+        return self.passive_files_ingest_endpoint.call_with_http_info(**kwargs)
 

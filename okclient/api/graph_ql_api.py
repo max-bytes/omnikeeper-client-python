@@ -35,7 +35,7 @@ class GraphQLApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
-        self.debug_endpoint = _Endpoint(
+        self.graph_ql_debug_endpoint = _Endpoint(
             settings={
                 'response_type': None,
                 'auth': [
@@ -43,7 +43,7 @@ class GraphQLApi(object):
                     'oauth2'
                 ],
                 'endpoint_path': '/graphql-debug',
-                'operation_id': 'debug',
+                'operation_id': 'graph_ql_debug',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -79,6 +79,7 @@ class GraphQLApi(object):
             headers_map={
                 'accept': [],
                 'content_type': [
+                    'application/json',
                     'application/json;odata.metadata=minimal;odata.streaming=true',
                     'application/json;odata.metadata=minimal;odata.streaming=false',
                     'application/json;odata.metadata=minimal',
@@ -90,17 +91,15 @@ class GraphQLApi(object):
                     'application/json;odata.metadata=none',
                     'application/json;odata.streaming=true',
                     'application/json;odata.streaming=false',
-                    'application/json',
                     'application/xml',
-                    'application/odata',
-                    'application/json-patch+json',
+                    'text/plain',
                     'text/json',
                     'application/*+json'
                 ]
             },
             api_client=api_client
         )
-        self.index_endpoint = _Endpoint(
+        self.graph_ql_get_endpoint = _Endpoint(
             settings={
                 'response_type': None,
                 'auth': [
@@ -108,7 +107,65 @@ class GraphQLApi(object):
                     'oauth2'
                 ],
                 'endpoint_path': '/graphql',
-                'operation_id': 'index',
+                'operation_id': 'graph_ql_get',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'operation_name',
+                    'query',
+                    'variables',
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'operation_name':
+                        (str,),
+                    'query':
+                        (str,),
+                    'variables':
+                        ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),
+                },
+                'attribute_map': {
+                    'operation_name': 'operationName',
+                    'query': 'query',
+                    'variables': 'variables',
+                },
+                'location_map': {
+                    'operation_name': 'query',
+                    'query': 'query',
+                    'variables': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.graph_ql_index_endpoint = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'oauth2',
+                    'oauth2'
+                ],
+                'endpoint_path': '/graphql',
+                'operation_id': 'graph_ql_index',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -144,6 +201,7 @@ class GraphQLApi(object):
             headers_map={
                 'accept': [],
                 'content_type': [
+                    'application/json',
                     'application/json;odata.metadata=minimal;odata.streaming=true',
                     'application/json;odata.metadata=minimal;odata.streaming=false',
                     'application/json;odata.metadata=minimal',
@@ -155,10 +213,8 @@ class GraphQLApi(object):
                     'application/json;odata.metadata=none',
                     'application/json;odata.streaming=true',
                     'application/json;odata.streaming=false',
-                    'application/json',
                     'application/xml',
-                    'application/odata',
-                    'application/json-patch+json',
+                    'text/plain',
                     'text/json',
                     'application/*+json'
                 ]
@@ -166,16 +222,16 @@ class GraphQLApi(object):
             api_client=api_client
         )
 
-    def debug(
+    def graph_ql_debug(
         self,
         **kwargs
     ):
-        """debug  # noqa: E501
+        """graph_ql_debug  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.debug(async_req=True)
+        >>> thread = api.graph_ql_debug(async_req=True)
         >>> result = thread.get()
 
 
@@ -242,18 +298,98 @@ class GraphQLApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        return self.debug_endpoint.call_with_http_info(**kwargs)
+        return self.graph_ql_debug_endpoint.call_with_http_info(**kwargs)
 
-    def index(
+    def graph_ql_get(
         self,
         **kwargs
     ):
-        """index  # noqa: E501
+        """graph_ql_get  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.index(async_req=True)
+        >>> thread = api.graph_ql_get(async_req=True)
+        >>> result = thread.get()
+
+
+        Keyword Args:
+            operation_name (str): [optional]
+            query (str): [optional]
+            variables ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            None
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        return self.graph_ql_get_endpoint.call_with_http_info(**kwargs)
+
+    def graph_ql_index(
+        self,
+        **kwargs
+    ):
+        """graph_ql_index  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.graph_ql_index(async_req=True)
         >>> result = thread.get()
 
 
@@ -320,5 +456,5 @@ class GraphQLApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        return self.index_endpoint.call_with_http_info(**kwargs)
+        return self.graph_ql_index_endpoint.call_with_http_info(**kwargs)
 

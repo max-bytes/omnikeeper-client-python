@@ -80,7 +80,7 @@ class ChangeDataCell(ModelNormal):
         """
         lazy_import()
         return {
-            'name': (str, none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
             'value': (AttributeValueDTO,),  # noqa: E501
             'changeable': (bool,),  # noqa: E501
         }
@@ -91,7 +91,7 @@ class ChangeDataCell(ModelNormal):
 
 
     attribute_map = {
-        'name': 'name',  # noqa: E501
+        'id': 'id',  # noqa: E501
         'value': 'value',  # noqa: E501
         'changeable': 'changeable',  # noqa: E501
     }
@@ -137,7 +137,7 @@ class ChangeDataCell(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            name (str, none_type): [optional]  # noqa: E501
+            id (str, none_type): [optional]  # noqa: E501
             value (AttributeValueDTO): [optional]  # noqa: E501
             changeable (bool): [optional]  # noqa: E501
         """
@@ -225,7 +225,7 @@ class ChangeDataCell(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            name (str, none_type): [optional]  # noqa: E501
+            id (str, none_type): [optional]  # noqa: E501
             value (AttributeValueDTO): [optional]  # noqa: E501
             changeable (bool): [optional]  # noqa: E501
         """

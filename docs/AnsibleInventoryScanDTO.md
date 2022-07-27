@@ -4,10 +4,10 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**setup_facts** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** |  | 
-**yum_installed** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** |  | 
-**yum_repos** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** |  | 
-**yum_updates** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** |  | 
+**setup_facts** | **{str: (str,)}** |  | 
+**yum_installed** | **{str: (str,)}** |  | 
+**yum_repos** | **{str: (str,)}** |  | 
+**yum_updates** | **{str: (str,)}** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

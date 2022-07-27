@@ -82,7 +82,7 @@ class AttributeValueDTO(ModelNormal):
         return {
             'type': (AttributeValueType,),  # noqa: E501
             'is_array': (bool,),  # noqa: E501
-            'values': ([str],),  # noqa: E501
+            'values': ([str], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -103,13 +103,8 @@ class AttributeValueDTO(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, type, is_array, values, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
         """AttributeValueDTO - a model defined in OpenAPI
-
-        Args:
-            type (AttributeValueType):
-            is_array (bool):
-            values ([str]):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -142,6 +137,9 @@ class AttributeValueDTO(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            type (AttributeValueType): [optional]  # noqa: E501
+            is_array (bool): [optional]  # noqa: E501
+            values ([str], none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -173,9 +171,6 @@ class AttributeValueDTO(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.type = type
-        self.is_array = is_array
-        self.values = values
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -196,13 +191,8 @@ class AttributeValueDTO(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, type, is_array, values, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """AttributeValueDTO - a model defined in OpenAPI
-
-        Args:
-            type (AttributeValueType):
-            is_array (bool):
-            values ([str]):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -235,6 +225,9 @@ class AttributeValueDTO(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            type (AttributeValueType): [optional]  # noqa: E501
+            is_array (bool): [optional]  # noqa: E501
+            values ([str], none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -264,9 +257,6 @@ class AttributeValueDTO(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.type = type
-        self.is_array = is_array
-        self.values = values
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

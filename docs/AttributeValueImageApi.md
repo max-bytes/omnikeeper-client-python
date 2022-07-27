@@ -1,15 +1,15 @@
 # okclient.AttributeValueImageApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://localhost:44378*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get**](AttributeValueImageApi.md#get) | **GET** /api/v{version}/AttributeValueImage | 
-[**post**](AttributeValueImageApi.md#post) | **POST** /api/v{version}/AttributeValueImage | 
+[**attribute_value_image_get**](AttributeValueImageApi.md#attribute_value_image_get) | **GET** /api/v{version}/AttributeValueImage | 
+[**attribute_value_image_post**](AttributeValueImageApi.md#attribute_value_image_post) | **POST** /api/v{version}/AttributeValueImage | 
 
 
-# **get**
-> get(ciid, attribute_name, layer_ids, version)
+# **attribute_value_image_get**
+> attribute_value_image_get(ciid, attribute_name, layer_ids, version)
 
 
 
@@ -23,10 +23,10 @@ import time
 import okclient
 from okclient.api import attribute_value_image_api
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://localhost:44378
 # See configuration.py for a list of all supported configuration parameters.
 configuration = okclient.Configuration(
-    host = "http://localhost"
+    host = "https://localhost:44378"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -36,13 +36,13 @@ configuration = okclient.Configuration(
 
 # Configure OAuth2 access token for authorization: oauth2
 configuration = okclient.Configuration(
-    host = "http://localhost"
+    host = "https://localhost:44378"
 )
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Configure OAuth2 access token for authorization: oauth2
 configuration = okclient.Configuration(
-    host = "http://localhost"
+    host = "https://localhost:44378"
 )
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
@@ -61,16 +61,16 @@ with okclient.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        api_instance.get(ciid, attribute_name, layer_ids, version)
+        api_instance.attribute_value_image_get(ciid, attribute_name, layer_ids, version)
     except okclient.ApiException as e:
-        print("Exception when calling AttributeValueImageApi->get: %s\n" % e)
+        print("Exception when calling AttributeValueImageApi->attribute_value_image_get: %s\n" % e)
 
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_instance.get(ciid, attribute_name, layer_ids, version, index=index, at_time=at_time)
+        api_instance.attribute_value_image_get(ciid, attribute_name, layer_ids, version, index=index, at_time=at_time)
     except okclient.ApiException as e:
-        print("Exception when calling AttributeValueImageApi->get: %s\n" % e)
+        print("Exception when calling AttributeValueImageApi->attribute_value_image_get: %s\n" % e)
 ```
 
 
@@ -107,8 +107,8 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **post**
-> post(ciid, attribute_name, layer_id, version, files)
+# **attribute_value_image_post**
+> attribute_value_image_post(ciid, attribute_name, layer_id, version, files)
 
 
 
@@ -122,10 +122,10 @@ import time
 import okclient
 from okclient.api import attribute_value_image_api
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://localhost:44378
 # See configuration.py for a list of all supported configuration parameters.
 configuration = okclient.Configuration(
-    host = "http://localhost"
+    host = "https://localhost:44378"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -135,13 +135,13 @@ configuration = okclient.Configuration(
 
 # Configure OAuth2 access token for authorization: oauth2
 configuration = okclient.Configuration(
-    host = "http://localhost"
+    host = "https://localhost:44378"
 )
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Configure OAuth2 access token for authorization: oauth2
 configuration = okclient.Configuration(
-    host = "http://localhost"
+    host = "https://localhost:44378"
 )
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
@@ -160,16 +160,16 @@ with okclient.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        api_instance.post(ciid, attribute_name, layer_id, version, files)
+        api_instance.attribute_value_image_post(ciid, attribute_name, layer_id, version, files)
     except okclient.ApiException as e:
-        print("Exception when calling AttributeValueImageApi->post: %s\n" % e)
+        print("Exception when calling AttributeValueImageApi->attribute_value_image_post: %s\n" % e)
 
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_instance.post(ciid, attribute_name, layer_id, version, files, force_array=force_array)
+        api_instance.attribute_value_image_post(ciid, attribute_name, layer_id, version, files, force_array=force_array)
     except okclient.ApiException as e:
-        print("Exception when calling AttributeValueImageApi->post: %s\n" % e)
+        print("Exception when calling AttributeValueImageApi->attribute_value_image_post: %s\n" % e)
 ```
 
 
