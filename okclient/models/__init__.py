@@ -28,7 +28,6 @@ from okclient.model.generic_inbound_relation import GenericInboundRelation
 from okclient.model.graph_ql_query import GraphQLQuery
 from okclient.model.grid_view_column import GridViewColumn
 from okclient.model.grid_view_configuration import GridViewConfiguration
-from okclient.model.i_attribute_value import IAttributeValue
 from okclient.model.i_edm_entity_container import IEdmEntityContainer
 from okclient.model.i_edm_entity_container_element import IEdmEntityContainerElement
 from okclient.model.i_edm_expression import IEdmExpression

@@ -401,8 +401,12 @@ with okclient.ApiClient(configuration) as api_client:
                 attributes=[
                     GenericInboundAttribute(
                         name="name_example",
-                        value=IAttributeValue(
+                        value=AttributeValueDTO(
                             type=AttributeValueType("Text"),
+                            is_array=True,
+                            values=[
+                                "values_example",
+                            ],
                         ),
                     ),
                 ],

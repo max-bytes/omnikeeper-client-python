@@ -28,7 +28,6 @@ docs/GraphvizDotApi.md
 docs/GridViewApi.md
 docs/GridViewColumn.md
 docs/GridViewConfiguration.md
-docs/IAttributeValue.md
 docs/IEdmEntityContainer.md
 docs/IEdmEntityContainerElement.md
 docs/IEdmExpression.md
@@ -102,7 +101,6 @@ okclient/model/generic_inbound_relation.py
 okclient/model/graph_ql_query.py
 okclient/model/grid_view_column.py
 okclient/model/grid_view_configuration.py
-okclient/model/i_attribute_value.py
 okclient/model/i_edm_entity_container.py
 okclient/model/i_edm_entity_container_element.py
 okclient/model/i_edm_expression.py
