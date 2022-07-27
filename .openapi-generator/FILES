@@ -2,6 +2,7 @@
 .gitlab-ci.yml
 .travis.yml
 README.md
+docs/AbstractInboundIDMethod.md
 docs/AddContextRequest.md
 docs/AnsibleInventoryScanDTO.md
 docs/AnsibleInventoryScanIngestApi.md
@@ -41,7 +42,6 @@ docs/ImportExportLayerApi.md
 docs/InboundIDMethodByAttribute.md
 docs/InboundIDMethodByAttributeModifiers.md
 docs/InboundIDMethodByByUnion.md
-docs/InboundIDMethodByByUnionInnerInner.md
 docs/InboundIDMethodByData.md
 docs/InboundIDMethodByIntersect.md
 docs/InboundIDMethodByRelatedTempID.md
@@ -82,6 +82,7 @@ okclient/apis/__init__.py
 okclient/configuration.py
 okclient/exceptions.py
 okclient/model/__init__.py
+okclient/model/abstract_inbound_id_method.py
 okclient/model/add_context_request.py
 okclient/model/ansible_inventory_scan_dto.py
 okclient/model/attribute_value_dto.py
@@ -113,7 +114,6 @@ okclient/model/i_edm_vocabulary_annotation.py
 okclient/model/inbound_id_method_by_attribute.py
 okclient/model/inbound_id_method_by_attribute_modifiers.py
 okclient/model/inbound_id_method_by_by_union.py
-okclient/model/inbound_id_method_by_by_union_inner_inner.py
 okclient/model/inbound_id_method_by_data.py
 okclient/model/inbound_id_method_by_intersect.py
 okclient/model/inbound_id_method_by_related_temp_id.py
@@ -136,4 +136,5 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_abstract_inbound_id_method.py
 tox.ini

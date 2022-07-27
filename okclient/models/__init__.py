@@ -9,6 +9,7 @@
 # import sys
 # sys.setrecursionlimit(n)
 
+from okclient.model.abstract_inbound_id_method import AbstractInboundIDMethod
 from okclient.model.add_context_request import AddContextRequest
 from okclient.model.ansible_inventory_scan_dto import AnsibleInventoryScanDTO
 from okclient.model.attribute_value_dto import AttributeValueDTO
@@ -40,7 +41,6 @@ from okclient.model.i_edm_vocabulary_annotation import IEdmVocabularyAnnotation
 from okclient.model.inbound_id_method_by_attribute import InboundIDMethodByAttribute
 from okclient.model.inbound_id_method_by_attribute_modifiers import InboundIDMethodByAttributeModifiers
 from okclient.model.inbound_id_method_by_by_union import InboundIDMethodByByUnion
-from okclient.model.inbound_id_method_by_by_union_inner_inner import InboundIDMethodByByUnionInnerInner
 from okclient.model.inbound_id_method_by_data import InboundIDMethodByData
 from okclient.model.inbound_id_method_by_intersect import InboundIDMethodByIntersect
 from okclient.model.inbound_id_method_by_related_temp_id import InboundIDMethodByRelatedTempID

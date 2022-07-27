@@ -30,20 +30,16 @@ from okclient.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from okclient.model.generic_inbound_attribute import GenericInboundAttribute
     from okclient.model.inbound_id_method_by_attribute import InboundIDMethodByAttribute
     from okclient.model.inbound_id_method_by_attribute_modifiers import InboundIDMethodByAttributeModifiers
     from okclient.model.inbound_id_method_by_by_union import InboundIDMethodByByUnion
-    from okclient.model.inbound_id_method_by_by_union_inner_inner import InboundIDMethodByByUnionInnerInner
     from okclient.model.inbound_id_method_by_data import InboundIDMethodByData
     from okclient.model.inbound_id_method_by_intersect import InboundIDMethodByIntersect
     from okclient.model.inbound_id_method_by_related_temp_id import InboundIDMethodByRelatedTempID
     from okclient.model.inbound_id_method_by_temporary_ciid import InboundIDMethodByTemporaryCIID
-    globals()['GenericInboundAttribute'] = GenericInboundAttribute
     globals()['InboundIDMethodByAttribute'] = InboundIDMethodByAttribute
     globals()['InboundIDMethodByAttributeModifiers'] = InboundIDMethodByAttributeModifiers
     globals()['InboundIDMethodByByUnion'] = InboundIDMethodByByUnion
-    globals()['InboundIDMethodByByUnionInnerInner'] = InboundIDMethodByByUnionInnerInner
     globals()['InboundIDMethodByData'] = InboundIDMethodByData
     globals()['InboundIDMethodByIntersect'] = InboundIDMethodByIntersect
     globals()['InboundIDMethodByRelatedTempID'] = InboundIDMethodByRelatedTempID
@@ -103,15 +99,8 @@ class GenericInboundCIIdMethod(ModelComposed):
         """
         lazy_import()
         return {
-            'type': (str, none_type,),  # noqa: E501
-            'attributes': ([str], none_type,),  # noqa: E501
             'case_insensitive': (bool,),  # noqa: E501
-            'attribute': (GenericInboundAttribute,),  # noqa: E501
-            'modifiers': (InboundIDMethodByAttributeModifiers,),  # noqa: E501
-            'temp_id': (str, none_type,),  # noqa: E501
-            'outgoing_relation': (bool,),  # noqa: E501
-            'predicate_id': (str, none_type,),  # noqa: E501
-            'inner': ([InboundIDMethodByByUnionInnerInner], none_type,),  # noqa: E501
+            'type': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -120,15 +109,8 @@ class GenericInboundCIIdMethod(ModelComposed):
 
 
     attribute_map = {
-        'type': 'type',  # noqa: E501
-        'attributes': 'attributes',  # noqa: E501
         'case_insensitive': 'caseInsensitive',  # noqa: E501
-        'attribute': 'attribute',  # noqa: E501
-        'modifiers': 'modifiers',  # noqa: E501
-        'temp_id': 'tempID',  # noqa: E501
-        'outgoing_relation': 'outgoingRelation',  # noqa: E501
-        'predicate_id': 'predicateID',  # noqa: E501
-        'inner': 'inner',  # noqa: E501
+        'type': 'type',  # noqa: E501
     }
 
     read_only_vars = {
@@ -171,15 +153,8 @@ class GenericInboundCIIdMethod(ModelComposed):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            type (str, none_type): [optional]  # noqa: E501
-            attributes ([str], none_type): [optional]  # noqa: E501
             case_insensitive (bool): [optional]  # noqa: E501
-            attribute (GenericInboundAttribute): [optional]  # noqa: E501
-            modifiers (InboundIDMethodByAttributeModifiers): [optional]  # noqa: E501
-            temp_id (str, none_type): [optional]  # noqa: E501
-            outgoing_relation (bool): [optional]  # noqa: E501
-            predicate_id (str, none_type): [optional]  # noqa: E501
-            inner ([InboundIDMethodByByUnionInnerInner], none_type): [optional]  # noqa: E501
+            type (str, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -283,15 +258,8 @@ class GenericInboundCIIdMethod(ModelComposed):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            type (str, none_type): [optional]  # noqa: E501
-            attributes ([str], none_type): [optional]  # noqa: E501
             case_insensitive (bool): [optional]  # noqa: E501
-            attribute (GenericInboundAttribute): [optional]  # noqa: E501
-            modifiers (InboundIDMethodByAttributeModifiers): [optional]  # noqa: E501
-            temp_id (str, none_type): [optional]  # noqa: E501
-            outgoing_relation (bool): [optional]  # noqa: E501
-            predicate_id (str, none_type): [optional]  # noqa: E501
-            inner ([InboundIDMethodByByUnionInnerInner], none_type): [optional]  # noqa: E501
+            type (str, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

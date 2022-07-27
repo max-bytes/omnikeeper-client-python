@@ -4,6 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**type** | **str, none_type** |  | [readonly] 
 **type** | **str, none_type** |  | [optional] [readonly] 
 **attributes** | **[str], none_type** |  | [optional] 
 
