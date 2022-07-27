@@ -12,6 +12,20 @@ import sys
 import unittest
 
 import okclient
+from okclient.model.abstract_inbound_id_method import AbstractInboundIDMethod
+from okclient.model.inbound_id_method_by_attribute import InboundIDMethodByAttribute
+from okclient.model.inbound_id_method_by_by_union import InboundIDMethodByByUnion
+from okclient.model.inbound_id_method_by_data import InboundIDMethodByData
+from okclient.model.inbound_id_method_by_intersect import InboundIDMethodByIntersect
+from okclient.model.inbound_id_method_by_related_temp_id import InboundIDMethodByRelatedTempID
+from okclient.model.inbound_id_method_by_temporary_ciid import InboundIDMethodByTemporaryCIID
+globals()['AbstractInboundIDMethod'] = AbstractInboundIDMethod
+globals()['InboundIDMethodByAttribute'] = InboundIDMethodByAttribute
+globals()['InboundIDMethodByByUnion'] = InboundIDMethodByByUnion
+globals()['InboundIDMethodByData'] = InboundIDMethodByData
+globals()['InboundIDMethodByIntersect'] = InboundIDMethodByIntersect
+globals()['InboundIDMethodByRelatedTempID'] = InboundIDMethodByRelatedTempID
+globals()['InboundIDMethodByTemporaryCIID'] = InboundIDMethodByTemporaryCIID
 from okclient.model.inbound_id_method_by_data import InboundIDMethodByData
 
 

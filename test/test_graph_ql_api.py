@@ -23,14 +23,20 @@ class TestGraphQLApi(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_debug(self):
-        """Test case for debug
+    def test_graph_ql_debug(self):
+        """Test case for graph_ql_debug
 
         """
         pass
 
-    def test_index(self):
-        """Test case for index
+    def test_graph_ql_get(self):
+        """Test case for graph_ql_get
+
+        """
+        pass
+
+    def test_graph_ql_index(self):
+        """Test case for graph_ql_index
 
         """
         pass

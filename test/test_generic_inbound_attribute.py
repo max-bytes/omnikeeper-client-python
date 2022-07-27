@@ -12,8 +12,8 @@ import sys
 import unittest
 
 import okclient
-from okclient.model.i_attribute_value import IAttributeValue
-globals()['IAttributeValue'] = IAttributeValue
+from okclient.model.attribute_value_dto import AttributeValueDTO
+globals()['AttributeValueDTO'] = AttributeValueDTO
 from okclient.model.generic_inbound_attribute import GenericInboundAttribute
 
 

@@ -23,32 +23,38 @@ class TestOKPluginGenericJSONIngestApi(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_add_new_context(self):
-        """Test case for add_new_context
+    def test_manage_context_get_all_contexts(self):
+        """Test case for manage_context_get_all_contexts
 
         """
         pass
 
-    def test_get_all_contexts(self):
-        """Test case for get_all_contexts
+    def test_manage_context_get_context(self):
+        """Test case for manage_context_get_context
 
         """
         pass
 
-    def test_get_context_by_name(self):
-        """Test case for get_context_by_name
+    def test_manage_context_remove_context(self):
+        """Test case for manage_context_remove_context
 
         """
         pass
 
-    def test_ingest(self):
-        """Test case for ingest
+    def test_manage_context_upsert_context(self):
+        """Test case for manage_context_upsert_context
 
         """
         pass
 
-    def test_remove_context(self):
-        """Test case for remove_context
+    def test_passive_data_ingest(self):
+        """Test case for passive_data_ingest
+
+        """
+        pass
+
+    def test_passive_files_ingest(self):
+        """Test case for passive_files_ingest
 
         """
         pass

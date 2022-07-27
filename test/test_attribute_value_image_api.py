@@ -23,14 +23,14 @@ class TestAttributeValueImageApi(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_get(self):
-        """Test case for get
+    def test_attribute_value_image_get(self):
+        """Test case for attribute_value_image_get
 
         """
         pass
 
-    def test_post(self):
-        """Test case for post
+    def test_attribute_value_image_post(self):
+        """Test case for attribute_value_image_post
 
         """
         pass

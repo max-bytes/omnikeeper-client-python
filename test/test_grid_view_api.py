@@ -23,57 +23,57 @@ class TestGridViewApi(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_add_context(self):
-        """Test case for add_context
+    def test_grid_view_add_context(self):
+        """Test case for grid_view_add_context
 
         Adds new context  # noqa: E501
         """
         pass
 
-    def test_change_data(self):
-        """Test case for change_data
+    def test_grid_view_change_data(self):
+        """Test case for grid_view_change_data
 
         Saves grid view row changes and returns change results  # noqa: E501
         """
         pass
 
-    def test_delete_context(self):
-        """Test case for delete_context
+    def test_grid_view_delete_context(self):
+        """Test case for grid_view_delete_context
 
         Deletes specific context  # noqa: E501
         """
         pass
 
-    def test_edit_context(self):
-        """Test case for edit_context
+    def test_grid_view_edit_context(self):
+        """Test case for grid_view_edit_context
 
         Edits specific context  # noqa: E501
         """
         pass
 
-    def test_get_context(self):
-        """Test case for get_context
-
-        Returns a single context in full  # noqa: E501
-        """
-        pass
-
-    def test_get_contexts(self):
-        """Test case for get_contexts
-
-        Returns a list of contexts for grid view.  # noqa: E501
-        """
-        pass
-
-    def test_get_data(self):
-        """Test case for get_data
+    def test_grid_view_get_data(self):
+        """Test case for grid_view_get_data
 
         Returns grid view data for specific context  # noqa: E501
         """
         pass
 
-    def test_get_schema(self):
-        """Test case for get_schema
+    def test_grid_view_get_grid_view_context(self):
+        """Test case for grid_view_get_grid_view_context
+
+        Returns a single context in full  # noqa: E501
+        """
+        pass
+
+    def test_grid_view_get_grid_view_contexts(self):
+        """Test case for grid_view_get_grid_view_contexts
+
+        Returns a list of contexts for grid view.  # noqa: E501
+        """
+        pass
+
+    def test_grid_view_get_schema(self):
+        """Test case for grid_view_get_schema
 
         Returns grid view schema for specific context  # noqa: E501
         """

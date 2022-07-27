@@ -23,8 +23,8 @@ class TestAnsibleInventoryScanIngestApi(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_ingest_ansible_inventory_scan(self):
-        """Test case for ingest_ansible_inventory_scan
+    def test_ansible_inventory_scan_ingest_ingest_ansible_inventory_scan(self):
+        """Test case for ansible_inventory_scan_ingest_ingest_ansible_inventory_scan
 
         """
         pass
