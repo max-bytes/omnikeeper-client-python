@@ -1,3 +1,5 @@
+# coding: utf-8
+
 # flake8: noqa
 
 # import all models into this package
@@ -23,7 +25,6 @@ from okclient.model.edm_schema_element_kind import EdmSchemaElementKind
 from okclient.model.edm_type_kind import EdmTypeKind
 from okclient.model.generic_inbound_attribute import GenericInboundAttribute
 from okclient.model.generic_inbound_ci import GenericInboundCI
-from okclient.model.generic_inbound_ciid_method import GenericInboundCIIdMethod
 from okclient.model.generic_inbound_data import GenericInboundData
 from okclient.model.generic_inbound_relation import GenericInboundRelation
 from okclient.model.graph_ql_query import GraphQLQuery

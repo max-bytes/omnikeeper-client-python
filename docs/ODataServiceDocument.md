@@ -1,14 +1,12 @@
 # ODataServiceDocument
 
-
-## Properties
+#### Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type_annotation** | [**ODataTypeAnnotation**](ODataTypeAnnotation.md) |  | [optional] 
-**entity_sets** | [**[ODataEntitySetInfo], none_type**](ODataEntitySetInfo.md) |  | [optional] 
-**singletons** | [**[ODataSingletonInfo], none_type**](ODataSingletonInfo.md) |  | [optional] 
-**function_imports** | [**[ODataFunctionImportInfo], none_type**](ODataFunctionImportInfo.md) |  | [optional] 
+**typeAnnotation** | [**ODataTypeAnnotation**](ODataTypeAnnotation.md) |  | [optional] 
+**entitySets** | **[ODataEntitySetInfo], none_type** |  | [optional] 
+**singletons** | **[ODataSingletonInfo], none_type** |  | [optional] 
+**functionImports** | **[ODataFunctionImportInfo], none_type** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
 

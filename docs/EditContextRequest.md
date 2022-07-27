@@ -1,13 +1,11 @@
 # EditContextRequest
 
-
-## Properties
+#### Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**speaking_name** | **str, none_type** |  | [optional] 
+**speakingName** | **str, none_type** |  | [optional] 
 **description** | **str, none_type** |  | [optional] 
 **configuration** | [**GridViewConfiguration**](GridViewConfiguration.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
 

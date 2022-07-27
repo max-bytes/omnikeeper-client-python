@@ -7,9 +7,8 @@ Method | HTTP request | Description
 [**graphviz_dot_layer_centric**](GraphvizDotApi.md#graphviz_dot_layer_centric) | **GET** /api/v{version}/GraphvizDot/layerCentric | 
 [**graphviz_dot_trait_centric**](GraphvizDotApi.md#graphviz_dot_trait_centric) | **GET** /api/v{version}/GraphvizDot/traitCentric | 
 
-
 # **graphviz_dot_layer_centric**
-> graphviz_dot_layer_centric(layer_ids, _from, to, version)
+> graphviz_dot_layer_centric(layer_ids_fromtoversion)
 
 
 
@@ -17,9 +16,7 @@ Method | HTTP request | Description
 
 * OAuth Authentication (oauth2):
 * OAuth Authentication (oauth2):
-
 ```python
-import time
 import okclient
 from okclient.api import graphviz_dot_api
 from pprint import pprint
@@ -45,59 +42,106 @@ configuration = okclient.Configuration(
     host = "http://localhost"
 )
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
-
 # Enter a context with an instance of the API client
 with okclient.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = graphviz_dot_api.GraphvizDotApi(api_client)
-    layer_ids = [
-        "layerIDs_example",
-    ] # [str] | 
-    _from = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | 
-    to = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | 
-    version = "version_example" # str | 
 
     # example passing only required values which don't have defaults set
+    path_params = {
+        'version': "version_example",
+    }
+    query_params = {
+        'layerIDs': [
+        "layerIDs_example"
+    ],
+        'from': "1970-01-01T00:00:00.00Z",
+        'to': "1970-01-01T00:00:00.00Z",
+    }
     try:
-        api_instance.graphviz_dot_layer_centric(layer_ids, _from, to, version)
+        api_response = api_instance.graphviz_dot_layer_centric(
+            path_params=path_params,
+            query_params=query_params,
+        )
     except okclient.ApiException as e:
         print("Exception when calling GraphvizDotApi->graphviz_dot_layer_centric: %s\n" % e)
 ```
-
-
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **layer_ids** | **[str]**|  |
- **_from** | **datetime**|  |
- **to** | **datetime**|  |
- **version** | **str**|  |
+query_params | RequestQueryParams | |
+path_params | RequestPathParams | |
+stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
+timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
+skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
 
-### Return type
+### query_params
+#### RequestQueryParams
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+layerIDs | LayerIDsSchema | | 
+from | ModelFromSchema | | 
+to | ToSchema | | 
+
+
+#### LayerIDsSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**[str]** |  | 
+
+#### ModelFromSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**datetime** |  | 
+
+#### ToSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**datetime** |  | 
+
+### path_params
+#### RequestPathParams
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+version | VersionSchema | | 
+
+#### VersionSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+### Return Types, Responses
+
+Code | Class | Description
+------------- | ------------- | -------------
+n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
+200 | ApiResponseFor200 | Success
+
+#### ApiResponseFor200
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | Unset | body was not defined |
+headers | Unset | headers were not defined |
+
 
 void (empty response body)
 
 ### Authorization
 
 [oauth2](../README.md#oauth2), [oauth2](../README.md#oauth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: Not defined
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **graphviz_dot_trait_centric**
-> graphviz_dot_trait_centric(layer_ids, version)
+> graphviz_dot_trait_centric(layer_idsversion)
 
 
 
@@ -105,9 +149,7 @@ void (empty response body)
 
 * OAuth Authentication (oauth2):
 * OAuth Authentication (oauth2):
-
 ```python
-import time
 import okclient
 from okclient.api import graphviz_dot_api
 from pprint import pprint
@@ -133,63 +175,120 @@ configuration = okclient.Configuration(
     host = "http://localhost"
 )
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
-
 # Enter a context with an instance of the API client
 with okclient.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = graphviz_dot_api.GraphvizDotApi(api_client)
-    layer_ids = [
-        "layerIDs_example",
-    ] # [str] | 
-    version = "version_example" # str | 
-    trait_ids = [
-        "traitIDs_example",
-    ] # [str] |  (optional)
-    trait_ids_regex = "traitIDsRegex_example" # str |  (optional)
 
     # example passing only required values which don't have defaults set
+    path_params = {
+        'version': "version_example",
+    }
+    query_params = {
+        'layerIDs': [
+        "layerIDs_example"
+    ],
+    }
     try:
-        api_instance.graphviz_dot_trait_centric(layer_ids, version)
+        api_response = api_instance.graphviz_dot_trait_centric(
+            path_params=path_params,
+            query_params=query_params,
+        )
     except okclient.ApiException as e:
         print("Exception when calling GraphvizDotApi->graphviz_dot_trait_centric: %s\n" % e)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
+    # example passing only optional values
+    path_params = {
+        'version': "version_example",
+    }
+    query_params = {
+        'layerIDs': [
+        "layerIDs_example"
+    ],
+        'traitIDs': [
+        "traitIDs_example"
+    ],
+        'traitIDsRegex': "traitIDsRegex_example",
+    }
     try:
-        api_instance.graphviz_dot_trait_centric(layer_ids, version, trait_ids=trait_ids, trait_ids_regex=trait_ids_regex)
+        api_response = api_instance.graphviz_dot_trait_centric(
+            path_params=path_params,
+            query_params=query_params,
+        )
     except okclient.ApiException as e:
         print("Exception when calling GraphvizDotApi->graphviz_dot_trait_centric: %s\n" % e)
 ```
-
-
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **layer_ids** | **[str]**|  |
- **version** | **str**|  |
- **trait_ids** | **[str]**|  | [optional]
- **trait_ids_regex** | **str**|  | [optional]
+query_params | RequestQueryParams | |
+path_params | RequestPathParams | |
+stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
+timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
+skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
 
-### Return type
+### query_params
+#### RequestQueryParams
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+layerIDs | LayerIDsSchema | | 
+traitIDs | TraitIDsSchema | | optional
+traitIDsRegex | TraitIDsRegexSchema | | optional
+
+
+#### LayerIDsSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**[str]** |  | 
+
+#### TraitIDsSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**[str]** |  | 
+
+#### TraitIDsRegexSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+### path_params
+#### RequestPathParams
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+version | VersionSchema | | 
+
+#### VersionSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+### Return Types, Responses
+
+Code | Class | Description
+------------- | ------------- | -------------
+n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
+200 | ApiResponseFor200 | Success
+
+#### ApiResponseFor200
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | Unset | body was not defined |
+headers | Unset | headers were not defined |
+
 
 void (empty response body)
 
 ### Authorization
 
 [oauth2](../README.md#oauth2), [oauth2](../README.md#oauth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: Not defined
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

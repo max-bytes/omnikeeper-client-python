@@ -6,9 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ingest_file_ingest**](OKPluginInsightDiscoveryIngestApi.md#ingest_file_ingest) | **POST** /api/v{version}/ingest/insight-discovery/file | 
 
-
 # **ingest_file_ingest**
-> ingest_file_ingest(context, version)
+> ingest_file_ingest(contextversion)
 
 
 
@@ -16,9 +15,7 @@ Method | HTTP request | Description
 
 * OAuth Authentication (oauth2):
 * OAuth Authentication (oauth2):
-
 ```python
-import time
 import okclient
 from okclient.api import ok_plugin_insight_discovery_ingest_api
 from pprint import pprint
@@ -44,65 +41,128 @@ configuration = okclient.Configuration(
     host = "http://localhost"
 )
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
-
 # Enter a context with an instance of the API client
 with okclient.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = ok_plugin_insight_discovery_ingest_api.OKPluginInsightDiscoveryIngestApi(api_client)
-    context = "context_example" # str | 
-    version = "version_example" # str | 
-    content_type = "content_type_example" # str |  (optional)
-    content_disposition = "content_disposition_example" # str |  (optional)
-    length = 1 # int |  (optional)
-    name = "name_example" # str |  (optional)
-    file_name = "file_name_example" # str |  (optional)
 
     # example passing only required values which don't have defaults set
+    path_params = {
+        'version': "version_example",
+    }
+    query_params = {
+        'context': "context_example",
+    }
     try:
-        api_instance.ingest_file_ingest(context, version)
+        api_response = api_instance.ingest_file_ingest(
+            path_params=path_params,
+            query_params=query_params,
+        )
     except okclient.ApiException as e:
         print("Exception when calling OKPluginInsightDiscoveryIngestApi->ingest_file_ingest: %s\n" % e)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
+    # example passing only optional values
+    path_params = {
+        'version': "version_example",
+    }
+    query_params = {
+        'context': "context_example",
+    }
+    body = dict(
+        content_type="content_type_example",
+        content_disposition="content_disposition_example",
+        headers=dict(
+            "key": [
+                "key_example"
+            ],
+        ),
+        length=1,
+        name="name_example",
+        file_name="file_name_example",
+    )
     try:
-        api_instance.ingest_file_ingest(context, version, content_type=content_type, content_disposition=content_disposition, length=length, name=name, file_name=file_name)
+        api_response = api_instance.ingest_file_ingest(
+            path_params=path_params,
+            query_params=query_params,
+            body=body,
+        )
     except okclient.ApiException as e:
         print("Exception when calling OKPluginInsightDiscoveryIngestApi->ingest_file_ingest: %s\n" % e)
 ```
-
-
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **context** | **str**|  |
- **version** | **str**|  |
- **content_type** | **str**|  | [optional]
- **content_disposition** | **str**|  | [optional]
- **length** | **int**|  | [optional]
- **name** | **str**|  | [optional]
- **file_name** | **str**|  | [optional]
+body | typing.Union[SchemaForRequestBodyMultipartFormData, Unset] | optional, default is unset |
+query_params | RequestQueryParams | |
+path_params | RequestPathParams | |
+content_type | str | optional, default is 'multipart/form-data' | Selects the schema and serialization of the request body
+stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
+timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
+skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
 
-### Return type
+### body
+
+#### SchemaForRequestBodyMultipartFormData
+
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**ContentType** | **str** |  | [optional] 
+**ContentDisposition** | **str** |  | [optional] 
+**Headers** | **{str: ([str],)}** |  | [optional] 
+**Length** | **int** |  | [optional] 
+**Name** | **str** |  | [optional] 
+**FileName** | **str** |  | [optional] 
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+
+### query_params
+#### RequestQueryParams
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+context | ContextSchema | | 
+
+
+#### ContextSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+### path_params
+#### RequestPathParams
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+version | VersionSchema | | 
+
+#### VersionSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+### Return Types, Responses
+
+Code | Class | Description
+------------- | ------------- | -------------
+n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
+200 | ApiResponseFor200 | Success
+
+#### ApiResponseFor200
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | Unset | body was not defined |
+headers | Unset | headers were not defined |
+
 
 void (empty response body)
 
 ### Authorization
 
 [oauth2](../README.md#oauth2), [oauth2](../README.md#oauth2)
-
-### HTTP request headers
-
- - **Content-Type**: multipart/form-data
- - **Accept**: Not defined
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
