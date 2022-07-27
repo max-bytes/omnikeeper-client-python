@@ -114,7 +114,6 @@ class GenericInboundCIIdMethod(ModelComposed):
     }
 
     read_only_vars = {
-        'type',  # noqa: E501
     }
 
     @classmethod

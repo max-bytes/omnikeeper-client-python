@@ -97,7 +97,6 @@ class InboundIDMethodByAttribute(ModelComposed):
         lazy_import()
         return {
             'type': (str, none_type,),  # noqa: E501
-            'type': (str, none_type,),  # noqa: E501
             'attribute': (GenericInboundAttribute,),  # noqa: E501
             'modifiers': (InboundIDMethodByAttributeModifiers,),  # noqa: E501
         }
@@ -119,14 +118,11 @@ class InboundIDMethodByAttribute(ModelComposed):
 
     attribute_map = {
         'type': 'type',  # noqa: E501
-        'type': 'type',  # noqa: E501
         'attribute': 'attribute',  # noqa: E501
         'modifiers': 'modifiers',  # noqa: E501
     }
 
     read_only_vars = {
-        'type',  # noqa: E501
-        'type',  # noqa: E501
     }
 
     @classmethod
@@ -166,7 +162,6 @@ class InboundIDMethodByAttribute(ModelComposed):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            type (str, none_type): [optional]  # noqa: E501
             attribute (GenericInboundAttribute): [optional]  # noqa: E501
             modifiers (InboundIDMethodByAttributeModifiers): [optional]  # noqa: E501
         """
@@ -242,6 +237,7 @@ class InboundIDMethodByAttribute(ModelComposed):
         """InboundIDMethodByAttribute - a model defined in OpenAPI
 
         Keyword Args:
+            type (str, none_type):
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -272,7 +268,6 @@ class InboundIDMethodByAttribute(ModelComposed):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            type (str, none_type): [optional]  # noqa: E501
             attribute (GenericInboundAttribute): [optional]  # noqa: E501
             modifiers (InboundIDMethodByAttributeModifiers): [optional]  # noqa: E501
         """

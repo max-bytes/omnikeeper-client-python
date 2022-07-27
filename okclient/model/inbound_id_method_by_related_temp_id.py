@@ -93,7 +93,6 @@ class InboundIDMethodByRelatedTempID(ModelComposed):
         lazy_import()
         return {
             'type': (str, none_type,),  # noqa: E501
-            'type': (str, none_type,),  # noqa: E501
             'temp_id': (str, none_type,),  # noqa: E501
             'outgoing_relation': (bool,),  # noqa: E501
             'predicate_id': (str, none_type,),  # noqa: E501
@@ -116,15 +115,12 @@ class InboundIDMethodByRelatedTempID(ModelComposed):
 
     attribute_map = {
         'type': 'type',  # noqa: E501
-        'type': 'type',  # noqa: E501
         'temp_id': 'tempID',  # noqa: E501
         'outgoing_relation': 'outgoingRelation',  # noqa: E501
         'predicate_id': 'predicateID',  # noqa: E501
     }
 
     read_only_vars = {
-        'type',  # noqa: E501
-        'type',  # noqa: E501
     }
 
     @classmethod
@@ -164,7 +160,6 @@ class InboundIDMethodByRelatedTempID(ModelComposed):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            type (str, none_type): [optional]  # noqa: E501
             temp_id (str, none_type): [optional]  # noqa: E501
             outgoing_relation (bool): [optional]  # noqa: E501
             predicate_id (str, none_type): [optional]  # noqa: E501
@@ -241,6 +236,7 @@ class InboundIDMethodByRelatedTempID(ModelComposed):
         """InboundIDMethodByRelatedTempID - a model defined in OpenAPI
 
         Keyword Args:
+            type (str, none_type):
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -271,7 +267,6 @@ class InboundIDMethodByRelatedTempID(ModelComposed):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            type (str, none_type): [optional]  # noqa: E501
             temp_id (str, none_type): [optional]  # noqa: E501
             outgoing_relation (bool): [optional]  # noqa: E501
             predicate_id (str, none_type): [optional]  # noqa: E501

@@ -4,8 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **str, none_type** |  | [readonly] 
-**type** | **str, none_type** |  | [optional] [readonly] 
+**type** | **str, none_type** |  | 
 **temp_id** | **str, none_type** |  | [optional] 
 **outgoing_relation** | **bool** |  | [optional] 
 **predicate_id** | **str, none_type** |  | [optional] 

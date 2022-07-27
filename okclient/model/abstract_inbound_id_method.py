@@ -119,7 +119,6 @@ class AbstractInboundIDMethod(ModelNormal):
     }
 
     read_only_vars = {
-        'type',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -215,8 +214,11 @@ class AbstractInboundIDMethod(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, type, *args, **kwargs):  # noqa: E501
         """AbstractInboundIDMethod - a model defined in OpenAPI
+
+        Args:
+            type (str, none_type):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -278,6 +280,7 @@ class AbstractInboundIDMethod(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.type = type
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
