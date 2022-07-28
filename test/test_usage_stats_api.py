@@ -10,24 +10,16 @@
 """
 
 import unittest
-from unittest.mock import patch
-
-import urllib3
 
 import okclient
 from okclient.api.usage_stats_api import UsageStatsApi  # noqa: E501
-from okclient import configuration, schemas, api_client
-
-from . import ApiTestMixin
 
 
-class TestUsageStatsApi(ApiTestMixin, unittest.TestCase):
+class TestUsageStatsApi(unittest.TestCase):
     """UsageStatsApi unit test stubs"""
-    _configuration = configuration.Configuration()
 
     def setUp(self):
-        used_api_client = api_client.ApiClient(configuration=self._configuration)
-        self.api = UsageStatsApi(api_client=used_api_client)  # noqa: E501
+        self.api = UsageStatsApi()  # noqa: E501
 
     def tearDown(self):
         pass
@@ -36,9 +28,6 @@ class TestUsageStatsApi(ApiTestMixin, unittest.TestCase):
         """Test case for usage_stats_fetch
 
         """
-        from okclient.api.usage_stats_api_endpoints import usage_stats_fetch as endpoint_module
-        response_status = 200
-        response_body = ''
         pass
 
 

@@ -60,8 +60,6 @@ from okclient.schemas import (  # noqa: F401
     BoolBase,
     BinaryBase,
     Schema,
-    NoneClass,
-    BoolClass,
     _SchemaValidator,
     _SchemaTypeChecker,
     _SchemaEnumMaker
@@ -81,7 +79,6 @@ class IEdmType(
     @property
     def typeKind(cls) -> typing.Type['EdmTypeKind']:
         return EdmTypeKind
-    _additional_properties = None
 
 
     def __new__(
@@ -89,12 +86,14 @@ class IEdmType(
         *args: typing.Union[dict, frozendict, ],
         typeKind: typing.Union['EdmTypeKind', Unset] = unset,
         _configuration: typing.Optional[Configuration] = None,
+        **kwargs: typing.Type[Schema],
     ) -> 'IEdmType':
         return super().__new__(
             cls,
             *args,
             typeKind=typeKind,
             _configuration=_configuration,
+            **kwargs,
         )
 
 from okclient.model.edm_type_kind import EdmTypeKind

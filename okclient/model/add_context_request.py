@@ -60,8 +60,6 @@ from okclient.schemas import (  # noqa: F401
     BoolBase,
     BinaryBase,
     Schema,
-    NoneClass,
-    BoolClass,
     _SchemaValidator,
     _SchemaTypeChecker,
     _SchemaEnumMaker
@@ -76,69 +74,14 @@ class AddContextRequest(
 
     Do not edit the class manually.
     """
-    
-    
-    class id(
-        _SchemaTypeChecker(typing.Union[NoneClass, str, ]),
-        StrBase,
-        NoneBase,
-        Schema
-    ):
-    
-        def __new__(
-            cls,
-            *args: typing.Union[str, None, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> 'id':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
-    
-    
-    class speakingName(
-        _SchemaTypeChecker(typing.Union[NoneClass, str, ]),
-        StrBase,
-        NoneBase,
-        Schema
-    ):
-    
-        def __new__(
-            cls,
-            *args: typing.Union[str, None, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> 'speakingName':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
-    
-    
-    class description(
-        _SchemaTypeChecker(typing.Union[NoneClass, str, ]),
-        StrBase,
-        NoneBase,
-        Schema
-    ):
-    
-        def __new__(
-            cls,
-            *args: typing.Union[str, None, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> 'description':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
+    id = StrSchema
+    speakingName = StrSchema
+    description = StrSchema
 
     @classmethod
     @property
     def configuration(cls) -> typing.Type['GridViewConfiguration']:
         return GridViewConfiguration
-    _additional_properties = None
 
 
     def __new__(
@@ -149,6 +92,7 @@ class AddContextRequest(
         description: typing.Union[description, Unset] = unset,
         configuration: typing.Union['GridViewConfiguration', Unset] = unset,
         _configuration: typing.Optional[Configuration] = None,
+        **kwargs: typing.Type[Schema],
     ) -> 'AddContextRequest':
         return super().__new__(
             cls,
@@ -158,6 +102,7 @@ class AddContextRequest(
             description=description,
             configuration=configuration,
             _configuration=_configuration,
+            **kwargs,
         )
 
 from okclient.model.grid_view_configuration import GridViewConfiguration

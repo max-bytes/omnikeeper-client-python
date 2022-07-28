@@ -10,24 +10,16 @@
 """
 
 import unittest
-from unittest.mock import patch
-
-import urllib3
 
 import okclient
 from okclient.api.ok_plugin_generic_json_ingest_api import OKPluginGenericJSONIngestApi  # noqa: E501
-from okclient import configuration, schemas, api_client
-
-from . import ApiTestMixin
 
 
-class TestOKPluginGenericJSONIngestApi(ApiTestMixin, unittest.TestCase):
+class TestOKPluginGenericJSONIngestApi(unittest.TestCase):
     """OKPluginGenericJSONIngestApi unit test stubs"""
-    _configuration = configuration.Configuration()
 
     def setUp(self):
-        used_api_client = api_client.ApiClient(configuration=self._configuration)
-        self.api = OKPluginGenericJSONIngestApi(api_client=used_api_client)  # noqa: E501
+        self.api = OKPluginGenericJSONIngestApi()  # noqa: E501
 
     def tearDown(self):
         pass
@@ -36,400 +28,37 @@ class TestOKPluginGenericJSONIngestApi(ApiTestMixin, unittest.TestCase):
         """Test case for manage_context_get_all_contexts
 
         """
-        from okclient.api.ok_plugin_generic_json_ingest_api_endpoints import manage_context_get_all_contexts as endpoint_module
-        response_status = 200
-        accept_content_type = 'application/json'
-
-
-
-        accept_content_type = 'application/xml'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=minimal;odata.streaming=true'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=minimal;odata.streaming=false'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=minimal'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=full;odata.streaming=true'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=full;odata.streaming=false'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=full'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=none;odata.streaming=true'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=none;odata.streaming=false'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=none'
-
-
-
-        accept_content_type = 'application/json;odata.streaming=true'
-
-
-
-        accept_content_type = 'application/json;odata.streaming=false'
-
-
-
-        accept_content_type = 'text/plain'
-
-
-
-        accept_content_type = 'application/octet-stream'
-
-
-
-        accept_content_type = 'text/json'
-
-
-
         pass
 
     def test_manage_context_get_context(self):
         """Test case for manage_context_get_context
 
         """
-        from okclient.api.ok_plugin_generic_json_ingest_api_endpoints import manage_context_get_context as endpoint_module
-        response_status = 200
-        accept_content_type = 'application/json'
-
-
-
-        accept_content_type = 'application/xml'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=minimal;odata.streaming=true'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=minimal;odata.streaming=false'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=minimal'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=full;odata.streaming=true'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=full;odata.streaming=false'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=full'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=none;odata.streaming=true'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=none;odata.streaming=false'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=none'
-
-
-
-        accept_content_type = 'application/json;odata.streaming=true'
-
-
-
-        accept_content_type = 'application/json;odata.streaming=false'
-
-
-
-        accept_content_type = 'text/plain'
-
-
-
-        accept_content_type = 'application/octet-stream'
-
-
-
-        accept_content_type = 'text/json'
-
-
-
         pass
 
     def test_manage_context_remove_context(self):
         """Test case for manage_context_remove_context
 
         """
-        from okclient.api.ok_plugin_generic_json_ingest_api_endpoints import manage_context_remove_context as endpoint_module
-        response_status = 200
-        accept_content_type = 'application/json'
-
-
-
-        accept_content_type = 'application/xml'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=minimal;odata.streaming=true'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=minimal;odata.streaming=false'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=minimal'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=full;odata.streaming=true'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=full;odata.streaming=false'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=full'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=none;odata.streaming=true'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=none;odata.streaming=false'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=none'
-
-
-
-        accept_content_type = 'application/json;odata.streaming=true'
-
-
-
-        accept_content_type = 'application/json;odata.streaming=false'
-
-
-
-        accept_content_type = 'text/plain'
-
-
-
-        accept_content_type = 'application/octet-stream'
-
-
-
-        accept_content_type = 'text/json'
-
-
-
         pass
 
     def test_manage_context_upsert_context(self):
         """Test case for manage_context_upsert_context
 
         """
-        from okclient.api.ok_plugin_generic_json_ingest_api_endpoints import manage_context_upsert_context as endpoint_module
-        response_status = 200
-        accept_content_type = 'application/json'
-
-
-
-        accept_content_type = 'application/xml'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=minimal;odata.streaming=true'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=minimal;odata.streaming=false'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=minimal'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=full;odata.streaming=true'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=full;odata.streaming=false'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=full'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=none;odata.streaming=true'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=none;odata.streaming=false'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=none'
-
-
-
-        accept_content_type = 'application/json;odata.streaming=true'
-
-
-
-        accept_content_type = 'application/json;odata.streaming=false'
-
-
-
-        accept_content_type = 'text/plain'
-
-
-
-        accept_content_type = 'application/octet-stream'
-
-
-
-        accept_content_type = 'text/json'
-
-
-
-        content_type = 'application/json'
-
-
-        content_type = 'application/json;odata.metadata=minimal;odata.streaming=true'
-
-
-        content_type = 'application/json;odata.metadata=minimal;odata.streaming=false'
-
-
-        content_type = 'application/json;odata.metadata=minimal'
-
-
-        content_type = 'application/json;odata.metadata=full;odata.streaming=true'
-
-
-        content_type = 'application/json;odata.metadata=full;odata.streaming=false'
-
-
-        content_type = 'application/json;odata.metadata=full'
-
-
-        content_type = 'application/json;odata.metadata=none;odata.streaming=true'
-
-
-        content_type = 'application/json;odata.metadata=none;odata.streaming=false'
-
-
-        content_type = 'application/json;odata.metadata=none'
-
-
-        content_type = 'application/json;odata.streaming=true'
-
-
-        content_type = 'application/json;odata.streaming=false'
-
-
-        content_type = 'application/xml'
-
-
-        content_type = 'text/plain'
-
-
-        content_type = 'text/json'
-
-
-        content_type = 'application/*+json'
-
-
+        pass
 
     def test_passive_data_ingest(self):
         """Test case for passive_data_ingest
 
         """
-        from okclient.api.ok_plugin_generic_json_ingest_api_endpoints import passive_data_ingest as endpoint_module
-        response_status = 200
-        response_body = ''
-        content_type = 'application/json'
-
-
-        content_type = 'application/json;odata.metadata=minimal;odata.streaming=true'
-
-
-        content_type = 'application/json;odata.metadata=minimal;odata.streaming=false'
-
-
-        content_type = 'application/json;odata.metadata=minimal'
-
-
-        content_type = 'application/json;odata.metadata=full;odata.streaming=true'
-
-
-        content_type = 'application/json;odata.metadata=full;odata.streaming=false'
-
-
-        content_type = 'application/json;odata.metadata=full'
-
-
-        content_type = 'application/json;odata.metadata=none;odata.streaming=true'
-
-
-        content_type = 'application/json;odata.metadata=none;odata.streaming=false'
-
-
-        content_type = 'application/json;odata.metadata=none'
-
-
-        content_type = 'application/json;odata.streaming=true'
-
-
-        content_type = 'application/json;odata.streaming=false'
-
-
-        content_type = 'application/xml'
-
-
-        content_type = 'text/plain'
-
-
-        content_type = 'text/json'
-
-
-        content_type = 'application/*+json'
-
-
+        pass
 
     def test_passive_files_ingest(self):
         """Test case for passive_files_ingest
 
         """
-        from okclient.api.ok_plugin_generic_json_ingest_api_endpoints import passive_files_ingest as endpoint_module
-        response_status = 200
-        response_body = ''
+        pass
 
 
 if __name__ == '__main__':

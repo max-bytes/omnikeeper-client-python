@@ -60,8 +60,6 @@ from okclient.schemas import (  # noqa: F401
     BoolBase,
     BinaryBase,
     Schema,
-    NoneClass,
-    BoolClass,
     _SchemaValidator,
     _SchemaTypeChecker,
     _SchemaEnumMaker
@@ -79,7 +77,7 @@ class IEdmVocabularyAnnotation(
     
     
     class qualifier(
-        _SchemaTypeChecker(typing.Union[NoneClass, str, ]),
+        _SchemaTypeChecker(typing.Union[none_type, str, ]),
         StrBase,
         NoneBase,
         Schema
@@ -100,30 +98,12 @@ class IEdmVocabularyAnnotation(
     @property
     def term(cls) -> typing.Type['IEdmTerm']:
         return IEdmTerm
-    
-    
-    class target(
-        DictSchema
-    ):
-        _additional_properties = None
-    
-    
-        def __new__(
-            cls,
-            *args: typing.Union[dict, frozendict, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> 'target':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
+    target = DictSchema
 
     @classmethod
     @property
     def value(cls) -> typing.Type['IEdmExpression']:
         return IEdmExpression
-    _additional_properties = None
 
 
     def __new__(
@@ -134,6 +114,7 @@ class IEdmVocabularyAnnotation(
         target: typing.Union[target, Unset] = unset,
         value: typing.Union['IEdmExpression', Unset] = unset,
         _configuration: typing.Optional[Configuration] = None,
+        **kwargs: typing.Type[Schema],
     ) -> 'IEdmVocabularyAnnotation':
         return super().__new__(
             cls,
@@ -143,6 +124,7 @@ class IEdmVocabularyAnnotation(
             target=target,
             value=value,
             _configuration=_configuration,
+            **kwargs,
         )
 
 from okclient.model.i_edm_expression import IEdmExpression

@@ -60,8 +60,6 @@ from okclient.schemas import (  # noqa: F401
     BoolBase,
     BinaryBase,
     Schema,
-    NoneClass,
-    BoolClass,
     _SchemaValidator,
     _SchemaTypeChecker,
     _SchemaEnumMaker
@@ -76,32 +74,13 @@ class ChangeDataCell(
 
     Do not edit the class manually.
     """
-    
-    
-    class id(
-        _SchemaTypeChecker(typing.Union[NoneClass, str, ]),
-        StrBase,
-        NoneBase,
-        Schema
-    ):
-    
-        def __new__(
-            cls,
-            *args: typing.Union[str, None, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> 'id':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
+    id = StrSchema
 
     @classmethod
     @property
     def value(cls) -> typing.Type['AttributeValueDTO']:
         return AttributeValueDTO
     changeable = BoolSchema
-    _additional_properties = None
 
 
     def __new__(
@@ -111,6 +90,7 @@ class ChangeDataCell(
         value: typing.Union['AttributeValueDTO', Unset] = unset,
         changeable: typing.Union[changeable, Unset] = unset,
         _configuration: typing.Optional[Configuration] = None,
+        **kwargs: typing.Type[Schema],
     ) -> 'ChangeDataCell':
         return super().__new__(
             cls,
@@ -119,6 +99,7 @@ class ChangeDataCell(
             value=value,
             changeable=changeable,
             _configuration=_configuration,
+            **kwargs,
         )
 
 from okclient.model.attribute_value_dto import AttributeValueDTO

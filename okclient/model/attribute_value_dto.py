@@ -60,8 +60,6 @@ from okclient.schemas import (  # noqa: F401
     BoolBase,
     BinaryBase,
     Schema,
-    NoneClass,
-    BoolClass,
     _SchemaValidator,
     _SchemaTypeChecker,
     _SchemaEnumMaker
@@ -85,23 +83,9 @@ class AttributeValueDTO(
     
     
     class values(
-        _SchemaTypeChecker(typing.Union[tuple, NoneClass, ]),
-        ListBase,
-        NoneBase,
-        Schema
+        ListSchema
     ):
-    
-        def __new__(
-            cls,
-            *args: typing.Union[list, tuple, None, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> 'values':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
-    _additional_properties = None
+        _items = StrSchema
 
 
     def __new__(
@@ -111,6 +95,7 @@ class AttributeValueDTO(
         isArray: typing.Union[isArray, Unset] = unset,
         values: typing.Union[values, Unset] = unset,
         _configuration: typing.Optional[Configuration] = None,
+        **kwargs: typing.Type[Schema],
     ) -> 'AttributeValueDTO':
         return super().__new__(
             cls,
@@ -119,6 +104,7 @@ class AttributeValueDTO(
             isArray=isArray,
             values=values,
             _configuration=_configuration,
+            **kwargs,
         )
 
 from okclient.model.attribute_value_type import AttributeValueType

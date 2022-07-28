@@ -60,8 +60,6 @@ from okclient.schemas import (  # noqa: F401
     BoolBase,
     BinaryBase,
     Schema,
-    NoneClass,
-    BoolClass,
     _SchemaValidator,
     _SchemaTypeChecker,
     _SchemaEnumMaker
@@ -79,25 +77,7 @@ class AbstractInboundIDMethod(
     _required_property_names = set((
         'type',
     ))
-    
-    
-    class type(
-        _SchemaTypeChecker(typing.Union[NoneClass, str, ]),
-        StrBase,
-        NoneBase,
-        Schema
-    ):
-    
-        def __new__(
-            cls,
-            *args: typing.Union[str, None, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> 'type':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
+    type = StrSchema
 
     @classmethod
     @property
@@ -118,7 +98,6 @@ class AbstractInboundIDMethod(
                 'OKPluginGenericJSONIngest.InboundIDMethodByTemporaryCIID, OKPluginGenericJSONIngest': InboundIDMethodByTemporaryCIID,
             }
         }
-    _additional_properties = None
 
 
     def __new__(
@@ -126,12 +105,14 @@ class AbstractInboundIDMethod(
         *args: typing.Union[dict, frozendict, ],
         type: type,
         _configuration: typing.Optional[Configuration] = None,
+        **kwargs: typing.Type[Schema],
     ) -> 'AbstractInboundIDMethod':
         return super().__new__(
             cls,
             *args,
             type=type,
             _configuration=_configuration,
+            **kwargs,
         )
 
 from okclient.model.inbound_id_method_by_attribute import InboundIDMethodByAttribute

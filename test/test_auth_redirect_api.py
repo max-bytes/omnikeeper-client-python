@@ -10,24 +10,16 @@
 """
 
 import unittest
-from unittest.mock import patch
-
-import urllib3
 
 import okclient
 from okclient.api.auth_redirect_api import AuthRedirectApi  # noqa: E501
-from okclient import configuration, schemas, api_client
-
-from . import ApiTestMixin
 
 
-class TestAuthRedirectApi(ApiTestMixin, unittest.TestCase):
+class TestAuthRedirectApi(unittest.TestCase):
     """AuthRedirectApi unit test stubs"""
-    _configuration = configuration.Configuration()
 
     def setUp(self):
-        used_api_client = api_client.ApiClient(configuration=self._configuration)
-        self.api = AuthRedirectApi(api_client=used_api_client)  # noqa: E501
+        self.api = AuthRedirectApi()  # noqa: E501
 
     def tearDown(self):
         pass
@@ -36,9 +28,6 @@ class TestAuthRedirectApi(ApiTestMixin, unittest.TestCase):
         """Test case for auth_redirect_index
 
         """
-        from okclient.api.auth_redirect_api_endpoints import auth_redirect_index as endpoint_module
-        response_status = 200
-        response_body = ''
         pass
 
 

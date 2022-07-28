@@ -10,24 +10,16 @@
 """
 
 import unittest
-from unittest.mock import patch
-
-import urllib3
 
 import okclient
 from okclient.api.metadata_api import MetadataApi  # noqa: E501
-from okclient import configuration, schemas, api_client
-
-from . import ApiTestMixin
 
 
-class TestMetadataApi(ApiTestMixin, unittest.TestCase):
+class TestMetadataApi(unittest.TestCase):
     """MetadataApi unit test stubs"""
-    _configuration = configuration.Configuration()
 
     def setUp(self):
-        used_api_client = api_client.ApiClient(configuration=self._configuration)
-        self.api = MetadataApi(api_client=used_api_client)  # noqa: E501
+        self.api = MetadataApi()  # noqa: E501
 
     def tearDown(self):
         pass
@@ -36,144 +28,12 @@ class TestMetadataApi(ApiTestMixin, unittest.TestCase):
         """Test case for metadata_get_metadata
 
         """
-        from okclient.api.metadata_api_endpoints import metadata_get_metadata as endpoint_module
-        response_status = 200
-        accept_content_type = 'application/json'
-
-
-
-        accept_content_type = 'application/xml'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=minimal;odata.streaming=true'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=minimal;odata.streaming=false'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=minimal'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=full;odata.streaming=true'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=full;odata.streaming=false'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=full'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=none;odata.streaming=true'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=none;odata.streaming=false'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=none'
-
-
-
-        accept_content_type = 'application/json;odata.streaming=true'
-
-
-
-        accept_content_type = 'application/json;odata.streaming=false'
-
-
-
-        accept_content_type = 'text/plain'
-
-
-
-        accept_content_type = 'application/octet-stream'
-
-
-
-        accept_content_type = 'text/json'
-
-
-
         pass
 
     def test_metadata_get_service_document(self):
         """Test case for metadata_get_service_document
 
         """
-        from okclient.api.metadata_api_endpoints import metadata_get_service_document as endpoint_module
-        response_status = 200
-        accept_content_type = 'application/json'
-
-
-
-        accept_content_type = 'application/xml'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=minimal;odata.streaming=true'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=minimal;odata.streaming=false'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=minimal'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=full;odata.streaming=true'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=full;odata.streaming=false'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=full'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=none;odata.streaming=true'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=none;odata.streaming=false'
-
-
-
-        accept_content_type = 'application/json;odata.metadata=none'
-
-
-
-        accept_content_type = 'application/json;odata.streaming=true'
-
-
-
-        accept_content_type = 'application/json;odata.streaming=false'
-
-
-
-        accept_content_type = 'text/plain'
-
-
-
-        accept_content_type = 'application/octet-stream'
-
-
-
-        accept_content_type = 'text/json'
-
-
-
         pass
 
 

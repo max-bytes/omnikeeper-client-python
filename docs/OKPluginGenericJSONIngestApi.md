@@ -206,7 +206,7 @@ Type | Description | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **manage_context_get_context**
-> {str: typing.Any} manage_context_get_context(idversion)
+> {str: (bool, date, datetime, dict, float, int, list, str, none_type)} manage_context_get_context(idversion)
 
 
 
@@ -304,102 +304,118 @@ headers | Unset | headers were not defined |
 
 #### SchemaFor200ResponseBodyApplicationJson
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaFor200ResponseBodyApplicationXml
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaFor200ResponseBodyApplicationJsonodataMetadataminimalodataStreamingtrue
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaFor200ResponseBodyApplicationJsonodataMetadataminimalodataStreamingfalse
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaFor200ResponseBodyApplicationJsonodataMetadataminimal
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaFor200ResponseBodyApplicationJsonodataMetadatafullodataStreamingtrue
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaFor200ResponseBodyApplicationJsonodataMetadatafullodataStreamingfalse
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaFor200ResponseBodyApplicationJsonodataMetadatafull
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaFor200ResponseBodyApplicationJsonodataMetadatanoneodataStreamingtrue
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaFor200ResponseBodyApplicationJsonodataMetadatanoneodataStreamingfalse
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaFor200ResponseBodyApplicationJsonodataMetadatanone
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaFor200ResponseBodyApplicationJsonodataStreamingtrue
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaFor200ResponseBodyApplicationJsonodataStreamingfalse
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaFor200ResponseBodyTextPlain
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaFor200ResponseBodyApplicationOctetStream
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaFor200ResponseBodyTextJson
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 
-**{str: typing.Any}**
+**{str: (bool, date, datetime, dict, float, int, list, str, none_type)}**
 
 ### Authorization
 
@@ -610,7 +626,7 @@ Type | Description | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **manage_context_upsert_context**
-> {str: typing.Any} manage_context_upsert_context(versionbody)
+> {str: (bool, date, datetime, dict, float, int, list, str, none_type)} manage_context_upsert_context(versionbody)
 
 
 
@@ -679,99 +695,115 @@ skip_deserialization | bool | default is False | when True, headers and body wil
 
 #### SchemaForRequestBodyApplicationJson
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaForRequestBodyApplicationJsonodataMetadataminimalodataStreamingtrue
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaForRequestBodyApplicationJsonodataMetadataminimalodataStreamingfalse
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaForRequestBodyApplicationJsonodataMetadataminimal
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaForRequestBodyApplicationJsonodataMetadatafullodataStreamingtrue
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaForRequestBodyApplicationJsonodataMetadatafullodataStreamingfalse
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaForRequestBodyApplicationJsonodataMetadatafull
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaForRequestBodyApplicationJsonodataMetadatanoneodataStreamingtrue
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaForRequestBodyApplicationJsonodataMetadatanoneodataStreamingfalse
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaForRequestBodyApplicationJsonodataMetadatanone
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaForRequestBodyApplicationJsonodataStreamingtrue
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaForRequestBodyApplicationJsonodataStreamingfalse
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaForRequestBodyApplicationXml
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaForRequestBodyTextPlain
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaForRequestBodyTextJson
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaForRequestBodyApplicationJson
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 ### path_params
 #### RequestPathParams
@@ -802,102 +834,118 @@ headers | Unset | headers were not defined |
 
 #### SchemaFor200ResponseBodyApplicationJson
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaFor200ResponseBodyApplicationXml
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaFor200ResponseBodyApplicationJsonodataMetadataminimalodataStreamingtrue
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaFor200ResponseBodyApplicationJsonodataMetadataminimalodataStreamingfalse
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaFor200ResponseBodyApplicationJsonodataMetadataminimal
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaFor200ResponseBodyApplicationJsonodataMetadatafullodataStreamingtrue
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaFor200ResponseBodyApplicationJsonodataMetadatafullodataStreamingfalse
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaFor200ResponseBodyApplicationJsonodataMetadatafull
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaFor200ResponseBodyApplicationJsonodataMetadatanoneodataStreamingtrue
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaFor200ResponseBodyApplicationJsonodataMetadatanoneodataStreamingfalse
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaFor200ResponseBodyApplicationJsonodataMetadatanone
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaFor200ResponseBodyApplicationJsonodataStreamingtrue
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaFor200ResponseBodyApplicationJsonodataStreamingfalse
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaFor200ResponseBodyTextPlain
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaFor200ResponseBodyApplicationOctetStream
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 #### SchemaFor200ResponseBodyTextJson
 
-Type | Description | Notes
-------------- | ------------- | -------------
-**{str: typing.Any}** |  | 
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 
-**{str: typing.Any}**
+**{str: (bool, date, datetime, dict, float, int, list, str, none_type)}**
 
 ### Authorization
 

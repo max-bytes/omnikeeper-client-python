@@ -60,8 +60,6 @@ from okclient.schemas import (  # noqa: F401
     BoolBase,
     BinaryBase,
     Schema,
-    NoneClass,
-    BoolClass,
     _SchemaValidator,
     _SchemaTypeChecker,
     _SchemaEnumMaker
@@ -76,31 +74,12 @@ class GenericInboundAttribute(
 
     Do not edit the class manually.
     """
-    
-    
-    class name(
-        _SchemaTypeChecker(typing.Union[NoneClass, str, ]),
-        StrBase,
-        NoneBase,
-        Schema
-    ):
-    
-        def __new__(
-            cls,
-            *args: typing.Union[str, None, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> 'name':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
+    name = StrSchema
 
     @classmethod
     @property
     def value(cls) -> typing.Type['AttributeValueDTO']:
         return AttributeValueDTO
-    _additional_properties = None
 
 
     def __new__(
@@ -109,6 +88,7 @@ class GenericInboundAttribute(
         name: typing.Union[name, Unset] = unset,
         value: typing.Union['AttributeValueDTO', Unset] = unset,
         _configuration: typing.Optional[Configuration] = None,
+        **kwargs: typing.Type[Schema],
     ) -> 'GenericInboundAttribute':
         return super().__new__(
             cls,
@@ -116,6 +96,7 @@ class GenericInboundAttribute(
             name=name,
             value=value,
             _configuration=_configuration,
+            **kwargs,
         )
 
 from okclient.model.attribute_value_dto import AttributeValueDTO

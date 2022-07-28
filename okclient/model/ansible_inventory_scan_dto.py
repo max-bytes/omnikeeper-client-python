@@ -60,8 +60,6 @@ from okclient.schemas import (  # noqa: F401
     BoolBase,
     BinaryBase,
     Schema,
-    NoneClass,
-    BoolClass,
     _SchemaValidator,
     _SchemaTypeChecker,
     _SchemaEnumMaker
@@ -162,7 +160,6 @@ class AnsibleInventoryScanDTO(
                 _configuration=_configuration,
                 **kwargs,
             )
-    _additional_properties = None
 
 
     def __new__(
@@ -173,6 +170,7 @@ class AnsibleInventoryScanDTO(
         yumRepos: yumRepos,
         yumUpdates: yumUpdates,
         _configuration: typing.Optional[Configuration] = None,
+        **kwargs: typing.Type[Schema],
     ) -> 'AnsibleInventoryScanDTO':
         return super().__new__(
             cls,
@@ -182,4 +180,5 @@ class AnsibleInventoryScanDTO(
             yumRepos=yumRepos,
             yumUpdates=yumUpdates,
             _configuration=_configuration,
+            **kwargs,
         )

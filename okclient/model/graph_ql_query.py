@@ -60,8 +60,6 @@ from okclient.schemas import (  # noqa: F401
     BoolBase,
     BinaryBase,
     Schema,
-    NoneClass,
-    BoolClass,
     _SchemaValidator,
     _SchemaTypeChecker,
     _SchemaEnumMaker
@@ -79,7 +77,7 @@ class GraphQLQuery(
     
     
     class operationName(
-        _SchemaTypeChecker(typing.Union[NoneClass, str, ]),
+        _SchemaTypeChecker(typing.Union[none_type, str, ]),
         StrBase,
         NoneBase,
         Schema
@@ -98,7 +96,7 @@ class GraphQLQuery(
     
     
     class query(
-        _SchemaTypeChecker(typing.Union[NoneClass, str, ]),
+        _SchemaTypeChecker(typing.Union[none_type, str, ]),
         StrBase,
         NoneBase,
         Schema
@@ -117,7 +115,7 @@ class GraphQLQuery(
     
     
     class variables(
-        _SchemaTypeChecker(typing.Union[frozendict, NoneClass, ]),
+        _SchemaTypeChecker(typing.Union[frozendict, none_type, ]),
         DictBase,
         NoneBase,
         Schema
@@ -135,7 +133,6 @@ class GraphQLQuery(
                 _configuration=_configuration,
                 **kwargs,
             )
-    _additional_properties = None
 
 
     def __new__(
@@ -145,6 +142,7 @@ class GraphQLQuery(
         query: typing.Union[query, Unset] = unset,
         variables: typing.Union[variables, Unset] = unset,
         _configuration: typing.Optional[Configuration] = None,
+        **kwargs: typing.Type[Schema],
     ) -> 'GraphQLQuery':
         return super().__new__(
             cls,
@@ -153,4 +151,5 @@ class GraphQLQuery(
             query=query,
             variables=variables,
             _configuration=_configuration,
+            **kwargs,
         )

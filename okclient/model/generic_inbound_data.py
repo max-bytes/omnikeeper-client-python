@@ -60,8 +60,6 @@ from okclient.schemas import (  # noqa: F401
     BoolBase,
     BinaryBase,
     Schema,
-    NoneClass,
-    BoolClass,
     _SchemaValidator,
     _SchemaTypeChecker,
     _SchemaEnumMaker
@@ -79,42 +77,23 @@ class GenericInboundData(
     
     
     class cis(
-        _SchemaTypeChecker(typing.Union[tuple, NoneClass, ]),
-        ListBase,
-        NoneBase,
-        Schema
+        ListSchema
     ):
     
-        def __new__(
-            cls,
-            *args: typing.Union[list, tuple, None, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> 'cis':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
+        @classmethod
+        @property
+        def _items(cls) -> typing.Type['GenericInboundCI']:
+            return GenericInboundCI
     
     
     class relations(
-        _SchemaTypeChecker(typing.Union[tuple, NoneClass, ]),
-        ListBase,
-        NoneBase,
-        Schema
+        ListSchema
     ):
     
-        def __new__(
-            cls,
-            *args: typing.Union[list, tuple, None, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> 'relations':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
-    _additional_properties = None
+        @classmethod
+        @property
+        def _items(cls) -> typing.Type['GenericInboundRelation']:
+            return GenericInboundRelation
 
 
     def __new__(
@@ -123,6 +102,7 @@ class GenericInboundData(
         cis: typing.Union[cis, Unset] = unset,
         relations: typing.Union[relations, Unset] = unset,
         _configuration: typing.Optional[Configuration] = None,
+        **kwargs: typing.Type[Schema],
     ) -> 'GenericInboundData':
         return super().__new__(
             cls,
@@ -130,6 +110,7 @@ class GenericInboundData(
             cis=cis,
             relations=relations,
             _configuration=_configuration,
+            **kwargs,
         )
 
 from okclient.model.generic_inbound_ci import GenericInboundCI

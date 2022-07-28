@@ -10,24 +10,16 @@
 """
 
 import unittest
-from unittest.mock import patch
-
-import urllib3
 
 import okclient
 from okclient.api.cytoscape_api import CytoscapeApi  # noqa: E501
-from okclient import configuration, schemas, api_client
-
-from . import ApiTestMixin
 
 
-class TestCytoscapeApi(ApiTestMixin, unittest.TestCase):
+class TestCytoscapeApi(unittest.TestCase):
     """CytoscapeApi unit test stubs"""
-    _configuration = configuration.Configuration()
 
     def setUp(self):
-        used_api_client = api_client.ApiClient(configuration=self._configuration)
-        self.api = CytoscapeApi(api_client=used_api_client)  # noqa: E501
+        self.api = CytoscapeApi()  # noqa: E501
 
     def tearDown(self):
         pass
@@ -36,9 +28,6 @@ class TestCytoscapeApi(ApiTestMixin, unittest.TestCase):
         """Test case for cytoscape_trait_centric
 
         """
-        from okclient.api.cytoscape_api_endpoints import cytoscape_trait_centric as endpoint_module
-        response_status = 200
-        response_body = ''
         pass
 
 

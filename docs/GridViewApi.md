@@ -84,7 +84,9 @@ with okclient.ApiClient(configuration) as api_client:
             columns=[
                 GridViewColumn(
                     source_attribute_name="source_attribute_name_example",
-                    source_attribute_path=[],
+                    source_attribute_path=[
+                        "source_attribute_path_example"
+                    ],
                     column_description="column_description_example",
                     value_type=AttributeValueType("Text"),
                     write_layer="write_layer_example",
@@ -989,7 +991,9 @@ with okclient.ApiClient(configuration) as api_client:
             columns=[
                 GridViewColumn(
                     source_attribute_name="source_attribute_name_example",
-                    source_attribute_path=[],
+                    source_attribute_path=[
+                        "source_attribute_path_example"
+                    ],
                     column_description="column_description_example",
                     value_type=AttributeValueType("Text"),
                     write_layer="write_layer_example",

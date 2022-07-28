@@ -60,8 +60,6 @@ from okclient.schemas import (  # noqa: F401
     BoolBase,
     BinaryBase,
     Schema,
-    NoneClass,
-    BoolClass,
     _SchemaValidator,
     _SchemaTypeChecker,
     _SchemaEnumMaker
@@ -77,25 +75,7 @@ class InboundIDMethodByTemporaryCIID(
 
     Do not edit the class manually.
     """
-    
-    
-    class tempID(
-        _SchemaTypeChecker(typing.Union[NoneClass, str, ]),
-        StrBase,
-        NoneBase,
-        Schema
-    ):
-    
-        def __new__(
-            cls,
-            *args: typing.Union[str, None, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> 'tempID':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
+    tempID = StrSchema
 
     @classmethod
     @property
@@ -110,7 +90,6 @@ class InboundIDMethodByTemporaryCIID(
                 'OKPluginGenericJSONIngest.InboundIDMethodByTemporaryCIID, OKPluginGenericJSONIngest': InboundIDMethodByTemporaryCIID,
             }
         }
-    _additional_properties = None
 
     @classmethod
     @property
@@ -140,12 +119,14 @@ class InboundIDMethodByTemporaryCIID(
         *args: typing.Union[dict, frozendict, ],
         tempID: typing.Union[tempID, Unset] = unset,
         _configuration: typing.Optional[Configuration] = None,
+        **kwargs: typing.Type[Schema],
     ) -> 'InboundIDMethodByTemporaryCIID':
         return super().__new__(
             cls,
             *args,
             tempID=tempID,
             _configuration=_configuration,
+            **kwargs,
         )
 
 from okclient.model.abstract_inbound_id_method import AbstractInboundIDMethod

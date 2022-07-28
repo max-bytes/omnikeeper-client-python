@@ -60,8 +60,6 @@ from okclient.schemas import (  # noqa: F401
     BoolBase,
     BinaryBase,
     Schema,
-    NoneClass,
-    BoolClass,
     _SchemaValidator,
     _SchemaTypeChecker,
     _SchemaEnumMaker
@@ -76,29 +74,11 @@ class GridViewColumn(
 
     Do not edit the class manually.
     """
-    
-    
-    class sourceAttributeName(
-        _SchemaTypeChecker(typing.Union[NoneClass, str, ]),
-        StrBase,
-        NoneBase,
-        Schema
-    ):
-    
-        def __new__(
-            cls,
-            *args: typing.Union[str, None, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> 'sourceAttributeName':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
+    sourceAttributeName = StrSchema
     
     
     class sourceAttributePath(
-        _SchemaTypeChecker(typing.Union[tuple, NoneClass, ]),
+        _SchemaTypeChecker(typing.Union[tuple, none_type, ]),
         ListBase,
         NoneBase,
         Schema
@@ -114,25 +94,7 @@ class GridViewColumn(
                 *args,
                 _configuration=_configuration,
             )
-    
-    
-    class columnDescription(
-        _SchemaTypeChecker(typing.Union[NoneClass, str, ]),
-        StrBase,
-        NoneBase,
-        Schema
-    ):
-    
-        def __new__(
-            cls,
-            *args: typing.Union[str, None, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> 'columnDescription':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
+    columnDescription = StrSchema
 
     @classmethod
     @property
@@ -141,7 +103,7 @@ class GridViewColumn(
     
     
     class writeLayer(
-        _SchemaTypeChecker(typing.Union[NoneClass, str, ]),
+        _SchemaTypeChecker(typing.Union[none_type, str, ]),
         StrBase,
         NoneBase,
         Schema
@@ -157,7 +119,6 @@ class GridViewColumn(
                 *args,
                 _configuration=_configuration,
             )
-    _additional_properties = None
 
 
     def __new__(
@@ -169,6 +130,7 @@ class GridViewColumn(
         valueType: typing.Union['AttributeValueType', Unset] = unset,
         writeLayer: typing.Union[writeLayer, Unset] = unset,
         _configuration: typing.Optional[Configuration] = None,
+        **kwargs: typing.Type[Schema],
     ) -> 'GridViewColumn':
         return super().__new__(
             cls,
@@ -179,6 +141,7 @@ class GridViewColumn(
             valueType=valueType,
             writeLayer=writeLayer,
             _configuration=_configuration,
+            **kwargs,
         )
 
 from okclient.model.attribute_value_type import AttributeValueType

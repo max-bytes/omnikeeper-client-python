@@ -60,8 +60,6 @@ from okclient.schemas import (  # noqa: F401
     BoolBase,
     BinaryBase,
     Schema,
-    NoneClass,
-    BoolClass,
     _SchemaValidator,
     _SchemaTypeChecker,
     _SchemaEnumMaker
@@ -79,7 +77,7 @@ class ODataTypeAnnotation(
     
     
     class typeName(
-        _SchemaTypeChecker(typing.Union[NoneClass, str, ]),
+        _SchemaTypeChecker(typing.Union[none_type, str, ]),
         StrBase,
         NoneBase,
         Schema
@@ -95,7 +93,6 @@ class ODataTypeAnnotation(
                 *args,
                 _configuration=_configuration,
             )
-    _additional_properties = None
 
 
     def __new__(
@@ -103,10 +100,12 @@ class ODataTypeAnnotation(
         *args: typing.Union[dict, frozendict, ],
         typeName: typing.Union[typeName, Unset] = unset,
         _configuration: typing.Optional[Configuration] = None,
+        **kwargs: typing.Type[Schema],
     ) -> 'ODataTypeAnnotation':
         return super().__new__(
             cls,
             *args,
             typeName=typeName,
             _configuration=_configuration,
+            **kwargs,
         )

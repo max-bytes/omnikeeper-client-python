@@ -60,8 +60,6 @@ from okclient.schemas import (  # noqa: F401
     BoolBase,
     BinaryBase,
     Schema,
-    NoneClass,
-    BoolClass,
     _SchemaValidator,
     _SchemaTypeChecker,
     _SchemaEnumMaker
@@ -79,7 +77,7 @@ class IEdmModel(
     
     
     class schemaElements(
-        _SchemaTypeChecker(typing.Union[tuple, NoneClass, ]),
+        _SchemaTypeChecker(typing.Union[tuple, none_type, ]),
         ListBase,
         NoneBase,
         Schema
@@ -98,7 +96,7 @@ class IEdmModel(
     
     
     class vocabularyAnnotations(
-        _SchemaTypeChecker(typing.Union[tuple, NoneClass, ]),
+        _SchemaTypeChecker(typing.Union[tuple, none_type, ]),
         ListBase,
         NoneBase,
         Schema
@@ -117,7 +115,7 @@ class IEdmModel(
     
     
     class referencedModels(
-        _SchemaTypeChecker(typing.Union[tuple, NoneClass, ]),
+        _SchemaTypeChecker(typing.Union[tuple, none_type, ]),
         ListBase,
         NoneBase,
         Schema
@@ -136,7 +134,7 @@ class IEdmModel(
     
     
     class declaredNamespaces(
-        _SchemaTypeChecker(typing.Union[tuple, NoneClass, ]),
+        _SchemaTypeChecker(typing.Union[tuple, none_type, ]),
         ListBase,
         NoneBase,
         Schema
@@ -152,30 +150,12 @@ class IEdmModel(
                 *args,
                 _configuration=_configuration,
             )
-    
-    
-    class directValueAnnotationsManager(
-        DictSchema
-    ):
-        _additional_properties = None
-    
-    
-        def __new__(
-            cls,
-            *args: typing.Union[dict, frozendict, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> 'directValueAnnotationsManager':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
+    directValueAnnotationsManager = DictSchema
 
     @classmethod
     @property
     def entityContainer(cls) -> typing.Type['IEdmEntityContainer']:
         return IEdmEntityContainer
-    _additional_properties = None
 
 
     def __new__(
@@ -188,6 +168,7 @@ class IEdmModel(
         directValueAnnotationsManager: typing.Union[directValueAnnotationsManager, Unset] = unset,
         entityContainer: typing.Union['IEdmEntityContainer', Unset] = unset,
         _configuration: typing.Optional[Configuration] = None,
+        **kwargs: typing.Type[Schema],
     ) -> 'IEdmModel':
         return super().__new__(
             cls,
@@ -199,6 +180,7 @@ class IEdmModel(
             directValueAnnotationsManager=directValueAnnotationsManager,
             entityContainer=entityContainer,
             _configuration=_configuration,
+            **kwargs,
         )
 
 from okclient.model.i_edm_entity_container import IEdmEntityContainer

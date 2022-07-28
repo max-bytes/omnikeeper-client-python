@@ -10,24 +10,16 @@
 """
 
 import unittest
-from unittest.mock import patch
-
-import urllib3
 
 import okclient
 from okclient.api.graphviz_dot_api import GraphvizDotApi  # noqa: E501
-from okclient import configuration, schemas, api_client
-
-from . import ApiTestMixin
 
 
-class TestGraphvizDotApi(ApiTestMixin, unittest.TestCase):
+class TestGraphvizDotApi(unittest.TestCase):
     """GraphvizDotApi unit test stubs"""
-    _configuration = configuration.Configuration()
 
     def setUp(self):
-        used_api_client = api_client.ApiClient(configuration=self._configuration)
-        self.api = GraphvizDotApi(api_client=used_api_client)  # noqa: E501
+        self.api = GraphvizDotApi()  # noqa: E501
 
     def tearDown(self):
         pass
@@ -36,18 +28,12 @@ class TestGraphvizDotApi(ApiTestMixin, unittest.TestCase):
         """Test case for graphviz_dot_layer_centric
 
         """
-        from okclient.api.graphviz_dot_api_endpoints import graphviz_dot_layer_centric as endpoint_module
-        response_status = 200
-        response_body = ''
         pass
 
     def test_graphviz_dot_trait_centric(self):
         """Test case for graphviz_dot_trait_centric
 
         """
-        from okclient.api.graphviz_dot_api_endpoints import graphviz_dot_trait_centric as endpoint_module
-        response_status = 200
-        response_body = ''
         pass
 
 

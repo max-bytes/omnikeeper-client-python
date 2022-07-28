@@ -60,8 +60,6 @@ from okclient.schemas import (  # noqa: F401
     BoolBase,
     BinaryBase,
     Schema,
-    NoneClass,
-    BoolClass,
     _SchemaValidator,
     _SchemaTypeChecker,
     _SchemaEnumMaker
@@ -80,22 +78,9 @@ class InboundIDMethodByData(
     
     
     class attributes(
-        _SchemaTypeChecker(typing.Union[tuple, NoneClass, ]),
-        ListBase,
-        NoneBase,
-        Schema
+        ListSchema
     ):
-    
-        def __new__(
-            cls,
-            *args: typing.Union[list, tuple, None, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> 'attributes':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
+        _items = StrSchema
 
     @classmethod
     @property
@@ -110,7 +95,6 @@ class InboundIDMethodByData(
                 'OKPluginGenericJSONIngest.InboundIDMethodByTemporaryCIID, OKPluginGenericJSONIngest': InboundIDMethodByTemporaryCIID,
             }
         }
-    _additional_properties = None
 
     @classmethod
     @property
@@ -140,12 +124,14 @@ class InboundIDMethodByData(
         *args: typing.Union[dict, frozendict, ],
         attributes: typing.Union[attributes, Unset] = unset,
         _configuration: typing.Optional[Configuration] = None,
+        **kwargs: typing.Type[Schema],
     ) -> 'InboundIDMethodByData':
         return super().__new__(
             cls,
             *args,
             attributes=attributes,
             _configuration=_configuration,
+            **kwargs,
         )
 
 from okclient.model.abstract_inbound_id_method import AbstractInboundIDMethod

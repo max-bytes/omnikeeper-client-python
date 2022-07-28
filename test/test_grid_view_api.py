@@ -10,24 +10,16 @@
 """
 
 import unittest
-from unittest.mock import patch
-
-import urllib3
 
 import okclient
 from okclient.api.grid_view_api import GridViewApi  # noqa: E501
-from okclient import configuration, schemas, api_client
-
-from . import ApiTestMixin
 
 
-class TestGridViewApi(ApiTestMixin, unittest.TestCase):
+class TestGridViewApi(unittest.TestCase):
     """GridViewApi unit test stubs"""
-    _configuration = configuration.Configuration()
 
     def setUp(self):
-        used_api_client = api_client.ApiClient(configuration=self._configuration)
-        self.api = GridViewApi(api_client=used_api_client)  # noqa: E501
+        self.api = GridViewApi()  # noqa: E501
 
     def tearDown(self):
         pass
@@ -37,27 +29,20 @@ class TestGridViewApi(ApiTestMixin, unittest.TestCase):
 
         Adds new context  # noqa: E501
         """
-        from okclient.api.grid_view_api_endpoints import grid_view_add_context as endpoint_module
-        response_status = 201
-        response_body = ''
+        pass
 
     def test_grid_view_change_data(self):
         """Test case for grid_view_change_data
 
         Saves grid view row changes and returns change results  # noqa: E501
         """
-        from okclient.api.grid_view_api_endpoints import grid_view_change_data as endpoint_module
-        response_status = 200
-        response_body = ''
+        pass
 
     def test_grid_view_delete_context(self):
         """Test case for grid_view_delete_context
 
         Deletes specific context  # noqa: E501
         """
-        from okclient.api.grid_view_api_endpoints import grid_view_delete_context as endpoint_module
-        response_status = 200
-        response_body = ''
         pass
 
     def test_grid_view_edit_context(self):
@@ -65,18 +50,13 @@ class TestGridViewApi(ApiTestMixin, unittest.TestCase):
 
         Edits specific context  # noqa: E501
         """
-        from okclient.api.grid_view_api_endpoints import grid_view_edit_context as endpoint_module
-        response_status = 200
-        response_body = ''
+        pass
 
     def test_grid_view_get_data(self):
         """Test case for grid_view_get_data
 
         Returns grid view data for specific context  # noqa: E501
         """
-        from okclient.api.grid_view_api_endpoints import grid_view_get_data as endpoint_module
-        response_status = 200
-        response_body = ''
         pass
 
     def test_grid_view_get_grid_view_context(self):
@@ -84,9 +64,6 @@ class TestGridViewApi(ApiTestMixin, unittest.TestCase):
 
         Returns a single context in full  # noqa: E501
         """
-        from okclient.api.grid_view_api_endpoints import grid_view_get_grid_view_context as endpoint_module
-        response_status = 200
-        response_body = ''
         pass
 
     def test_grid_view_get_grid_view_contexts(self):
@@ -94,9 +71,6 @@ class TestGridViewApi(ApiTestMixin, unittest.TestCase):
 
         Returns a list of contexts for grid view.  # noqa: E501
         """
-        from okclient.api.grid_view_api_endpoints import grid_view_get_grid_view_contexts as endpoint_module
-        response_status = 200
-        response_body = ''
         pass
 
     def test_grid_view_get_schema(self):
@@ -104,9 +78,6 @@ class TestGridViewApi(ApiTestMixin, unittest.TestCase):
 
         Returns grid view schema for specific context  # noqa: E501
         """
-        from okclient.api.grid_view_api_endpoints import grid_view_get_schema as endpoint_module
-        response_status = 200
-        response_body = ''
         pass
 
 

@@ -10,24 +10,16 @@
 """
 
 import unittest
-from unittest.mock import patch
-
-import urllib3
 
 import okclient
 from okclient.api.graph_ql_api import GraphQLApi  # noqa: E501
-from okclient import configuration, schemas, api_client
-
-from . import ApiTestMixin
 
 
-class TestGraphQLApi(ApiTestMixin, unittest.TestCase):
+class TestGraphQLApi(unittest.TestCase):
     """GraphQLApi unit test stubs"""
-    _configuration = configuration.Configuration()
 
     def setUp(self):
-        used_api_client = api_client.ApiClient(configuration=self._configuration)
-        self.api = GraphQLApi(api_client=used_api_client)  # noqa: E501
+        self.api = GraphQLApi()  # noqa: E501
 
     def tearDown(self):
         pass
@@ -36,26 +28,19 @@ class TestGraphQLApi(ApiTestMixin, unittest.TestCase):
         """Test case for graph_ql_debug
 
         """
-        from okclient.api.graph_ql_api_endpoints import graph_ql_debug as endpoint_module
-        response_status = 200
-        response_body = ''
+        pass
 
     def test_graph_ql_get(self):
         """Test case for graph_ql_get
 
         """
-        from okclient.api.graph_ql_api_endpoints import graph_ql_get as endpoint_module
-        response_status = 200
-        response_body = ''
         pass
 
     def test_graph_ql_index(self):
         """Test case for graph_ql_index
 
         """
-        from okclient.api.graph_ql_api_endpoints import graph_ql_index as endpoint_module
-        response_status = 200
-        response_body = ''
+        pass
 
 
 if __name__ == '__main__':

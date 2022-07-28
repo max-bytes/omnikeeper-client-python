@@ -60,8 +60,6 @@ from okclient.schemas import (  # noqa: F401
     BoolBase,
     BinaryBase,
     Schema,
-    NoneClass,
-    BoolClass,
     _SchemaValidator,
     _SchemaTypeChecker,
     _SchemaEnumMaker
@@ -81,7 +79,6 @@ class IEdmExpression(
     @property
     def expressionKind(cls) -> typing.Type['EdmExpressionKind']:
         return EdmExpressionKind
-    _additional_properties = None
 
 
     def __new__(
@@ -89,12 +86,14 @@ class IEdmExpression(
         *args: typing.Union[dict, frozendict, ],
         expressionKind: typing.Union['EdmExpressionKind', Unset] = unset,
         _configuration: typing.Optional[Configuration] = None,
+        **kwargs: typing.Type[Schema],
     ) -> 'IEdmExpression':
         return super().__new__(
             cls,
             *args,
             expressionKind=expressionKind,
             _configuration=_configuration,
+            **kwargs,
         )
 
 from okclient.model.edm_expression_kind import EdmExpressionKind

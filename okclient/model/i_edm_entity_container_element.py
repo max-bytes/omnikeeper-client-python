@@ -60,8 +60,6 @@ from okclient.schemas import (  # noqa: F401
     BoolBase,
     BinaryBase,
     Schema,
-    NoneClass,
-    BoolClass,
     _SchemaValidator,
     _SchemaTypeChecker,
     _SchemaEnumMaker
@@ -89,7 +87,7 @@ class IEdmEntityContainerElement(
     
     
     class name(
-        _SchemaTypeChecker(typing.Union[NoneClass, str, ]),
+        _SchemaTypeChecker(typing.Union[none_type, str, ]),
         StrBase,
         NoneBase,
         Schema
@@ -105,7 +103,6 @@ class IEdmEntityContainerElement(
                 *args,
                 _configuration=_configuration,
             )
-    _additional_properties = None
 
 
     def __new__(
@@ -115,6 +112,7 @@ class IEdmEntityContainerElement(
         container: typing.Union['IEdmEntityContainer', Unset] = unset,
         name: typing.Union[name, Unset] = unset,
         _configuration: typing.Optional[Configuration] = None,
+        **kwargs: typing.Type[Schema],
     ) -> 'IEdmEntityContainerElement':
         return super().__new__(
             cls,
@@ -123,6 +121,7 @@ class IEdmEntityContainerElement(
             container=container,
             name=name,
             _configuration=_configuration,
+            **kwargs,
         )
 
 from okclient.model.edm_container_element_kind import EdmContainerElementKind

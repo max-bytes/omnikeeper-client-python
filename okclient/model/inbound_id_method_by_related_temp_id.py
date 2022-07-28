@@ -60,8 +60,6 @@ from okclient.schemas import (  # noqa: F401
     BoolBase,
     BinaryBase,
     Schema,
-    NoneClass,
-    BoolClass,
     _SchemaValidator,
     _SchemaTypeChecker,
     _SchemaEnumMaker
@@ -77,45 +75,9 @@ class InboundIDMethodByRelatedTempID(
 
     Do not edit the class manually.
     """
-    
-    
-    class tempID(
-        _SchemaTypeChecker(typing.Union[NoneClass, str, ]),
-        StrBase,
-        NoneBase,
-        Schema
-    ):
-    
-        def __new__(
-            cls,
-            *args: typing.Union[str, None, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> 'tempID':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
+    tempID = StrSchema
     outgoingRelation = BoolSchema
-    
-    
-    class predicateID(
-        _SchemaTypeChecker(typing.Union[NoneClass, str, ]),
-        StrBase,
-        NoneBase,
-        Schema
-    ):
-    
-        def __new__(
-            cls,
-            *args: typing.Union[str, None, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> 'predicateID':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
+    predicateID = StrSchema
 
     @classmethod
     @property
@@ -130,7 +92,6 @@ class InboundIDMethodByRelatedTempID(
                 'OKPluginGenericJSONIngest.InboundIDMethodByTemporaryCIID, OKPluginGenericJSONIngest': InboundIDMethodByTemporaryCIID,
             }
         }
-    _additional_properties = None
 
     @classmethod
     @property
@@ -162,6 +123,7 @@ class InboundIDMethodByRelatedTempID(
         outgoingRelation: typing.Union[outgoingRelation, Unset] = unset,
         predicateID: typing.Union[predicateID, Unset] = unset,
         _configuration: typing.Optional[Configuration] = None,
+        **kwargs: typing.Type[Schema],
     ) -> 'InboundIDMethodByRelatedTempID':
         return super().__new__(
             cls,
@@ -170,6 +132,7 @@ class InboundIDMethodByRelatedTempID(
             outgoingRelation=outgoingRelation,
             predicateID=predicateID,
             _configuration=_configuration,
+            **kwargs,
         )
 
 from okclient.model.abstract_inbound_id_method import AbstractInboundIDMethod

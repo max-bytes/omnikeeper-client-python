@@ -60,8 +60,6 @@ from okclient.schemas import (  # noqa: F401
     BoolBase,
     BinaryBase,
     Schema,
-    NoneClass,
-    BoolClass,
     _SchemaValidator,
     _SchemaTypeChecker,
     _SchemaEnumMaker
@@ -76,25 +74,7 @@ class GenericInboundCI(
 
     Do not edit the class manually.
     """
-    
-    
-    class tempID(
-        _SchemaTypeChecker(typing.Union[NoneClass, str, ]),
-        StrBase,
-        NoneBase,
-        Schema
-    ):
-    
-        def __new__(
-            cls,
-            *args: typing.Union[str, None, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> 'tempID':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
+    tempID = StrSchema
     
     
     class idMethod(
@@ -160,23 +140,13 @@ class GenericInboundCI(
     
     
     class attributes(
-        _SchemaTypeChecker(typing.Union[tuple, NoneClass, ]),
-        ListBase,
-        NoneBase,
-        Schema
+        ListSchema
     ):
     
-        def __new__(
-            cls,
-            *args: typing.Union[list, tuple, None, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> 'attributes':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
-    _additional_properties = None
+        @classmethod
+        @property
+        def _items(cls) -> typing.Type['GenericInboundAttribute']:
+            return GenericInboundAttribute
 
 
     def __new__(
@@ -189,6 +159,7 @@ class GenericInboundCI(
         noFoundTargetCIHandling: typing.Union['NoFoundTargetCIHandling', Unset] = unset,
         attributes: typing.Union[attributes, Unset] = unset,
         _configuration: typing.Optional[Configuration] = None,
+        **kwargs: typing.Type[Schema],
     ) -> 'GenericInboundCI':
         return super().__new__(
             cls,
@@ -200,6 +171,7 @@ class GenericInboundCI(
             noFoundTargetCIHandling=noFoundTargetCIHandling,
             attributes=attributes,
             _configuration=_configuration,
+            **kwargs,
         )
 
 from okclient.model.generic_inbound_attribute import GenericInboundAttribute

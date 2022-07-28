@@ -60,8 +60,6 @@ from okclient.schemas import (  # noqa: F401
     BoolBase,
     BinaryBase,
     Schema,
-    NoneClass,
-    BoolClass,
     _SchemaValidator,
     _SchemaTypeChecker,
     _SchemaEnumMaker
@@ -79,7 +77,7 @@ class ProblemDetails(
     
     
     class type(
-        _SchemaTypeChecker(typing.Union[NoneClass, str, ]),
+        _SchemaTypeChecker(typing.Union[none_type, str, ]),
         StrBase,
         NoneBase,
         Schema
@@ -98,7 +96,7 @@ class ProblemDetails(
     
     
     class title(
-        _SchemaTypeChecker(typing.Union[NoneClass, str, ]),
+        _SchemaTypeChecker(typing.Union[none_type, str, ]),
         StrBase,
         NoneBase,
         Schema
@@ -117,7 +115,7 @@ class ProblemDetails(
     
     
     class status(
-        _SchemaTypeChecker(typing.Union[NoneClass, decimal.Decimal, ]),
+        _SchemaTypeChecker(typing.Union[none_type, decimal.Decimal, ]),
         Int32Base,
         NoneBase,
         Schema
@@ -136,7 +134,7 @@ class ProblemDetails(
     
     
     class detail(
-        _SchemaTypeChecker(typing.Union[NoneClass, str, ]),
+        _SchemaTypeChecker(typing.Union[none_type, str, ]),
         StrBase,
         NoneBase,
         Schema
@@ -155,7 +153,7 @@ class ProblemDetails(
     
     
     class instance(
-        _SchemaTypeChecker(typing.Union[NoneClass, str, ]),
+        _SchemaTypeChecker(typing.Union[none_type, str, ]),
         StrBase,
         NoneBase,
         Schema

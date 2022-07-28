@@ -10,24 +10,16 @@
 """
 
 import unittest
-from unittest.mock import patch
-
-import urllib3
 
 import okclient
 from okclient.api.ok_plugin_insight_discovery_ingest_api import OKPluginInsightDiscoveryIngestApi  # noqa: E501
-from okclient import configuration, schemas, api_client
-
-from . import ApiTestMixin
 
 
-class TestOKPluginInsightDiscoveryIngestApi(ApiTestMixin, unittest.TestCase):
+class TestOKPluginInsightDiscoveryIngestApi(unittest.TestCase):
     """OKPluginInsightDiscoveryIngestApi unit test stubs"""
-    _configuration = configuration.Configuration()
 
     def setUp(self):
-        used_api_client = api_client.ApiClient(configuration=self._configuration)
-        self.api = OKPluginInsightDiscoveryIngestApi(api_client=used_api_client)  # noqa: E501
+        self.api = OKPluginInsightDiscoveryIngestApi()  # noqa: E501
 
     def tearDown(self):
         pass
@@ -36,9 +28,7 @@ class TestOKPluginInsightDiscoveryIngestApi(ApiTestMixin, unittest.TestCase):
         """Test case for ingest_file_ingest
 
         """
-        from okclient.api.ok_plugin_insight_discovery_ingest_api_endpoints import ingest_file_ingest as endpoint_module
-        response_status = 200
-        response_body = ''
+        pass
 
 
 if __name__ == '__main__':

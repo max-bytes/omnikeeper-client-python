@@ -59,8 +59,6 @@ from okclient.schemas import (  # noqa: F401
     BoolBase,
     BinaryBase,
     Schema,
-    NoneClass,
-    BoolClass,
     _SchemaValidator,
     _SchemaTypeChecker,
     _SchemaEnumMaker
@@ -103,369 +101,97 @@ _auth = [
 class SchemaFor200ResponseBodyApplicationJson(
     ListSchema
 ):
-    
-    
-    class _items(
-        DictSchema
-    ):
-        _additional_properties = None
-    
-    
-        def __new__(
-            cls,
-            *args: typing.Union[dict, frozendict, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> '_items':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
+    _items = DictSchema
 
 
 class SchemaFor200ResponseBodyApplicationXml(
     ListSchema
 ):
-    
-    
-    class _items(
-        DictSchema
-    ):
-        _additional_properties = None
-    
-    
-        def __new__(
-            cls,
-            *args: typing.Union[dict, frozendict, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> '_items':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
+    _items = DictSchema
 
 
 class SchemaFor200ResponseBodyApplicationJsonodataMetadataminimalodataStreamingtrue(
     ListSchema
 ):
-    
-    
-    class _items(
-        DictSchema
-    ):
-        _additional_properties = None
-    
-    
-        def __new__(
-            cls,
-            *args: typing.Union[dict, frozendict, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> '_items':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
+    _items = DictSchema
 
 
 class SchemaFor200ResponseBodyApplicationJsonodataMetadataminimalodataStreamingfalse(
     ListSchema
 ):
-    
-    
-    class _items(
-        DictSchema
-    ):
-        _additional_properties = None
-    
-    
-        def __new__(
-            cls,
-            *args: typing.Union[dict, frozendict, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> '_items':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
+    _items = DictSchema
 
 
 class SchemaFor200ResponseBodyApplicationJsonodataMetadataminimal(
     ListSchema
 ):
-    
-    
-    class _items(
-        DictSchema
-    ):
-        _additional_properties = None
-    
-    
-        def __new__(
-            cls,
-            *args: typing.Union[dict, frozendict, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> '_items':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
+    _items = DictSchema
 
 
 class SchemaFor200ResponseBodyApplicationJsonodataMetadatafullodataStreamingtrue(
     ListSchema
 ):
-    
-    
-    class _items(
-        DictSchema
-    ):
-        _additional_properties = None
-    
-    
-        def __new__(
-            cls,
-            *args: typing.Union[dict, frozendict, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> '_items':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
+    _items = DictSchema
 
 
 class SchemaFor200ResponseBodyApplicationJsonodataMetadatafullodataStreamingfalse(
     ListSchema
 ):
-    
-    
-    class _items(
-        DictSchema
-    ):
-        _additional_properties = None
-    
-    
-        def __new__(
-            cls,
-            *args: typing.Union[dict, frozendict, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> '_items':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
+    _items = DictSchema
 
 
 class SchemaFor200ResponseBodyApplicationJsonodataMetadatafull(
     ListSchema
 ):
-    
-    
-    class _items(
-        DictSchema
-    ):
-        _additional_properties = None
-    
-    
-        def __new__(
-            cls,
-            *args: typing.Union[dict, frozendict, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> '_items':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
+    _items = DictSchema
 
 
 class SchemaFor200ResponseBodyApplicationJsonodataMetadatanoneodataStreamingtrue(
     ListSchema
 ):
-    
-    
-    class _items(
-        DictSchema
-    ):
-        _additional_properties = None
-    
-    
-        def __new__(
-            cls,
-            *args: typing.Union[dict, frozendict, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> '_items':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
+    _items = DictSchema
 
 
 class SchemaFor200ResponseBodyApplicationJsonodataMetadatanoneodataStreamingfalse(
     ListSchema
 ):
-    
-    
-    class _items(
-        DictSchema
-    ):
-        _additional_properties = None
-    
-    
-        def __new__(
-            cls,
-            *args: typing.Union[dict, frozendict, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> '_items':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
+    _items = DictSchema
 
 
 class SchemaFor200ResponseBodyApplicationJsonodataMetadatanone(
     ListSchema
 ):
-    
-    
-    class _items(
-        DictSchema
-    ):
-        _additional_properties = None
-    
-    
-        def __new__(
-            cls,
-            *args: typing.Union[dict, frozendict, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> '_items':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
+    _items = DictSchema
 
 
 class SchemaFor200ResponseBodyApplicationJsonodataStreamingtrue(
     ListSchema
 ):
-    
-    
-    class _items(
-        DictSchema
-    ):
-        _additional_properties = None
-    
-    
-        def __new__(
-            cls,
-            *args: typing.Union[dict, frozendict, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> '_items':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
+    _items = DictSchema
 
 
 class SchemaFor200ResponseBodyApplicationJsonodataStreamingfalse(
     ListSchema
 ):
-    
-    
-    class _items(
-        DictSchema
-    ):
-        _additional_properties = None
-    
-    
-        def __new__(
-            cls,
-            *args: typing.Union[dict, frozendict, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> '_items':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
+    _items = DictSchema
 
 
 class SchemaFor200ResponseBodyTextPlain(
     ListSchema
 ):
-    
-    
-    class _items(
-        DictSchema
-    ):
-        _additional_properties = None
-    
-    
-        def __new__(
-            cls,
-            *args: typing.Union[dict, frozendict, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> '_items':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
+    _items = DictSchema
 
 
 class SchemaFor200ResponseBodyApplicationOctetStream(
     ListSchema
 ):
-    
-    
-    class _items(
-        DictSchema
-    ):
-        _additional_properties = None
-    
-    
-        def __new__(
-            cls,
-            *args: typing.Union[dict, frozendict, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> '_items':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
+    _items = DictSchema
 
 
 class SchemaFor200ResponseBodyTextJson(
     ListSchema
 ):
-    
-    
-    class _items(
-        DictSchema
-    ):
-        _additional_properties = None
-    
-    
-        def __new__(
-            cls,
-            *args: typing.Union[dict, frozendict, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> '_items':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
+    _items = DictSchema
 
 
 @dataclass

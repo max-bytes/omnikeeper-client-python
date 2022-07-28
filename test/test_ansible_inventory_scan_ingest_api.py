@@ -10,24 +10,16 @@
 """
 
 import unittest
-from unittest.mock import patch
-
-import urllib3
 
 import okclient
 from okclient.api.ansible_inventory_scan_ingest_api import AnsibleInventoryScanIngestApi  # noqa: E501
-from okclient import configuration, schemas, api_client
-
-from . import ApiTestMixin
 
 
-class TestAnsibleInventoryScanIngestApi(ApiTestMixin, unittest.TestCase):
+class TestAnsibleInventoryScanIngestApi(unittest.TestCase):
     """AnsibleInventoryScanIngestApi unit test stubs"""
-    _configuration = configuration.Configuration()
 
     def setUp(self):
-        used_api_client = api_client.ApiClient(configuration=self._configuration)
-        self.api = AnsibleInventoryScanIngestApi(api_client=used_api_client)  # noqa: E501
+        self.api = AnsibleInventoryScanIngestApi()  # noqa: E501
 
     def tearDown(self):
         pass
@@ -36,57 +28,7 @@ class TestAnsibleInventoryScanIngestApi(ApiTestMixin, unittest.TestCase):
         """Test case for ansible_inventory_scan_ingest_ingest_ansible_inventory_scan
 
         """
-        from okclient.api.ansible_inventory_scan_ingest_api_endpoints import ansible_inventory_scan_ingest_ingest_ansible_inventory_scan as endpoint_module
-        response_status = 200
-        response_body = ''
-        content_type = 'application/json'
-
-
-        content_type = 'application/json;odata.metadata=minimal;odata.streaming=true'
-
-
-        content_type = 'application/json;odata.metadata=minimal;odata.streaming=false'
-
-
-        content_type = 'application/json;odata.metadata=minimal'
-
-
-        content_type = 'application/json;odata.metadata=full;odata.streaming=true'
-
-
-        content_type = 'application/json;odata.metadata=full;odata.streaming=false'
-
-
-        content_type = 'application/json;odata.metadata=full'
-
-
-        content_type = 'application/json;odata.metadata=none;odata.streaming=true'
-
-
-        content_type = 'application/json;odata.metadata=none;odata.streaming=false'
-
-
-        content_type = 'application/json;odata.metadata=none'
-
-
-        content_type = 'application/json;odata.streaming=true'
-
-
-        content_type = 'application/json;odata.streaming=false'
-
-
-        content_type = 'application/xml'
-
-
-        content_type = 'text/plain'
-
-
-        content_type = 'text/json'
-
-
-        content_type = 'application/*+json'
-
-
+        pass
 
 
 if __name__ == '__main__':

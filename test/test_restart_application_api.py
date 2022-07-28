@@ -10,24 +10,16 @@
 """
 
 import unittest
-from unittest.mock import patch
-
-import urllib3
 
 import okclient
 from okclient.api.restart_application_api import RestartApplicationApi  # noqa: E501
-from okclient import configuration, schemas, api_client
-
-from . import ApiTestMixin
 
 
-class TestRestartApplicationApi(ApiTestMixin, unittest.TestCase):
+class TestRestartApplicationApi(unittest.TestCase):
     """RestartApplicationApi unit test stubs"""
-    _configuration = configuration.Configuration()
 
     def setUp(self):
-        used_api_client = api_client.ApiClient(configuration=self._configuration)
-        self.api = RestartApplicationApi(api_client=used_api_client)  # noqa: E501
+        self.api = RestartApplicationApi()  # noqa: E501
 
     def tearDown(self):
         pass
@@ -36,9 +28,6 @@ class TestRestartApplicationApi(ApiTestMixin, unittest.TestCase):
         """Test case for restart_application_restart
 
         """
-        from okclient.api.restart_application_api_endpoints import restart_application_restart as endpoint_module
-        response_status = 200
-        response_body = ''
         pass
 
 

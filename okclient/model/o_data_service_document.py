@@ -60,8 +60,6 @@ from okclient.schemas import (  # noqa: F401
     BoolBase,
     BinaryBase,
     Schema,
-    NoneClass,
-    BoolClass,
     _SchemaValidator,
     _SchemaTypeChecker,
     _SchemaEnumMaker
@@ -84,7 +82,7 @@ class ODataServiceDocument(
     
     
     class entitySets(
-        _SchemaTypeChecker(typing.Union[tuple, NoneClass, ]),
+        _SchemaTypeChecker(typing.Union[tuple, none_type, ]),
         ListBase,
         NoneBase,
         Schema
@@ -103,7 +101,7 @@ class ODataServiceDocument(
     
     
     class singletons(
-        _SchemaTypeChecker(typing.Union[tuple, NoneClass, ]),
+        _SchemaTypeChecker(typing.Union[tuple, none_type, ]),
         ListBase,
         NoneBase,
         Schema
@@ -122,7 +120,7 @@ class ODataServiceDocument(
     
     
     class functionImports(
-        _SchemaTypeChecker(typing.Union[tuple, NoneClass, ]),
+        _SchemaTypeChecker(typing.Union[tuple, none_type, ]),
         ListBase,
         NoneBase,
         Schema
@@ -138,7 +136,6 @@ class ODataServiceDocument(
                 *args,
                 _configuration=_configuration,
             )
-    _additional_properties = None
 
 
     def __new__(
@@ -149,6 +146,7 @@ class ODataServiceDocument(
         singletons: typing.Union[singletons, Unset] = unset,
         functionImports: typing.Union[functionImports, Unset] = unset,
         _configuration: typing.Optional[Configuration] = None,
+        **kwargs: typing.Type[Schema],
     ) -> 'ODataServiceDocument':
         return super().__new__(
             cls,
@@ -158,6 +156,7 @@ class ODataServiceDocument(
             singletons=singletons,
             functionImports=functionImports,
             _configuration=_configuration,
+            **kwargs,
         )
 
 from okclient.model.o_data_entity_set_info import ODataEntitySetInfo

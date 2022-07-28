@@ -10,24 +10,16 @@
 """
 
 import unittest
-from unittest.mock import patch
-
-import urllib3
 
 import okclient
 from okclient.api.attribute_value_image_api import AttributeValueImageApi  # noqa: E501
-from okclient import configuration, schemas, api_client
-
-from . import ApiTestMixin
 
 
-class TestAttributeValueImageApi(ApiTestMixin, unittest.TestCase):
+class TestAttributeValueImageApi(unittest.TestCase):
     """AttributeValueImageApi unit test stubs"""
-    _configuration = configuration.Configuration()
 
     def setUp(self):
-        used_api_client = api_client.ApiClient(configuration=self._configuration)
-        self.api = AttributeValueImageApi(api_client=used_api_client)  # noqa: E501
+        self.api = AttributeValueImageApi()  # noqa: E501
 
     def tearDown(self):
         pass
@@ -36,18 +28,13 @@ class TestAttributeValueImageApi(ApiTestMixin, unittest.TestCase):
         """Test case for attribute_value_image_get
 
         """
-        from okclient.api.attribute_value_image_api_endpoints import attribute_value_image_get as endpoint_module
-        response_status = 200
-        response_body = ''
         pass
 
     def test_attribute_value_image_post(self):
         """Test case for attribute_value_image_post
 
         """
-        from okclient.api.attribute_value_image_api_endpoints import attribute_value_image_post as endpoint_module
-        response_status = 200
-        response_body = ''
+        pass
 
 
 if __name__ == '__main__':

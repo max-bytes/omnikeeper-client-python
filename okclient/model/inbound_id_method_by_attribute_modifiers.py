@@ -60,8 +60,6 @@ from okclient.schemas import (  # noqa: F401
     BoolBase,
     BinaryBase,
     Schema,
-    NoneClass,
-    BoolClass,
     _SchemaValidator,
     _SchemaTypeChecker,
     _SchemaEnumMaker
@@ -77,7 +75,6 @@ class InboundIDMethodByAttributeModifiers(
     Do not edit the class manually.
     """
     caseInsensitive = BoolSchema
-    _additional_properties = None
 
 
     def __new__(
@@ -85,10 +82,12 @@ class InboundIDMethodByAttributeModifiers(
         *args: typing.Union[dict, frozendict, ],
         caseInsensitive: typing.Union[caseInsensitive, Unset] = unset,
         _configuration: typing.Optional[Configuration] = None,
+        **kwargs: typing.Type[Schema],
     ) -> 'InboundIDMethodByAttributeModifiers':
         return super().__new__(
             cls,
             *args,
             caseInsensitive=caseInsensitive,
             _configuration=_configuration,
+            **kwargs,
         )

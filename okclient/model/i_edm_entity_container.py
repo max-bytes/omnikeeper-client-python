@@ -60,8 +60,6 @@ from okclient.schemas import (  # noqa: F401
     BoolBase,
     BinaryBase,
     Schema,
-    NoneClass,
-    BoolClass,
     _SchemaValidator,
     _SchemaTypeChecker,
     _SchemaEnumMaker
@@ -79,7 +77,7 @@ class IEdmEntityContainer(
     
     
     class elements(
-        _SchemaTypeChecker(typing.Union[tuple, NoneClass, ]),
+        _SchemaTypeChecker(typing.Union[tuple, none_type, ]),
         ListBase,
         NoneBase,
         Schema
@@ -103,7 +101,7 @@ class IEdmEntityContainer(
     
     
     class namespace(
-        _SchemaTypeChecker(typing.Union[NoneClass, str, ]),
+        _SchemaTypeChecker(typing.Union[none_type, str, ]),
         StrBase,
         NoneBase,
         Schema
@@ -122,7 +120,7 @@ class IEdmEntityContainer(
     
     
     class name(
-        _SchemaTypeChecker(typing.Union[NoneClass, str, ]),
+        _SchemaTypeChecker(typing.Union[none_type, str, ]),
         StrBase,
         NoneBase,
         Schema
@@ -138,7 +136,6 @@ class IEdmEntityContainer(
                 *args,
                 _configuration=_configuration,
             )
-    _additional_properties = None
 
 
     def __new__(
@@ -149,6 +146,7 @@ class IEdmEntityContainer(
         namespace: typing.Union[namespace, Unset] = unset,
         name: typing.Union[name, Unset] = unset,
         _configuration: typing.Optional[Configuration] = None,
+        **kwargs: typing.Type[Schema],
     ) -> 'IEdmEntityContainer':
         return super().__new__(
             cls,
@@ -158,6 +156,7 @@ class IEdmEntityContainer(
             namespace=namespace,
             name=name,
             _configuration=_configuration,
+            **kwargs,
         )
 
 from okclient.model.edm_schema_element_kind import EdmSchemaElementKind

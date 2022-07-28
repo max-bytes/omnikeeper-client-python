@@ -59,8 +59,6 @@ from okclient.schemas import (  # noqa: F401
     BoolBase,
     BinaryBase,
     Schema,
-    NoneClass,
-    BoolClass,
     _SchemaValidator,
     _SchemaTypeChecker,
     _SchemaEnumMaker
@@ -125,7 +123,6 @@ class SchemaForRequestBodyMultipartFormData(
     DictSchema
 ):
     _required_property_names = set((
-        'files',
     ))
     
     
@@ -138,14 +135,12 @@ class SchemaForRequestBodyMultipartFormData(
     def __new__(
         cls,
         *args: typing.Union[dict, frozendict, ],
-        files: files,
         _configuration: typing.Optional[Configuration] = None,
         **kwargs: typing.Type[Schema],
     ) -> 'SchemaForRequestBodyMultipartFormData':
         return super().__new__(
             cls,
             *args,
-            files=files,
             _configuration=_configuration,
             **kwargs,
         )

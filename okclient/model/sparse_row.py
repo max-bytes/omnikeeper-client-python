@@ -60,8 +60,6 @@ from okclient.schemas import (  # noqa: F401
     BoolBase,
     BinaryBase,
     Schema,
-    NoneClass,
-    BoolClass,
     _SchemaValidator,
     _SchemaTypeChecker,
     _SchemaEnumMaker
@@ -80,23 +78,13 @@ class SparseRow(
     
     
     class cells(
-        _SchemaTypeChecker(typing.Union[tuple, NoneClass, ]),
-        ListBase,
-        NoneBase,
-        Schema
+        ListSchema
     ):
     
-        def __new__(
-            cls,
-            *args: typing.Union[list, tuple, None, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> 'cells':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
-    _additional_properties = None
+        @classmethod
+        @property
+        def _items(cls) -> typing.Type['ChangeDataCell']:
+            return ChangeDataCell
 
 
     def __new__(
@@ -105,6 +93,7 @@ class SparseRow(
         ciid: typing.Union[ciid, Unset] = unset,
         cells: typing.Union[cells, Unset] = unset,
         _configuration: typing.Optional[Configuration] = None,
+        **kwargs: typing.Type[Schema],
     ) -> 'SparseRow':
         return super().__new__(
             cls,
@@ -112,6 +101,7 @@ class SparseRow(
             ciid=ciid,
             cells=cells,
             _configuration=_configuration,
+            **kwargs,
         )
 
 from okclient.model.change_data_cell import ChangeDataCell

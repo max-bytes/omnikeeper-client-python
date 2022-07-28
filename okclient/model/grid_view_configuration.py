@@ -60,8 +60,6 @@ from okclient.schemas import (  # noqa: F401
     BoolBase,
     BinaryBase,
     Schema,
-    NoneClass,
-    BoolClass,
     _SchemaValidator,
     _SchemaTypeChecker,
     _SchemaEnumMaker
@@ -77,83 +75,24 @@ class GridViewConfiguration(
     Do not edit the class manually.
     """
     showCIIDColumn = BoolSchema
-    
-    
-    class writeLayer(
-        _SchemaTypeChecker(typing.Union[NoneClass, str, ]),
-        StrBase,
-        NoneBase,
-        Schema
-    ):
-    
-        def __new__(
-            cls,
-            *args: typing.Union[str, None, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> 'writeLayer':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
+    writeLayer = StrSchema
     
     
     class readLayerset(
-        _SchemaTypeChecker(typing.Union[tuple, NoneClass, ]),
-        ListBase,
-        NoneBase,
-        Schema
+        ListSchema
     ):
-    
-        def __new__(
-            cls,
-            *args: typing.Union[list, tuple, None, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> 'readLayerset':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
+        _items = StrSchema
     
     
     class columns(
-        _SchemaTypeChecker(typing.Union[tuple, NoneClass, ]),
-        ListBase,
-        NoneBase,
-        Schema
+        ListSchema
     ):
     
-        def __new__(
-            cls,
-            *args: typing.Union[list, tuple, None, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> 'columns':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
-    
-    
-    class trait(
-        _SchemaTypeChecker(typing.Union[NoneClass, str, ]),
-        StrBase,
-        NoneBase,
-        Schema
-    ):
-    
-        def __new__(
-            cls,
-            *args: typing.Union[str, None, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> 'trait':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
-    _additional_properties = None
+        @classmethod
+        @property
+        def _items(cls) -> typing.Type['GridViewColumn']:
+            return GridViewColumn
+    trait = StrSchema
 
 
     def __new__(
@@ -165,6 +104,7 @@ class GridViewConfiguration(
         columns: typing.Union[columns, Unset] = unset,
         trait: typing.Union[trait, Unset] = unset,
         _configuration: typing.Optional[Configuration] = None,
+        **kwargs: typing.Type[Schema],
     ) -> 'GridViewConfiguration':
         return super().__new__(
             cls,
@@ -175,6 +115,7 @@ class GridViewConfiguration(
             columns=columns,
             trait=trait,
             _configuration=_configuration,
+            **kwargs,
         )
 
 from okclient.model.grid_view_column import GridViewColumn

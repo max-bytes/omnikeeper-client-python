@@ -60,8 +60,6 @@ from okclient.schemas import (  # noqa: F401
     BoolBase,
     BinaryBase,
     Schema,
-    NoneClass,
-    BoolClass,
     _SchemaValidator,
     _SchemaTypeChecker,
     _SchemaEnumMaker
@@ -82,7 +80,6 @@ class IEdmTypeReference(
     @property
     def definition(cls) -> typing.Type['IEdmType']:
         return IEdmType
-    _additional_properties = None
 
 
     def __new__(
@@ -91,6 +88,7 @@ class IEdmTypeReference(
         isNullable: typing.Union[isNullable, Unset] = unset,
         definition: typing.Union['IEdmType', Unset] = unset,
         _configuration: typing.Optional[Configuration] = None,
+        **kwargs: typing.Type[Schema],
     ) -> 'IEdmTypeReference':
         return super().__new__(
             cls,
@@ -98,6 +96,7 @@ class IEdmTypeReference(
             isNullable=isNullable,
             definition=definition,
             _configuration=_configuration,
+            **kwargs,
         )
 
 from okclient.model.i_edm_type import IEdmType

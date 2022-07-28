@@ -60,8 +60,6 @@ from okclient.schemas import (  # noqa: F401
     BoolBase,
     BinaryBase,
     Schema,
-    NoneClass,
-    BoolClass,
     _SchemaValidator,
     _SchemaTypeChecker,
     _SchemaEnumMaker
@@ -76,64 +74,11 @@ class GenericInboundRelation(
 
     Do not edit the class manually.
     """
-    
-    
-    class _from(
-        _SchemaTypeChecker(typing.Union[NoneClass, str, ]),
-        StrBase,
-        NoneBase,
-        Schema
-    ):
-    
-        def __new__(
-            cls,
-            *args: typing.Union[str, None, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> '_from':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
-    
-    
-    class predicate(
-        _SchemaTypeChecker(typing.Union[NoneClass, str, ]),
-        StrBase,
-        NoneBase,
-        Schema
-    ):
-    
-        def __new__(
-            cls,
-            *args: typing.Union[str, None, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> 'predicate':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
-    
-    
-    class to(
-        _SchemaTypeChecker(typing.Union[NoneClass, str, ]),
-        StrBase,
-        NoneBase,
-        Schema
-    ):
-    
-        def __new__(
-            cls,
-            *args: typing.Union[str, None, ],
-            _configuration: typing.Optional[Configuration] = None,
-        ) -> 'to':
-            return super().__new__(
-                cls,
-                *args,
-                _configuration=_configuration,
-            )
-    _additional_properties = None
+    _from = StrSchema
+    locals()["from"] = _from
+    del locals()['_from']
+    predicate = StrSchema
+    to = StrSchema
 
 
     def __new__(
@@ -142,6 +87,7 @@ class GenericInboundRelation(
         predicate: typing.Union[predicate, Unset] = unset,
         to: typing.Union[to, Unset] = unset,
         _configuration: typing.Optional[Configuration] = None,
+        **kwargs: typing.Type[Schema],
     ) -> 'GenericInboundRelation':
         return super().__new__(
             cls,
@@ -149,4 +95,5 @@ class GenericInboundRelation(
             predicate=predicate,
             to=to,
             _configuration=_configuration,
+            **kwargs,
         )

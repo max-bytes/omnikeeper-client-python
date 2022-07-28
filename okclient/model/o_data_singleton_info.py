@@ -60,8 +60,6 @@ from okclient.schemas import (  # noqa: F401
     BoolBase,
     BinaryBase,
     Schema,
-    NoneClass,
-    BoolClass,
     _SchemaValidator,
     _SchemaTypeChecker,
     _SchemaEnumMaker
@@ -84,7 +82,7 @@ class ODataSingletonInfo(
     
     
     class url(
-        _SchemaTypeChecker(typing.Union[NoneClass, str, ]),
+        _SchemaTypeChecker(typing.Union[none_type, str, ]),
         StrBase,
         NoneBase,
         Schema
@@ -103,7 +101,7 @@ class ODataSingletonInfo(
     
     
     class name(
-        _SchemaTypeChecker(typing.Union[NoneClass, str, ]),
+        _SchemaTypeChecker(typing.Union[none_type, str, ]),
         StrBase,
         NoneBase,
         Schema
@@ -122,7 +120,7 @@ class ODataSingletonInfo(
     
     
     class title(
-        _SchemaTypeChecker(typing.Union[NoneClass, str, ]),
+        _SchemaTypeChecker(typing.Union[none_type, str, ]),
         StrBase,
         NoneBase,
         Schema
@@ -138,7 +136,6 @@ class ODataSingletonInfo(
                 *args,
                 _configuration=_configuration,
             )
-    _additional_properties = None
 
 
     def __new__(
@@ -149,6 +146,7 @@ class ODataSingletonInfo(
         name: typing.Union[name, Unset] = unset,
         title: typing.Union[title, Unset] = unset,
         _configuration: typing.Optional[Configuration] = None,
+        **kwargs: typing.Type[Schema],
     ) -> 'ODataSingletonInfo':
         return super().__new__(
             cls,
@@ -158,6 +156,7 @@ class ODataSingletonInfo(
             name=name,
             title=title,
             _configuration=_configuration,
+            **kwargs,
         )
 
 from okclient.model.o_data_type_annotation import ODataTypeAnnotation
