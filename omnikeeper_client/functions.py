@@ -91,8 +91,6 @@ def graphQL_merged_attribute_value_to_simple_value(attribute_value: Dict[str, An
 
 def graphQL_merged_attributes_to_simple_attributes(merged_attributes: list[Dict[str, Any]]) -> Dict[str, Any]:
     return {inner['attribute']['name']: graphQL_merged_attribute_value_to_simple_value(inner['attribute']['value']) for inner in merged_attributes}
-    # inner = graphql_attribute['attribute']
-    # return {inner['name']: inner['value']['values']}
 
 def get_ci_attributes(client: Client, layer_ids: list[str], ciids: Optional[list[uuid.UUID]] = None) -> Dict[uuid.UUID, Any]:
     query = gql("""
