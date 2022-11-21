@@ -4,29 +4,8 @@ from requests.structures import CaseInsensitiveDict
 import requests
 from oauthlib.oauth2 import LegacyApplicationClient
 from requests_oauthlib import OAuth2Session
-from pythonjsonlogger import jsonlogger
-import logging
 import hashlib
 import json
-
-def create_logger(level: int):
-    logger = logging.getLogger()
-    logger.setLevel(level)
-
-    # clean up existing stuff
-    list(map(logger.removeHandler, logger.handlers))
-    list(map(logger.removeFilter, logger.filters))
-
-    handler = logging.StreamHandler()
-    handler.setLevel(level)
-
-    formatter = jsonlogger.JsonFormatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    handler.setFormatter(formatter)
-
-    logger.addHandler(handler)
-
-    return logger
-
 
 def build_temp_id(*parts) -> str:
     return ' - '.join(parts)

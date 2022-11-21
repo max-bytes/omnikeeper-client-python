@@ -7,11 +7,31 @@ import urllib.request, json
 from webcolors import hex_to_rgb
 import json
 import uuid
+from pythonjsonlogger import jsonlogger
+import logging
 from typing import (
     Any,
     Dict,
     Optional,
 )
+
+def create_logger(level: int):
+    logger = logging.getLogger()
+    logger.setLevel(level)
+
+    # clean up existing stuff
+    list(map(logger.removeHandler, logger.handlers))
+    list(map(logger.removeFilter, logger.filters))
+
+    handler = logging.StreamHandler()
+    handler.setLevel(level)
+
+    formatter = jsonlogger.JsonFormatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    handler.setFormatter(formatter)
+
+    logger.addHandler(handler)
+
+    return logger
 
 def get_access_token(config: dict) -> str:
     # first retrieve token_url from omnikeeper endpoint
