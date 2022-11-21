@@ -93,7 +93,7 @@ def ingest_files(config: dict, files: list[io.StringIO], access_token: str):
     headers = CaseInsensitiveDict()
     headers["Authorization"] = f"Bearer %s" % access_token
 
-    final_files={file.name:file for file in files}
+    final_files=list(map(lambda file: ('files', file), files))
     resp = requests.post(api_url, params=params, files=final_files, verify=False, headers=headers, timeout=config["timeout_seconds"])
     if resp.status_code != 200:
         raise Exception(f"Expected return code 200, received {resp.status_code}: {resp.content}")
