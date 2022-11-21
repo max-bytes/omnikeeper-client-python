@@ -6,6 +6,7 @@ from oauthlib.oauth2 import LegacyApplicationClient
 from requests_oauthlib import OAuth2Session
 import hashlib
 import json
+import io
 
 def build_temp_id(*parts) -> str:
     return ' - '.join(parts)
@@ -84,7 +85,7 @@ def ingest_data(config: dict, data: array, access_token: str):
     if resp.status_code != 200:
         raise Exception(f"Expected return code 200, received {resp.status_code}: {resp.content}")
 
-def ingest_files(config: dict, files, access_token: str):
+def ingest_files(config: dict, files: list[io.StringIO], access_token: str):
     api_url = f"%s/api/v1/ingest/genericJSON/files" % (config["url"])
     params={
         "context": config["ingest_context"]
@@ -92,6 +93,7 @@ def ingest_files(config: dict, files, access_token: str):
     headers = CaseInsensitiveDict()
     headers["Authorization"] = f"Bearer %s" % access_token
 
-    resp = requests.post(api_url, params=params, files=files, verify=False, headers=headers, timeout=config["timeout_seconds"])
+    final_files={file.name:file for file in files}
+    resp = requests.post(api_url, params=params, files=final_files, verify=False, headers=headers, timeout=config["timeout_seconds"])
     if resp.status_code != 200:
         raise Exception(f"Expected return code 200, received {resp.status_code}: {resp.content}")
