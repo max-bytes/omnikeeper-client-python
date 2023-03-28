@@ -9,6 +9,8 @@ import json
 import uuid
 from pythonjsonlogger import jsonlogger
 import logging
+
+from __future__ import annotations
 from typing import (
     Any,
     Dict,
