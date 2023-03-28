@@ -9,7 +9,8 @@
 ### create virtual environment (optional)
 
 ```bash
-virtualenv -p python3.10 venv
+pip install virtualenv
+virtualenv -p python3.9 venv
 ```
 
 or

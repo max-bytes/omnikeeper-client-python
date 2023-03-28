@@ -12,7 +12,7 @@ import logging
 from typing import (
     Any,
     Dict,
-    Optional,
+    Optional, Union,
 )
 
 def create_logger(level: int):
@@ -51,7 +51,7 @@ def create_graphql_client(url: str, access_token: str) -> Client:
     client = Client(transport=transport, fetch_schema_from_transport=True)
     return client
 
-def execute_graphql(client: Client, query: str | DocumentNode, variables: Optional[Dict[str, Any]] = None):
+def execute_graphql(client: Client, query: Union[str, DocumentNode], variables: Optional[Dict[str, Any]] = None):
     prepared_query = gql(query) if query is str else query
     data = client.execute(prepared_query, variable_values=variables)
     return data
@@ -95,19 +95,18 @@ def graphQL_merged_attribute_value_to_simple_value(attribute_value: Dict[str, An
     isArray = attribute_value['isArray']
     type = attribute_value['type']
     values = attribute_value['values']
-    match type:
-        case "TEXT" | "MULTILINE_TEXT":
-            return values if isArray else values[0]
-        case "INTEGER":
-            return [int(v) for v in values] if isArray else int(values[0]) # python 3's int is 64 bit, like omnikeeper's Integer
-        case "DOUBLE":
-            return [float(v) for v in values] if isArray else float(values[0]) # python 3's float is 64 bit, like omnikeeper's Double
-        case "BOOLEAN":
-            return [bool(v) for v in values] if isArray else bool(values[0])
-        case "JSON":
-            return [json.loads(v) for v in values] if isArray else json.loads(values[0])
-        case _:
-            return values if isArray else values[0]
+    if type in ("TEXT", "MULTILINE_TEXT"):
+        return values if isArray else values[0]
+    elif type == "INTEGER":
+        return [int(v) for v in values] if isArray else int(values[0]) # python 3's int is 64 bit, like omnikeeper's Integer
+    elif type == "DOUBLE":
+        return [float(v) for v in values] if isArray else float(values[0]) # python 3's float is 64 bit, like omnikeeper's Double
+    elif type == "BOOLEAN":
+        return [bool(v) for v in values] if isArray else bool(values[0])
+    elif type == "JSON":
+        return [json.loads(v) for v in values] if isArray else json.loads(values[0])
+    else:
+        return values if isArray else values[0]
 
 def graphQL_merged_attributes_to_simple_attributes(merged_attributes: list[Dict[str, Any]]) -> Dict[str, Any]:
     return {inner['attribute']['name']: graphQL_merged_attribute_value_to_simple_value(inner['attribute']['value']) for inner in merged_attributes}
