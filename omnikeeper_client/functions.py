@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from oauthlib.oauth2 import LegacyApplicationClient
 from requests_oauthlib import OAuth2Session
 from gql import gql, Client
@@ -10,7 +12,6 @@ import uuid
 from pythonjsonlogger import jsonlogger
 import logging
 
-from __future__ import annotations
 from typing import (
     Any,
     Dict,
