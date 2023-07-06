@@ -2,7 +2,7 @@ from setuptools import setup
 setup(
     name='omnikeeper_client',
     packages=['omnikeeper_client'],
-    version='2.0.3',
+    version='2.0.4',
     description='Python library containing helper functions for implementing omnikeeper clients',
     author='Maximilian Csuk',
     license='Apache 2.0',
