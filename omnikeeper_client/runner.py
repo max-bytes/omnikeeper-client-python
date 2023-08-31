@@ -61,8 +61,8 @@ class Runner:
 
         query_classes = __import__('queryclasses')
 
-        for query_class in config['queryclasses']:
-            query_class_obj = getattr(query_classes, query_class)()
-            query_class_obj.process(client, config, logger)
+        for query_class  in config['queryclasses']:
+            query_class_obj = getattr(query_classes, query_class['class'])(client, logger, query_class['cfg'])
+            query_class_obj.process()
 
         logger.info('The main runner finished processing all queryclasses')
