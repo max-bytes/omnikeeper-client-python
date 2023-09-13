@@ -1,4 +1,4 @@
-from gql import Client
+from gql import Client, gql
 import pandas as pd
 import graphql
 from graphql import GraphQLType
@@ -27,14 +27,20 @@ def is_non_trait_hinted_relation_field(type: GraphQLType) -> bool:
         return False
     return True
 
+def get_escaped_trait_name(name: str) -> str:
+    return str.replace(name, '.', '__')
+
+def get_prefixed_trait_name(name: str) -> str:
+    if name.startswith("_"):
+        return f"m{name}"
+    return name
+
 def get_all(client: Client, trait_name: str, layers: [str], keep_ciid_as_column: bool = False) -> pd.DataFrame:
     with client as session:
         ds = DSLSchema(client.schema)
 
-        escaped_trait_name = str.replace(trait_name, '.', '__')
-        prefixed_escaped_trait_name = escaped_trait_name
-        if prefixed_escaped_trait_name.startswith("_"):
-            prefixed_escaped_trait_name = f"m{prefixed_escaped_trait_name}"
+        escaped_trait_name = get_escaped_trait_name(trait_name)
+        prefixed_escaped_trait_name = get_prefixed_trait_name(escaped_trait_name)
 
         tetType = getattr(ds.TraitEntitiesType, prefixed_escaped_trait_name)
         dsl_type = getattr(ds, f"TE_{escaped_trait_name}")
@@ -69,10 +75,8 @@ def get_relation(client: Client, trait_name: str, relation_name: str, layers: [s
     with client as session:
         ds = DSLSchema(client.schema)
 
-        escaped_trait_name = str.replace(trait_name, '.', '__')
-        prefixed_escaped_trait_name = escaped_trait_name
-        if prefixed_escaped_trait_name.startswith("_"):
-            prefixed_escaped_trait_name = f"m{prefixed_escaped_trait_name}"
+        escaped_trait_name = get_escaped_trait_name(trait_name)
+        prefixed_escaped_trait_name = get_prefixed_trait_name(escaped_trait_name)
 
         tetType = getattr(ds.TraitEntitiesType, prefixed_escaped_trait_name)
         dsl_type = getattr(ds, f"TE_{escaped_trait_name}")
@@ -104,3 +108,38 @@ def get_relation(client: Client, trait_name: str, relation_name: str, layers: [s
         data_frame['related_ciids'] = data_frame['related_ciids'].apply(lambda x: list(map(lambda i: i['relatedCIID'], x)))
 
         return data_frame
+    
+def bulk_replace(client: Client, trait_name: str, input: pd.DataFrame, id_attributes: [str], id_relations: [str], write_layer: str, read_layers: [str] = None, filter: object = {}) -> bool:
+    escaped_trait_name = get_escaped_trait_name(trait_name)
+    prefixed_escaped_trait_name = get_prefixed_trait_name(escaped_trait_name)
+
+    with client as session:
+        # example for filter object: {type: {exact: "Validator"}, context: {exact: "test"}, group: {exact: "test"} }
+        query = gql(f"""
+            mutation($readLayers: [String]!, $writeLayer: String!, $idAttributes: [String!]!, $idRelations: [String!]!, $filter: TE_filter_Input_{escaped_trait_name}!, $input: [TE_Upsert_Input_{escaped_trait_name}]!) {{
+            bulkReplaceByFilter_{prefixed_escaped_trait_name}(
+                layers: $readLayers
+                writeLayer: $writeLayer
+                filter: $filter
+                input: $input
+                idAttributes: $idAttributes
+                idRelations: $idRelations
+            ) {{
+                success
+            }}
+            }}
+            """)
+        
+        final_input = input.to_dict('records')
+        
+        if read_layers is None:
+            read_layers = [write_layer]
+        result = session.execute(query, variable_values=dict(
+            writeLayer=write_layer, 
+            readLayers=read_layers, 
+            idAttributes=id_attributes,
+            idRelations=id_relations,
+            filter=filter,
+            input=final_input
+            ))
+    return True # TODO: proper return value
