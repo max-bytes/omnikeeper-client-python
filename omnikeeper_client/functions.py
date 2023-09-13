@@ -4,19 +4,23 @@ from oauthlib.oauth2 import LegacyApplicationClient
 from requests_oauthlib import OAuth2Session
 from gql import gql, Client
 from graphql import DocumentNode
-from gql.transport.aiohttp import AIOHTTPTransport
+from gql.transport.requests import RequestsHTTPTransport
 import urllib.request, json
 from webcolors import hex_to_rgb
 import json
 import uuid
 from pythonjsonlogger import jsonlogger
 import logging
+from gql.transport.requests import log as requests_logger
+    
+# HACK: gql is VERY verbose, even on log level INFO; therefore we manually set the log level for the transport to a higher level
+# see https://gql.readthedocs.io/en/stable/advanced/logging.html#disabling-logs
+requests_logger.setLevel(logging.WARNING)
 
 from typing import (
     Any,
     Dict,
-    Optional, Union,
-    List
+    Optional, Union
 )
 
 def create_logger(level: int):
@@ -51,7 +55,8 @@ def get_access_token(config: dict) -> str:
     return token["access_token"]
 
 def create_graphql_client(url: str, access_token: str) -> Client:
-    transport = AIOHTTPTransport(url=url, headers={'Authorization': "Bearer %s" % access_token})
+    transport = RequestsHTTPTransport(url=url, headers={'Authorization': "Bearer %s" % access_token}, verify=False)
+    # transport = AIOHTTPTransport(url=url, headers={'Authorization': "Bearer %s" % access_token})
     client = Client(transport=transport, fetch_schema_from_transport=True)
     return client
 
