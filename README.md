@@ -43,3 +43,7 @@ python setup.py bdist_wheel
 ```bash
 twine upload dist/omnikeeper_client-2.0.0-py3-none-any.whl
 ```
+
+### Use runner to build applications using omnikeeper
+
+Check documentation in [runner documetation](runner.md).
