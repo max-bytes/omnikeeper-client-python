@@ -109,6 +109,36 @@ def get_relation(client: Client, trait_name: str, relation_name: str, layers: [s
 
         return data_frame
     
+
+def set_all(client: Client, trait_name: str, input: pd.DataFrame, write_layer: str, read_layers: [str] = None) -> bool:
+    escaped_trait_name = get_escaped_trait_name(trait_name)
+    prefixed_escaped_trait_name = get_prefixed_trait_name(escaped_trait_name)
+
+    with client as session:
+        query = gql(f"""
+            mutation($readLayers: [String]!, $writeLayer: String!, $input: [TE_CIID_And_Upsert_Attributes_Only_Input_{escaped_trait_name}]!) {{
+            bulkReplace_{prefixed_escaped_trait_name}(
+                layers: $readLayers
+                writeLayer: $writeLayer
+                input: $input
+            ) {{
+                success
+            }}
+            }}
+            """)
+        
+        final_input = list(map(lambda kv: {"ciid": kv[0], "attributes": kv[1]}, input.to_dict('index').items()))
+        
+        if read_layers is None:
+            read_layers = [write_layer]
+        result = session.execute(query, variable_values=dict(
+            writeLayer=write_layer, 
+            readLayers=read_layers, 
+            input=final_input
+            ))
+        return result[f"bulkReplace_{prefixed_escaped_trait_name}"]["success"]
+
+    
 def bulk_replace(client: Client, trait_name: str, input: pd.DataFrame, id_attributes: [str], id_relations: [str], write_layer: str, read_layers: [str] = None, filter: object = {}) -> bool:
     escaped_trait_name = get_escaped_trait_name(trait_name)
     prefixed_escaped_trait_name = get_prefixed_trait_name(escaped_trait_name)
