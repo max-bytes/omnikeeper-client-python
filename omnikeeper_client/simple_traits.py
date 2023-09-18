@@ -142,4 +142,4 @@ def bulk_replace(client: Client, trait_name: str, input: pd.DataFrame, id_attrib
             filter=filter,
             input=final_input
             ))
-    return True # TODO: proper return value
+        return result[f"bulkReplaceByFilter_{prefixed_escaped_trait_name}"]["success"]
