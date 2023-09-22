@@ -54,8 +54,11 @@ def get_access_token(config: dict) -> str:
     token = oauth.fetch_token(token_url=token_url, username=config['username'], password=config['password'])
     return token["access_token"]
 
-def create_graphql_client(url: str, access_token: str) -> Client:
-    transport = RequestsHTTPTransport(url=url, headers={'Authorization': "Bearer %s" % access_token}, verify=False)
+def create_graphql_client(url: str, access_token: Optional[str] = None) -> Client:
+    headers={}
+    if access_token is not None:
+        headers['Authorization'] = "Bearer %s" % access_token
+    transport = RequestsHTTPTransport(url=url, headers=headers, verify=False)
     # transport = AIOHTTPTransport(url=url, headers={'Authorization': "Bearer %s" % access_token})
     client = Client(transport=transport, fetch_schema_from_transport=True)
     return client
