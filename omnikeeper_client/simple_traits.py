@@ -3,6 +3,8 @@ import pandas as pd
 import graphql
 from graphql import GraphQLType
 from gql.dsl import DSLQuery, DSLVariableDefinitions, DSLSchema, dsl_gql
+from dateutil import parser
+import datetime
 
 def is_relation_field(type: GraphQLType) -> bool:
     # a typical relation field looks like this:
@@ -34,6 +36,34 @@ def get_prefixed_trait_name(name: str) -> str:
     if name.startswith("_"):
         return f"m{name}"
     return name
+
+def get_latest_change_for_all(client: Client, trait_name: str, layers: [str]) -> datetime.datetime:
+    with client as session:
+        ds = DSLSchema(client.schema)
+
+        escaped_trait_name = get_escaped_trait_name(trait_name)
+        prefixed_escaped_trait_name = get_prefixed_trait_name(escaped_trait_name)
+
+        tetType = getattr(ds.TraitEntitiesType, prefixed_escaped_trait_name)
+        dsl_root_type = getattr(ds, f"TERoot_{escaped_trait_name}")
+        var = DSLVariableDefinitions()
+        raw_query = DSLQuery(
+                    ds.GraphQLQueryRoot.traitEntities.args(layers=var.layers).select(
+                        tetType.select(
+                            dsl_root_type.latestChangeAll.select(
+                                ds.ChangesetType.timestamp
+                            )
+                        )
+                    )
+                )
+        raw_query.variable_definitions = var
+        query = dsl_gql(raw_query)
+
+        result = session.execute(query, variable_values={"layers": layers})
+
+        timestamp_str = result['traitEntities'][prefixed_escaped_trait_name]['latestChangeAll']['timestamp']
+        timestamp = parser.parse(timestamp_str)
+        return timestamp
 
 def get_all(client: Client, trait_name: str, layers: [str], keep_ciid_as_column: bool = False) -> pd.DataFrame:
     with client as session:

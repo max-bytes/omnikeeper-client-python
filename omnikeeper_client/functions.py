@@ -5,7 +5,7 @@ from requests_oauthlib import OAuth2Session
 from gql import gql, Client
 from graphql import DocumentNode
 from gql.transport.requests import RequestsHTTPTransport
-import urllib.request, json
+import requests
 from webcolors import hex_to_rgb
 import json
 import uuid
@@ -44,8 +44,7 @@ def create_logger(level: int):
 def get_access_token(config: dict) -> str:
     # first retrieve token_url from omnikeeper endpoint
     oauth_url = "%s/.well-known/openid-configuration" % config['omnikeeper_url']
-    with urllib.request.urlopen(oauth_url) as url:
-        data = json.loads(url.read().decode())
+    data = requests.get(oauth_url).json()
     token_url = data["token_endpoint"]
 
     # now fetch access_token from token_url, providing username and password
@@ -146,8 +145,8 @@ def get_ci_attributes(client: Client, layer_ids: list[str], ciids: Optional[list
     
     return cis
 
-def build_graphQL_InsertCIAttributeInputType(ciid: uuid.UUID, name: str, value: str) -> dict[str, Any]:
-    return dict(ci=str(ciid), name=name, value=dict(type="TEXT", isArray=False, values=[value]))
+def build_graphQL_InsertCIAttributeInputType(ciid: uuid.UUID, name: str, value: Any, type: str = "TEXT", isArray: bool = False) -> dict[str, Any]:
+    return dict(ci=str(ciid), name=name, value=dict(type=type, isArray=isArray, values=[value]))
 
 def mutate_cis(client: Client, write_layer_id: str, read_layer_ids: list[str], attribute_inserts: list[dict[str, Any]]) -> bool:
     query = gql("""
