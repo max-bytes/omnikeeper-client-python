@@ -1,49 +1,38 @@
 # omnikeeper-client-python
 
-## Requirements
+## Usage
 
-* Python 3.9
+### prepare your environment
 
-## Development Setup
+This setup was tested and developed using VSCode
 
-### create virtual environment (optional)
+~~~bash
+# ensure no local stuff is added
+unset PYTHONPATH
 
-```bash
-pip install virtualenv
-pip install wheel
-virtualenv -p python3.9 venv
-```
+python3 -m venv .venv
+. .venv/bin/activate
+pip3 install --upgrade pip
 
-or
-
-```bash
-python3.9 -m venv venv
-```
-
-### enter virtual environment (optional)
-
-```bash
-source ./venv/bin/activate
-```
-
-### install requirements
-
-```bash
+# install project requirements
 pip3 install -r requirements.txt
-```
 
-### build library
+# install additional dev requirements (used to develop)
+pip3 install -r requirements-dev.txt
+~~~
 
-```bash
-python setup.py bdist_wheel
-```
+### get familiar
 
-### upload to PyPi
+have a look at our [examples](examples/)
 
-```bash
-twine upload dist/omnikeeper_client-2.0.0-py3-none-any.whl
-```
+## Build and Package
 
-### Use runner to build applications using omnikeeper
+**Work in Progress**
 
-Check documentation in [runner documetation](runner.md).
+
+https://packaging.python.org/en/latest/tutorials/packaging-projects/#generating-distribution-archives
+
+~~~bash
+python3 -m pip install --upgrade build
+
+~~~
