@@ -57,7 +57,7 @@ def create_graphql_client(url: str, access_token: Optional[str] = None) -> Clien
     headers={}
     if access_token is not None:
         headers['Authorization'] = "Bearer %s" % access_token
-    transport = RequestsHTTPTransport(url=url, headers=headers, verify=False)
+    transport = RequestsHTTPTransport(url=url, headers=headers, verify=True)
     # transport = AIOHTTPTransport(url=url, headers={'Authorization': "Bearer %s" % access_token})
     client = Client(transport=transport, fetch_schema_from_transport=True)
     return client
