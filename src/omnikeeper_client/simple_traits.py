@@ -97,8 +97,9 @@ def get_all(client: Client, trait_name: str, layers: [str], keep_ciid_as_column:
         data_frame = (
             pd.json_normalize(result['traitEntities'][prefixed_escaped_trait_name]['all'])
                 .set_index('ciid', drop=not keep_ciid_as_column)
-                .rename(columns=lambda n: n.removeprefix("entity."))
         )
+        data_frame.columns = data_frame.columns.str.removeprefix('entity.')
+
         return data_frame
 
 def get_relation(client: Client, trait_name: str, relation_name: str, layers: [str], keep_ciid_as_column: bool = False) -> pd.DataFrame:
