@@ -12,6 +12,7 @@ import uuid
 from pythonjsonlogger import jsonlogger
 import logging
 from gql.transport.requests import log as requests_logger
+from deprecated import deprecated
     
 # HACK: gql is VERY verbose, even on log level INFO; therefore we manually set the log level for the transport to a higher level
 # see https://gql.readthedocs.io/en/stable/advanced/logging.html#disabling-logs
@@ -53,6 +54,7 @@ def get_access_token(config: dict) -> str:
     token = oauth.fetch_token(token_url=token_url, username=config['username'], password=config['password'])
     return token["access_token"]
 
+# @deprecated(category=FutureWarning, version='3.5.0', reason="please use xyz instead")
 def create_graphql_client(url: str, access_token: Optional[str] = None) -> Client:
     headers={}
     if access_token is not None:
