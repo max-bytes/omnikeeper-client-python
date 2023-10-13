@@ -94,9 +94,9 @@ def truncate_layer(client: Client, layer_id: str) -> bool:
     execute_graphql(client, query, variables=dict(id=layer_id))
     return True
 
+@deprecated(category=FutureWarning, reason="please use omnikeeper_client.* public functions instead")
 def hexString2RGBColor(hex: str) -> int:
-    (r,g,b) = hex_to_rgb(hex)
-    return (r << 16) | (g << 8) | (b)
+    return okc.hexString2RGBColor(hex)
 
 @deprecated(category=FutureWarning, reason="please use omnikeeper_client.* public functions instead")
 def upsert_layerdata(client: Client, layer_id: str, description: str, argbColor: int) -> bool:
