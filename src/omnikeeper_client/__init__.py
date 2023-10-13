@@ -8,6 +8,10 @@ from .layer import (
     truncate_layer,
 )
 
+from .ci import (
+    create_ci
+)
+
 from .util import (
     hexString2RGBColor,
 )

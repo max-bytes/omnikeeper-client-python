@@ -132,6 +132,7 @@ def graphQL_merged_attribute_value_to_simple_value(attribute_value: Dict[str, An
 def graphQL_merged_attributes_to_simple_attributes(merged_attributes: list[Dict[str, Any]]) -> Dict[str, Any]:
     return {inner['attribute']['name']: graphQL_merged_attribute_value_to_simple_value(inner['attribute']['value']) for inner in merged_attributes}
 
+# @deprecated(category=FutureWarning, reason="please use omnikeeper_client.* public functions instead")
 def get_ci_attributes(client: Client, layer_ids: list[str], ciids: Optional[list[uuid.UUID]] = None) -> Dict[uuid.UUID, Any]:
     query = gql("""
     query ($layers: [String]!, $ciids: [Guid]) {
@@ -158,6 +159,7 @@ def get_ci_attributes(client: Client, layer_ids: list[str], ciids: Optional[list
 def build_graphQL_InsertCIAttributeInputType(ciid: uuid.UUID, name: str, value: Any, type: str = "TEXT", isArray: bool = False) -> dict[str, Any]:
     return dict(ci=str(ciid), name=name, value=dict(type=type, isArray=isArray, values=[value]))
 
+# @deprecated(category=FutureWarning, reason="please use omnikeeper_client.* public functions instead")
 def mutate_cis(client: Client, write_layer_id: str, read_layer_ids: list[str], attribute_inserts: list[dict[str, Any]]) -> bool:
     query = gql("""
     mutation ($writeLayer: String!, $readLayers: [String]!, $insertAttributes: [InsertCIAttributeInputType], $removeAttributes: [RemoveCIAttributeInputType], $insertRelations: [InsertRelationInputType], $removeRelations: [RemoveRelationInputType]) {
@@ -179,6 +181,7 @@ def mutate_cis(client: Client, write_layer_id: str, read_layer_ids: list[str], a
         ))
     return True
 
+@deprecated(category=FutureWarning, reason="please use omnikeeper_client.* public functions instead")
 def create_ci(client: Client, ci_name: str, layer_id_for_ci_name: str) -> uuid.UUID:
     query = gql("""
     mutation($name: String!, $layerIDForName: String!) {
