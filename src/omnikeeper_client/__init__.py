@@ -3,5 +3,6 @@ from .apiclient import (
 )
 
 from .layer import (
-    create_layer
+    create_layer,
+    update_layerdata,
 )

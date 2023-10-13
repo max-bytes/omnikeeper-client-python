@@ -98,6 +98,7 @@ def hexString2RGBColor(hex: str) -> int:
     (r,g,b) = hex_to_rgb(hex)
     return (r << 16) | (g << 8) | (b)
 
+@deprecated(category=FutureWarning, reason="please use omnikeeper_client.* public functions instead")
 def upsert_layerdata(client: Client, layer_id: str, description: str, argbColor: int) -> bool:
     query = gql("""
     mutation ($id: String!, $description: String!, $color: Int!) {
