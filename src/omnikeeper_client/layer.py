@@ -78,3 +78,34 @@ def update_layerdata(ok_api_client: okc.OkApiClient, layer_id: str, description:
         return True
     except TransportQueryError as e:
         return False
+    
+def truncate_layer(ok_api_client: okc.OkApiClient, layer_id: str) -> bool:
+    """truncate a layer, means remove every attribute on all CIs on that layer
+
+    Parameters
+    ----------
+    ok_api_client : OkApiClient
+        The OkApiClient instance representing omnikeeper connection
+
+    layer_id : str
+        id of layer to truncate
+
+    Returns
+    -------
+    bool
+        True, if layer was truncated. False, if something fails
+    """
+
+    query = gql("""
+    mutation ($id: String!) {
+        manage_truncateLayer(id: $id)
+    }
+    """)
+
+    try:
+        ok_api_client.execute_graphql(query, variables=dict(
+            id=layer_id,
+        ))
+        return True
+    except TransportQueryError as e:
+        return False    

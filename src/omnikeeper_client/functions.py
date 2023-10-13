@@ -85,6 +85,7 @@ def create_layer(client: Client, layer_id: str) -> bool:
     execute_graphql(client, query, variables=dict(id=layer_id))
     return True
 
+@deprecated(category=FutureWarning, reason="please use omnikeeper_client.* public functions instead")
 def truncate_layer(client: Client, layer_id: str) -> bool:
     query = gql("""
     mutation ($id: String!) {
