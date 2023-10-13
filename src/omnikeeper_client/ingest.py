@@ -85,7 +85,7 @@ def ingest_data(config: dict, data: array, access_token: str):
     if resp.status_code != 200:
         raise Exception(f"Expected return code 200, received {resp.status_code}: {resp.content}")
 
-def ingest_files(config: dict, files: list[io.StringIO], access_token: str):
+def ingest_files(config: dict, files: 'list[io.StringIO]', access_token: str):
     api_url = f"%s/api/v1/ingest/genericJSON/files" % (config["url"])
     params={
         "context": config["ingest_context"]

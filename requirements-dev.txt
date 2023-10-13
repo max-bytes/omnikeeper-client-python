@@ -1,0 +1,3 @@
+ipykernel
+autopep8
+notebook
