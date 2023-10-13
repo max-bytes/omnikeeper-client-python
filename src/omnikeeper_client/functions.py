@@ -13,6 +13,8 @@ from pythonjsonlogger import jsonlogger
 import logging
 from gql.transport.requests import log as requests_logger
 from deprecated import deprecated
+
+import omnikeeper_client as okc
     
 # HACK: gql is VERY verbose, even on log level INFO; therefore we manually set the log level for the transport to a higher level
 # see https://gql.readthedocs.io/en/stable/advanced/logging.html#disabling-logs
@@ -42,19 +44,21 @@ def create_logger(level: int):
 
     return logger
 
+@deprecated(category=FutureWarning, reason="please use OkApiClient() to access Omnikeeper, you should not need any access tokens")
 def get_access_token(config: dict) -> str:
-    # first retrieve token_url from omnikeeper endpoint
-    oauth_url = "%s/.well-known/openid-configuration" % config['omnikeeper_url']
-    data = requests.get(oauth_url).json()
-    token_url = data["token_endpoint"]
+    okclient = okc.OkApiClient(
+        backend_url=config['omnikeeper_url'],
+        client_id=config['client_id'],
+        username=config['username'],
+        password=config['password'],
+    )
 
-    # now fetch access_token from token_url, providing username and password
-    client = LegacyApplicationClient(client_id=config['client_id'])
-    oauth = OAuth2Session(client=client)
-    token = oauth.fetch_token(token_url=token_url, username=config['username'], password=config['password'])
-    return token["access_token"]
+    if okclient._oash is not None:
+        return okclient._oash.get_accesstoken()
+    else:
+        return None
 
-# @deprecated(category=FutureWarning, version='3.5.0', reason="please use xyz instead")
+@deprecated(category=FutureWarning, reason="please use OkApiClient() to access Omnikeeper, you should not need a raw gql Client but if really needed, use  OkApiClient()._get_graphql_client()")
 def create_graphql_client(url: str, access_token: Optional[str] = None) -> Client:
     headers={}
     if access_token is not None:
@@ -64,11 +68,13 @@ def create_graphql_client(url: str, access_token: Optional[str] = None) -> Clien
     client = Client(transport=transport, fetch_schema_from_transport=True)
     return client
 
+@deprecated(category=FutureWarning, reason="please use OkApiClient().execute_graphql() instead")
 def execute_graphql(client: Client, query: Union[str, DocumentNode], variables: Optional[Dict[str, Any]] = None):
     prepared_query = gql(query) if query is str else query
     data = client.execute(prepared_query, variable_values=variables)
     return data
 
+@deprecated(category=FutureWarning, reason="please use omnikeeper_client.* public functions instead")
 def create_layer(client: Client, layer_id: str) -> bool:
     query = gql("""
     mutation ($id: String!) {
