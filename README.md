@@ -29,6 +29,17 @@ have a look at our [examples](examples/)
 
 **Work in Progress**
 
+### build library
+
+```bash
+python setup.py bdist_wheel
+```
+
+### upload to PyPi
+
+```bash
+twine upload dist/omnikeeper_client-2.0.0-py3-none-any.whl
+```
 
 https://packaging.python.org/en/latest/tutorials/packaging-projects/#generating-distribution-archives
 
