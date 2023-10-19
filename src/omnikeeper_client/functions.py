@@ -15,7 +15,8 @@ from gql.transport.requests import log as requests_logger
 from deprecated import deprecated
 
 import omnikeeper_client as okc
-    
+import omnikeeper_client.typing as okc_typing
+
 # HACK: gql is VERY verbose, even on log level INFO; therefore we manually set the log level for the transport to a higher level
 # see https://gql.readthedocs.io/en/stable/advanced/logging.html#disabling-logs
 requests_logger.setLevel(logging.WARNING)
@@ -112,27 +113,15 @@ def upsert_layerdata(client: Client, layer_id: str, description: str, argbColor:
     execute_graphql(client, query, variables=dict(id=layer_id, description=description, color=argbColor))
     return True
 
+@deprecated(category=FutureWarning, reason="please use omnikeeper_client.typing.attributevalue_to_pythonvalue() instead")
 def graphQL_merged_attribute_value_to_simple_value(attribute_value: Dict[str, Any]) -> Any:
-    isArray = attribute_value['isArray']
-    type = attribute_value['type']
-    values = attribute_value['values']
-    if type in ("TEXT", "MULTILINE_TEXT"):
-        return values if isArray else values[0]
-    elif type == "INTEGER":
-        return [int(v) for v in values] if isArray else int(values[0]) # python 3's int is 64 bit, like omnikeeper's Integer
-    elif type == "DOUBLE":
-        return [float(v) for v in values] if isArray else float(values[0]) # python 3's float is 64 bit, like omnikeeper's Double
-    elif type == "BOOLEAN":
-        return [bool(v) for v in values] if isArray else bool(values[0])
-    elif type == "JSON":
-        return [json.loads(v) for v in values] if isArray else json.loads(values[0])
-    else:
-        return values if isArray else values[0]
+    return okc_typing.attributevalue_to_pythonvalue(attribute_value)
 
+@deprecated(category=FutureWarning, reason="please use omnikeeper_client.typing.attributes_to_dict() instead")
 def graphQL_merged_attributes_to_simple_attributes(merged_attributes: list[Dict[str, Any]]) -> Dict[str, Any]:
-    return {inner['attribute']['name']: graphQL_merged_attribute_value_to_simple_value(inner['attribute']['value']) for inner in merged_attributes}
+    return okc_typing.attributes_to_dict(merged_attributes)
 
-# @deprecated(category=FutureWarning, reason="please use omnikeeper_client.* public functions instead")
+@deprecated(category=FutureWarning, reason="please use omnikeeper_client.* public functions instead")
 def get_ci_attributes(client: Client, layer_ids: list[str], ciids: Optional[list[uuid.UUID]] = None) -> Dict[uuid.UUID, Any]:
     query = gql("""
     query ($layers: [String]!, $ciids: [Guid]) {
@@ -160,6 +149,7 @@ def build_graphQL_InsertCIAttributeInputType(ciid: uuid.UUID, name: str, value: 
     return dict(ci=str(ciid), name=name, value=dict(type=type, isArray=isArray, values=[value]))
 
 # @deprecated(category=FutureWarning, reason="please use omnikeeper_client.* public functions instead")
+# TODO next
 def mutate_cis(client: Client, write_layer_id: str, read_layer_ids: list[str], attribute_inserts: list[dict[str, Any]]) -> bool:
     query = gql("""
     mutation ($writeLayer: String!, $readLayers: [String]!, $insertAttributes: [InsertCIAttributeInputType], $removeAttributes: [RemoveCIAttributeInputType], $insertRelations: [InsertRelationInputType], $removeRelations: [RemoveRelationInputType]) {
