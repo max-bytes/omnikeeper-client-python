@@ -87,7 +87,11 @@ def create_ci(ok_api_client: okc.OkApiClient, ci_name: str, layer_id_for_ci_name
 #     except TransportQueryError as e:
 #         return False    
 
-def get_ci_attributes(ok_api_client: okc.OkApiClient, layer_ids: List[str], ciids: Optional[List[uuid.UUID]] = None) -> Dict[uuid.UUID, Dict]:
+# TODO write wrapper function to get attribs of one ci in Dict, Any form
+# def get_attributes_of_ci(..., ciid):
+#     return get_attributes_of_cis()[ciid]
+
+def get_attributes_of_cis(ok_api_client: okc.OkApiClient, layer_ids: List[str], ciids: Optional[List[uuid.UUID]] = None) -> Dict[uuid.UUID, Dict]:
     """creates a layer by specifying layer_id. 
 
     Parameters
