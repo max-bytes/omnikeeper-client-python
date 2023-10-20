@@ -10,7 +10,7 @@ from .layer import (
 
 from .ci import (
     create_ci,
-    get_ci_attributes,
+    get_attributes_of_cis,
 )
 
 # import util
