@@ -145,11 +145,11 @@ def get_ci_attributes(client: Client, layer_ids: list[str], ciids: Optional[list
     
     return cis
 
+@deprecated(category=FutureWarning, reason="please use omnikeeper_client.typing.dict_to_attributes() instead")
 def build_graphQL_InsertCIAttributeInputType(ciid: uuid.UUID, name: str, value: Any, type: str = "TEXT", isArray: bool = False) -> dict[str, Any]:
     return dict(ci=str(ciid), name=name, value=dict(type=type, isArray=isArray, values=[value]))
 
-# @deprecated(category=FutureWarning, reason="please use omnikeeper_client.* public functions instead")
-# TODO next
+@deprecated(category=FutureWarning, reason="please use omnikeeper_client.* public functions instead")
 def mutate_cis(client: Client, write_layer_id: str, read_layer_ids: list[str], attribute_inserts: list[dict[str, Any]]) -> bool:
     query = gql("""
     mutation ($writeLayer: String!, $readLayers: [String]!, $insertAttributes: [InsertCIAttributeInputType], $removeAttributes: [RemoveCIAttributeInputType], $insertRelations: [InsertRelationInputType], $removeRelations: [RemoveRelationInputType]) {

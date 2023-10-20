@@ -54,38 +54,46 @@ def create_ci(ok_api_client: okc.OkApiClient, ci_name: str, layer_id_for_ci_name
     except TransportQueryError as e:
         return None
 
-# TODO mcsuk: answer if ok to make mutate_ci more convenient and include graphQL_merged_attributes_to_simple_attributes from data types
-# TODO mcsuk: does insertAttributes mean upsert attributes?
+def mutate_ci(ok_api_client: okc.OkApiClient, write_layer_id: str, ciid : uuid.UUID, attribute_upserts: Dict[str, Any]) -> bool:
+    return mutate_cis(ok_api_client, write_layer_id, {ciid: attribute_upserts})
 
-# def mutate_cis(ok_api_client: okc.OkApiClient, layer_id: str) -> bool:
-#     """creates a layer by specifying layer_id. 
+def mutate_cis(ok_api_client: okc.OkApiClient, write_layer_id: str, attribute_upserts: List[Dict[str, Any]]) -> bool:
+    # TODO doc
 
-#     Parameters
-#     ----------
-#     ok_api_client : OkApiClient
-#         The OkApiClient instance representing omnikeeper connection
+    insertAttributes = []
+    for ciid, attributes in attribute_upserts.items():
+        # TODO add hinting
+        insertAttributes += okc_typing.dict_to_attributes(ciid, attributes)
 
-#     layer_id : str
-#         id of layer to create, must only contain charaters [A-Za-z_]
+    # print(okc_util.json_pretty(insertAttributes))
 
-#     Returns
-#     -------
-#     bool
-#         True, if layer was created or was already present. False, if something fails
-#     """
-
-#     query = gql("""
-#     mutation ($id: String!) {
-#         manage_createLayer(id: $id) {
-#             id
-#         }
-#     }""")
+    query = gql("""
+    mutation ($writeLayer: String!, $readLayers: [String]!, $insertAttributes: [InsertCIAttributeInputType], $removeAttributes: [RemoveCIAttributeInputType], $insertRelations: [InsertRelationInputType], $removeRelations: [RemoveRelationInputType]) {
+        mutateCIs(
+            writeLayer: $writeLayer
+            readLayers: $readLayers
+            insertAttributes: $insertAttributes
+            removeAttributes: $removeAttributes
+            insertRelations: $insertRelations
+            removeRelations: $removeRelations
+        ) {
+            affectedCIs {
+                id
+            }
+        }
+    }""")
     
-#     try:
-#         ok_api_client.execute_graphql(query, variables=dict(id=layer_id))
-#         return True
-#     except TransportQueryError as e:
-#         return False    
+    try:
+        
+        result = ok_api_client.execute_graphql(query, variables=dict(
+            writeLayer=write_layer_id, readLayers=[write_layer_id], insertAttributes=insertAttributes
+        ))
+
+        return result
+    
+    except TransportQueryError as e:
+        print(e)
+        return False  
 
 # TODO write wrapper function to get attribs of one ci in Dict, Any form
 # def get_attributes_of_ci(..., ciid):
@@ -141,8 +149,6 @@ def get_attributes_of_cis(ok_api_client: okc.OkApiClient, layer_ids: List[str], 
                okc_typing.attributes_to_dict(ci['mergedAttributes']) 
 
                for ci in result['cis']}
-    
-        print (okc_util.json_pretty(cis))
 
         return cis
     

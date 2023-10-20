@@ -11,6 +11,8 @@ from .layer import (
 from .ci import (
     create_ci,
     get_attributes_of_cis,
+    mutate_ci,
+    mutate_cis,
 )
 
 # import util
