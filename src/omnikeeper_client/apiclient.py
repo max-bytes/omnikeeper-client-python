@@ -12,6 +12,8 @@ from typing import (
 )
 
 class OkApiClient():
+    # TODO doc class
+
     def __init__(self,
                  backend_url : str,
 
@@ -47,6 +49,7 @@ class OkApiClient():
         transport = RequestsHTTPTransport(url=self.graphql_url, headers=headers, verify=True)
         return GqlClient(transport=transport, fetch_schema_from_transport=True)
     
+    # TODO doc at least public functions
     def execute_graphql(self, query: Union[str, DocumentNode], variables: Optional[Dict[str, Any]] = None):
         client = self._get_graphql_client()
         
