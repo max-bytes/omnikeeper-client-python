@@ -1,3 +1,4 @@
 ipykernel
 autopep8
 notebook
+wheel
