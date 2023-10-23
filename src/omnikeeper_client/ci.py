@@ -95,12 +95,30 @@ def mutate_cis(ok_api_client: okc.OkApiClient, write_layer_id: str, attribute_up
         print(e)
         return False  
 
-# TODO write wrapper function to get attribs of one ci in Dict, Any form
-# def get_attributes_of_ci(..., ciid):
-#     return get_attributes_of_cis()[ciid]
+def get_attributes_of_ci(ok_api_client: okc.OkApiClient, layer_ids: List[str], ciid: uuid.UUID) -> Dict:
+    """fetches all attributes of a single ci
+
+    Parameters
+    ----------
+    ok_api_client : OkApiClient
+        The OkApiClient instance representing omnikeeper connection
+
+    layer_ids : List[str]
+        ids of layers to include in attributes from
+
+    ciid : uuid.UUID
+        ciid to fetch
+
+    Returns
+    -------
+    Dict
+        dict of attributes, empty dict if ci contains no attributes
+    """
+        
+    return get_attributes_of_cis(ok_api_client, layer_ids, ciids=[ciid]).get(str(ciid), {})
 
 def get_attributes_of_cis(ok_api_client: okc.OkApiClient, layer_ids: List[str], ciids: Optional[List[uuid.UUID]] = None) -> Dict[uuid.UUID, Dict]:
-    """creates a layer by specifying layer_id. 
+    """fetches all attributes of cis
 
     Parameters
     ----------
