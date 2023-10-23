@@ -57,7 +57,7 @@ def create_ci(ok_api_client: okc.OkApiClient, ci_name: str, layer_id_for_ci_name
 def mutate_ci(ok_api_client: okc.OkApiClient, write_layer_id: str, ciid : uuid.UUID, attribute_upserts: Dict[str, Any]) -> bool:
     return mutate_cis(ok_api_client, write_layer_id, {ciid: attribute_upserts})
 
-def mutate_cis(ok_api_client: okc.OkApiClient, write_layer_id: str, attribute_upserts: Dict[Dict[str, Any]]) -> bool:
+def mutate_cis(ok_api_client: okc.OkApiClient, write_layer_id: str, attribute_upserts: Dict[str, Dict[str, Any]]) -> bool:
     # TODO doc
 
     insertAttributes = []
