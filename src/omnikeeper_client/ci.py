@@ -17,9 +17,7 @@ from typing import (
 )
 
 
-# TODO mcsuk: how to create a ci without _name?
-# TODO mcsuk: create ci with client side given uuid
-def create_ci(ok_api_client: okc.OkApiClient, ci_name: str, layer_id_for_ci_name: str) -> uuid.UUID:
+def create_ci(ok_api_client: okc.OkApiClient, ci_name: Optional[str] = None, layer_id_for_ci_name: Optional[str] = None, ciid: Optional[uuid.UUID] = None) -> uuid.UUID:
     """creates a ci with _name attribute in specifed layer. 
 
     Parameters
@@ -27,11 +25,14 @@ def create_ci(ok_api_client: okc.OkApiClient, ci_name: str, layer_id_for_ci_name
     ok_api_client : OkApiClient
         The OkApiClient instance representing omnikeeper connection
 
-    ci_name : str
+    ci_name : Optional[str]
         name of the ci, means _name attribute
 
-    layer_id_for_ci_name : str
+    layer_id_for_ci_name : Optional[str]
         id of layer to store _name attribute
+
+    ciid: Optional[uuid.UUID]
+        optional client-provided ciid 
 
     Returns
     -------
@@ -40,15 +41,15 @@ def create_ci(ok_api_client: okc.OkApiClient, ci_name: str, layer_id_for_ci_name
     """
 
     query = gql("""
-    mutation($name: String!, $layerIDForName: String!) {
-        createCIs(cis: [{name: $name, layerIDForName: $layerIDForName}]) {
+    mutation($name: String, $layerIDForName: String, $ciid: Guid) {
+        createCIs(cis: [{name: $name, layerIDForName: $layerIDForName, ciid: $ciid}]) {
             ciids
         }
     }""")
     
     try:
         result = ok_api_client.execute_graphql(query, variables=dict(
-                name=ci_name, layerIDForName=layer_id_for_ci_name
+                name=ci_name, layerIDForName=layer_id_for_ci_name, ciid=ciid
         ))
         return uuid.UUID(result["createCIs"]['ciids'][0])
     except TransportQueryError as e:
