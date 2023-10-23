@@ -24,11 +24,12 @@ _TYPECONVERSIONMAP_FROM_MERGEDATTRIBUTE = {
     ATTRIBUTETYPE_JSON: json.loads,
 }
 
+# TODO add more convert functions other TEXT and integer, remove lambda and write str directly if wanted
 _TYPECONVERSIONMAP_TO_MERGEDATTRIBUTE = {
-    ATTRIBUTETYPE_TEXT: str,
-    ATTRIBUTETYPE_MULTILINE_TEXT: str,
-    ATTRIBUTETYPE_INTEGER: int,
-    ATTRIBUTETYPE_DOUBLE: float,
+    ATTRIBUTETYPE_TEXT: lambda x: str(x),
+    ATTRIBUTETYPE_MULTILINE_TEXT: lambda x: str(x),
+    ATTRIBUTETYPE_INTEGER: lambda x: str(x),
+    ATTRIBUTETYPE_DOUBLE: lambda x: str(x),
     ATTRIBUTETYPE_BOOLEAN: bool,
     ATTRIBUTETYPE_JSON: json.dumps,
 }
@@ -159,9 +160,9 @@ def dict_to_attributes(ciid : uuid.UUID, native_attribute_dict : Dict[str, Any],
                 attr_type = _detect_single_attributetype(v)
 
         if is_array:
-            attr_values = v
+            attr_values = [_TYPECONVERSIONMAP_TO_MERGEDATTRIBUTE[attr_type](item) for item in v]
         else:
-            attr_values = [v]
+            attr_values = [_TYPECONVERSIONMAP_TO_MERGEDATTRIBUTE[attr_type](v)]
 
         attributes.append({
             "ci": str(ciid),
@@ -169,7 +170,6 @@ def dict_to_attributes(ciid : uuid.UUID, native_attribute_dict : Dict[str, Any],
             "value": {
                 "type": attr_type,
                 "isArray": is_array,
-                # TODO attr_type? where to use _TYPECONVERSIONMAP_TO_MERGEDATTRIBUTE json.dumps will be needed?
                 "values": attr_values,
             }
         })
