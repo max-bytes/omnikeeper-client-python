@@ -1,5 +1,7 @@
 # omnikeeper-client-python
 
+Required omnikeeper version: 29.4.0
+
 ## Usage
 
 ### prepare your environment
