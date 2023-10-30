@@ -33,7 +33,7 @@ def create_logger(level: int):
 
     return logger
 
-def get_access_token(config: dict) -> str:
+def get_access_token(config: Dict) -> str:
     # first retrieve token_url from omnikeeper endpoint
     oauth_url = "%s/.well-known/openid-configuration" % config['omnikeeper_url']
     with urllib.request.urlopen(oauth_url) as url:
@@ -51,7 +51,7 @@ def create_graphql_client(url: str, access_token: str) -> Client:
     client = Client(transport=transport, fetch_schema_from_transport=True)
     return client
 
-def execute_graphql(client: Client, query: str | DocumentNode, variables: Optional[Dict[str, Any]] = None):
+def execute_graphql(client: Client, query: Any, variables: Optional[Dict[str, Any]] = None):
     prepared_query = gql(query) if query is str else query
     data = client.execute(prepared_query, variable_values=variables)
     return data
@@ -63,7 +63,7 @@ def create_layer(client: Client, layer_id: str) -> bool:
             id
         }
     }""")
-    execute_graphql(client, query, variables=dict(id=layer_id))
+    execute_graphql(client, query, variables=Dict(id=layer_id))
     return True
 
 def truncate_layer(client: Client, layer_id: str) -> bool:
@@ -72,7 +72,7 @@ def truncate_layer(client: Client, layer_id: str) -> bool:
         manage_truncateLayer(id: $id)
     }
     """)
-    execute_graphql(client, query, variables=dict(id=layer_id))
+    execute_graphql(client, query, variables=Dict(id=layer_id))
     return True
 
 def hexString2RGBColor(hex: str) -> int:
@@ -88,7 +88,7 @@ def upsert_layerdata(client: Client, layer_id: str, description: str, argbColor:
             id
         }
     }""")
-    execute_graphql(client, query, variables=dict(id=layer_id, description=description, color=argbColor))
+    execute_graphql(client, query, variables=Dict(id=layer_id, description=description, color=argbColor))
     return True
 
 def graphQL_merged_attribute_value_to_simple_value(attribute_value: Dict[str, Any]) -> Any:
@@ -141,16 +141,16 @@ def get_ci_attributes(client: Client, layer_ids: list[str], ciids: Optional[list
             }
         }
     }""")
-    result = execute_graphql(client, query, variables=dict(layers=layer_ids, ciids=list(map(lambda ciid: str(ciid), ciids))))
+    result = execute_graphql(client, query, variables=Dict(layers=layer_ids, ciids=list(map(lambda ciid: str(ciid), ciids))))
 
     cis = {ci['id']:graphQL_merged_attributes_to_simple_attributes(ci['mergedAttributes']) for ci in result['cis']}
     
     return cis
 
-def build_graphQL_InsertCIAttributeInputType(ciid: uuid.UUID, name: str, value: str) -> dict[str, Any]:
-    return dict(ci=str(ciid), name=name, value=dict(type="TEXT", isArray=False, values=[value]))
+def build_graphQL_InsertCIAttributeInputType(ciid: uuid.UUID, name: str, value: str) -> Dict[str, Any]:
+    return Dict(ci=str(ciid), name=name, value=Dict(type="TEXT", isArray=False, values=[value]))
 
-def mutate_cis(client: Client, write_layer_id: str, read_layer_ids: list[str], attribute_inserts: list[dict[str, Any]]) -> bool:
+def mutate_cis(client: Client, write_layer_id: str, read_layer_ids: list[str], attribute_inserts: list[Dict[str, Any]]) -> bool:
     query = gql("""
     mutation ($writeLayer: String!, $readLayers: [String]!, $insertAttributes: [InsertCIAttributeInputType], $removeAttributes: [RemoveCIAttributeInputType], $insertRelations: [InsertRelationInputType], $removeRelations: [RemoveRelationInputType]) {
         mutateCIs(
@@ -166,7 +166,7 @@ def mutate_cis(client: Client, write_layer_id: str, read_layer_ids: list[str], a
             }
         }
     }""")
-    result = execute_graphql(client, query, variables=dict(
+    result = execute_graphql(client, query, variables=Dict(
         writeLayer=write_layer_id, readLayers=read_layer_ids, insertAttributes=attribute_inserts
         ))
     return True
@@ -178,7 +178,7 @@ def create_ci(client: Client, ci_name: str, layer_id_for_ci_name: str) -> uuid.U
             ciids
         }
     }""")
-    result = execute_graphql(client, query, variables=dict(
+    result = execute_graphql(client, query, variables=Dict(
         name=ci_name, layerIDForName=layer_id_for_ci_name
         ))
     return uuid.UUID(result["createCIs"]['ciids'][0])
