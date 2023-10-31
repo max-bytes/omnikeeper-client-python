@@ -12,6 +12,7 @@ import logging
 from typing import (
     Any,
     Dict,
+    List,
     Optional,
 )
 
@@ -121,10 +122,10 @@ def graphQL_merged_attribute_value_to_simple_value(attribute_value: Dict[str, An
     #     case _:
     #         return values if isArray else values[0]
 
-def graphQL_merged_attributes_to_simple_attributes(merged_attributes: list[Dict[str, Any]]) -> Dict[str, Any]:
+def graphQL_merged_attributes_to_simple_attributes(merged_attributes: List[Dict[str, Any]]) -> Dict[str, Any]:
     return {inner['attribute']['name']: graphQL_merged_attribute_value_to_simple_value(inner['attribute']['value']) for inner in merged_attributes}
 
-def get_ci_attributes(client: Client, layer_ids: list[str], ciids: Optional[list[uuid.UUID]] = None) -> Dict[uuid.UUID, Any]:
+def get_ci_attributes(client: Client, layer_ids: List[str], ciids: Optional[List[uuid.UUID]] = None) -> Dict[uuid.UUID, Any]:
     query = gql("""
     query ($layers: [String]!, $ciids: [Guid]) {
         cis(layers: $layers, ciids: $ciids) {
@@ -150,7 +151,7 @@ def get_ci_attributes(client: Client, layer_ids: list[str], ciids: Optional[list
 def build_graphQL_InsertCIAttributeInputType(ciid: uuid.UUID, name: str, value: str) -> Dict[str, Any]:
     return Dict(ci=str(ciid), name=name, value=Dict(type="TEXT", isArray=False, values=[value]))
 
-def mutate_cis(client: Client, write_layer_id: str, read_layer_ids: list[str], attribute_inserts: list[Dict[str, Any]]) -> bool:
+def mutate_cis(client: Client, write_layer_id: str, read_layer_ids: List[str], attribute_inserts: List[Dict[str, Any]]) -> bool:
     query = gql("""
     mutation ($writeLayer: String!, $readLayers: [String]!, $insertAttributes: [InsertCIAttributeInputType], $removeAttributes: [RemoveCIAttributeInputType], $insertRelations: [InsertRelationInputType], $removeRelations: [RemoveRelationInputType]) {
         mutateCIs(
