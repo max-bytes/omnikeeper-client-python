@@ -22,13 +22,12 @@ def _is_relation_field(type: GraphQLType) -> bool:
     bool
         True if field is a relation, False otherwise
     """
-    is_relation = False
-    if graphql.type.is_list_type(type):
-        is_relation = True
+    if not graphql.type.is_list_type(type):
+        return False
     list_type = graphql.type.assert_list_type(type)
-    if graphql.type.is_object_type(list_type.of_type): # TODO: is this enough?
-        is_relation = True
-    return is_relation
+    if not graphql.type.is_object_type(list_type.of_type): # TODO: is this enough?
+        return False
+    return True
 
 def _is_non_trait_hinted_relation_field(type: GraphQLType) -> bool:
     """
@@ -42,15 +41,14 @@ def _is_non_trait_hinted_relation_field(type: GraphQLType) -> bool:
     bool
         True if the type is a non-trait hinted relation field, False otherwise
     """
-    is_relation = False
-    if graphql.type.is_list_type(type):
-        is_relation = True
+    if not graphql.type.is_list_type(type):
+        return False
     list_type = graphql.type.assert_list_type(type)
-    if graphql.type.is_object_type(list_type.of_type):
-        is_relation = True
-    if list_type.of_type.name == 'RelatedCIType':
-        is_relation = True
-    return is_relation
+    if not graphql.type.is_object_type(list_type.of_type):
+        return False
+    if list_type.of_type.name != 'RelatedCIType':
+        return False
+    return True
 
 def _get_escaped_trait_name(name: str) -> str:
     """
@@ -102,32 +100,33 @@ def get_latest_trait_change(ok_api_client: okc.OkApiClient, trait_name: str, lay
     timestamp : datetime
         timestamp of the latest trait data change
     """
-    # TODO we should find a way how to get the schema when using the new okc.OkApiClient
-    # ds = DSLSchema(client.schema)
 
-    # NOTE check this
-    ds = DSLSchema(ok_api_client.get_schema())
+    client = ok_api_client._get_graphql_client()
+    with client as session:
+        ds = DSLSchema(client.schema)
 
-    escaped_trait_name = _get_escaped_trait_name(trait_name)
-    prefixed_escaped_trait_name = _get_prefixed_trait_name(escaped_trait_name)
-    tetType = getattr(ds.TraitEntitiesType, prefixed_escaped_trait_name)
-    dsl_root_type = getattr(ds, f"TERoot_{escaped_trait_name}")
-    var = DSLVariableDefinitions()
-    raw_query = DSLQuery(
-                ds.GraphQLQueryRoot.traitEntities.args(layers=var.layers).select(
-                    tetType.select(
-                        dsl_root_type.latestChangeAll.select(
-                            ds.ChangesetType.timestamp
+        escaped_trait_name = _get_escaped_trait_name(trait_name)
+        prefixed_escaped_trait_name = _get_prefixed_trait_name(escaped_trait_name)
+        tetType = getattr(ds.TraitEntitiesType, prefixed_escaped_trait_name)
+        dsl_root_type = getattr(ds, f"TERoot_{escaped_trait_name}")
+        var = DSLVariableDefinitions()
+        raw_query = DSLQuery(
+                    ds.GraphQLQueryRoot.traitEntities.args(layers=var.layers).select(
+                        tetType.select(
+                            dsl_root_type.latestChangeAll.select(
+                                ds.ChangesetType.timestamp
+                            )
                         )
                     )
                 )
-            )
-    raw_query.variable_definitions = var
-    query = dsl_gql(raw_query)
-    result = ok_api_client.execute_graphql(query, variables={"layers": layers})
-    timestamp_str = result['traitEntities'][prefixed_escaped_trait_name]['latestChangeAll']['timestamp']
-    timestamp = parser.parse(timestamp_str)
-    return timestamp
+        raw_query.variable_definitions = var
+        query = dsl_gql(raw_query)
+
+        result = session.execute(query, variable_values={"layers": layers})
+
+        timestamp_str = result['traitEntities'][prefixed_escaped_trait_name]['latestChangeAll']['timestamp']
+        timestamp = parser.parse(timestamp_str)
+        return timestamp
  
 def get_all_traitentities(ok_api_client: okc.OkApiClient, trait_name: str, layers: [str], keep_ciid_as_column: bool = False) -> List[Dict[str,Any]]:
     """
@@ -153,39 +152,41 @@ def get_all_traitentities(ok_api_client: okc.OkApiClient, trait_name: str, layer
         result containing all traitentites
     """
     
-    # ds = DSLSchema(client.schema)
-    ds = DSLSchema(ok_api_client.get_schema())
+    client = ok_api_client._get_graphql_client()
+    with client as session:
+        ds = DSLSchema(client.schema)
 
-    escaped_trait_name = _get_escaped_trait_name(trait_name)
-    prefixed_escaped_trait_name = _get_prefixed_trait_name(escaped_trait_name)
+        escaped_trait_name = _get_escaped_trait_name(trait_name)
+        prefixed_escaped_trait_name = _get_prefixed_trait_name(escaped_trait_name)
 
-    tetType = getattr(ds.TraitEntitiesType, prefixed_escaped_trait_name)
-    dsl_type = getattr(ds, f"TE_{escaped_trait_name}")
-    dsl_root_type = getattr(ds, f"TERoot_{escaped_trait_name}")
-    dsl_wrapper_type = getattr(ds, f"TEWrapper_{escaped_trait_name}")
-    entity_fields = list(map(lambda t: getattr(dsl_type, t[0]), filter(lambda t: not _is_relation_field(t[1].type), dsl_type._type.fields.items())))
+        tetType = getattr(ds.TraitEntitiesType, prefixed_escaped_trait_name)
+        dsl_type = getattr(ds, f"TE_{escaped_trait_name}")
+        dsl_root_type = getattr(ds, f"TERoot_{escaped_trait_name}")
+        dsl_wrapper_type = getattr(ds, f"TEWrapper_{escaped_trait_name}")
 
-    var = DSLVariableDefinitions()
-    raw_query = DSLQuery(
-                ds.GraphQLQueryRoot.traitEntities.args(layers=var.layers).select(
-                    tetType.select(
-                        dsl_root_type.all.select(
-                            dsl_wrapper_type.ciid,
-                            dsl_wrapper_type.entity.select(*entity_fields)
+        entity_fields = list(map(lambda t: getattr(dsl_type, t[0]), filter(lambda t: not _is_relation_field(t[1].type), dsl_type._type.fields.items())))
+
+        var = DSLVariableDefinitions()
+        raw_query = DSLQuery(
+                    ds.GraphQLQueryRoot.traitEntities.args(layers=var.layers).select(
+                        tetType.select(
+                            dsl_root_type.all.select(
+                                dsl_wrapper_type.ciid,
+                                dsl_wrapper_type.entity.select(*entity_fields)
+                            )
                         )
                     )
                 )
-            )
-    raw_query.variable_definitions = var
-    query = dsl_gql(raw_query)
+        raw_query.variable_definitions = var
+        query = dsl_gql(raw_query)
 
-    result = ok_api_client.execute_graphql(query, variables={"layers": layers})
+        result = session.execute(query, variable_values={"layers": layers})
 
-    data_list = result['traitEntities'][prefixed_escaped_trait_name]['all']
-    for data in data_list:
-        data.update(data.pop('entity'))
+        data_list = result['traitEntities'][prefixed_escaped_trait_name]['all']
+        for data in data_list:
+            data.update(data.pop('entity'))
 
-    return data_list
+        return data_list
 
 def get_trait_relation(ok_api_client: okc.OkApiClient, trait_name: str, relation_name: str, layers: [str], keep_ciid_as_column: bool = False) -> List[Dict[str,Any]]:
     """
@@ -211,51 +212,52 @@ def get_trait_relation(ok_api_client: okc.OkApiClient, trait_name: str, relation
         result all data for a specific trait in a list format
     """
 
-    # ds = DSLSchema(client.schema)
-    ds = DSLSchema(ok_api_client.get_schema())
+    client = ok_api_client._get_graphql_client()
+    with client as session:
+        ds = DSLSchema(client.schema)
 
-    escaped_trait_name = _get_escaped_trait_name(trait_name)
-    prefixed_escaped_trait_name = _get_prefixed_trait_name(escaped_trait_name)
+        escaped_trait_name = _get_escaped_trait_name(trait_name)
+        prefixed_escaped_trait_name = _get_prefixed_trait_name(escaped_trait_name)
 
-    tetType = getattr(ds.TraitEntitiesType, prefixed_escaped_trait_name)
-    dsl_type = getattr(ds, f"TE_{escaped_trait_name}")
-    dsl_root_type = getattr(ds, f"TERoot_{escaped_trait_name}")
-    dsl_wrapper_type = getattr(ds, f"TEWrapper_{escaped_trait_name}")
-    entity_fields = list(map(lambda t: getattr(dsl_type, t[0]).select(ds.RelatedCIType.relatedCIID), filter(lambda t: t[0] == relation_name and _is_non_trait_hinted_relation_field(t[1].type), dsl_type._type.fields.items())))
+        tetType = getattr(ds.TraitEntitiesType, prefixed_escaped_trait_name)
+        dsl_type = getattr(ds, f"TE_{escaped_trait_name}")
+        dsl_root_type = getattr(ds, f"TERoot_{escaped_trait_name}")
+        dsl_wrapper_type = getattr(ds, f"TEWrapper_{escaped_trait_name}")
+        entity_fields = list(map(lambda t: getattr(dsl_type, t[0]).select(ds.RelatedCIType.relatedCIID), filter(lambda t: t[0] == relation_name and _is_non_trait_hinted_relation_field(t[1].type), dsl_type._type.fields.items())))
 
-    var = DSLVariableDefinitions()
-    raw_query = DSLQuery(
-                ds.GraphQLQueryRoot.traitEntities.args(layers=var.layers).select(
-                    tetType.select(
-                        dsl_root_type.all.select(
-                            dsl_wrapper_type.ciid,
-                            dsl_wrapper_type.entity.select(*entity_fields)
+        var = DSLVariableDefinitions()
+        raw_query = DSLQuery(
+                    ds.GraphQLQueryRoot.traitEntities.args(layers=var.layers).select(
+                        tetType.select(
+                            dsl_root_type.all.select(
+                                dsl_wrapper_type.ciid,
+                                dsl_wrapper_type.entity.select(*entity_fields)
+                            )
                         )
                     )
                 )
-            )
-    raw_query.variable_definitions = var
-    query = dsl_gql(raw_query)
+        raw_query.variable_definitions = var
+        query = dsl_gql(raw_query)
 
-    result = ok_api_client.execute_graphql(query, variables={"layers": layers})
+        result = session.execute(query, variable_values={"layers": layers})
 
-    # data_frame = (
-    #     pd.json_normalize(result['traitEntities'][prefixed_escaped_trait_name]['all'])
-    #         .rename(columns={"ciid": "base_ciid", f'entity.{relation_name}': "related_ciids"})
-    #         .set_index('base_ciid', drop=not keep_ciid_as_column)
-    # )
-    # data_frame['related_ciids'] = data_frame['related_ciids'].apply(lambda x: list(map(lambda i: i['relatedCIID'], x)))
+        # data_frame = (
+        #     pd.json_normalize(result['traitEntities'][prefixed_escaped_trait_name]['all'])
+        #         .rename(columns={"ciid": "base_ciid", f'entity.{relation_name}': "related_ciids"})
+        #         .set_index('base_ciid', drop=not keep_ciid_as_column)
+        # )
+        # data_frame['related_ciids'] = data_frame['related_ciids'].apply(lambda x: list(map(lambda i: i['relatedCIID'], x)))
 
-    result_list = []
-    for entity in result['traitEntities'][prefixed_escaped_trait_name]['all']:
-        related_ciids = [related_entity['relatedCIID'] for related_entity in entity]
-        result_dict = {
-            "base_ciid": entity['ciid'],
-            "related_ciids": related_ciids,
-        }
-        result_list.append(result_dict)
+        result_list = []
+        for entity in result['traitEntities'][prefixed_escaped_trait_name]['all']:
+            related_ciids = [related_entity['relatedCIID'] for related_entity in entity]
+            result_dict = {
+                "base_ciid": entity['ciid'],
+                "related_ciids": related_ciids,
+            }
+            result_list.append(result_dict)
 
-    return result_list
+        return result_list
 
 # NOTE renamed to bulk_replace_trait_cis based on what the function dos and the similarity with the bulk_replace_trait_cis_by_filter function below
 def bulk_replace_trait_entities(ok_api_client: okc.OkApiClient, trait_name: str, input: List[Dict[str,Any]], write_layer: str, read_layers: [str] = None) -> bool:
@@ -299,14 +301,14 @@ def bulk_replace_trait_entities(ok_api_client: okc.OkApiClient, trait_name: str,
         }}
         """)
         
-    # final_input = list(map(lambda kv: {"ciid": kv[0], "attributes": kv[1]}, input.to_dict('index').items()))
+    final_input = [{"ciid": d["ciid"], "attributes": {k: v for k, v in d.items() if k != "ciid"}} for d in input]
         
     if read_layers is None:
         read_layers = [write_layer]
     result = ok_api_client.execute_graphql(query, variables=dict(
         writeLayer=write_layer, 
         readLayers=read_layers, 
-        input=input
+        input=final_input
         ))
 
     return result[f"bulkReplace_{prefixed_escaped_trait_name}"]["success"]
@@ -367,8 +369,6 @@ def bulk_replace_trait_entities_by_filter(ok_api_client: okc.OkApiClient, trait_
         }}
         """)
         
-    # final_input = input.to_dict('records')
-    
     if read_layers is None:
         read_layers = [write_layer]
 
