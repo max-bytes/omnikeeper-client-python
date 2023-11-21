@@ -16,6 +16,13 @@ from .ci import (
     mutate_cis,
 )
 
+from .trait import (
+    upsert_trait,
+    TraitDefinition,
+    TraitAttributeDefinition,
+    TraitRelationDefinition
+)
+
 # import util
 from .util import (
     hexString2RGBColor,
