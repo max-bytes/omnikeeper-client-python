@@ -33,6 +33,22 @@ class TraitDefinition:
         self.requiredTraits = required_traits
 
 def upsert_trait(ok_api_client: okc.OkApiClient, trait_definition: TraitDefinition):
+    """upsert a trait; create the trait if it does not exist, update it if it does
+
+    Parameters
+    ----------
+    ok_api_client : OkApiClient
+        The OkApiClient instance representing omnikeeper connection
+
+    trait_definition : TraitDefinition
+        the trait's definition
+
+    Returns
+    -------
+    bool
+        True, if trait was upserted and is ready to use, never returns false. If something goes wrong, an exception is thrown
+    """
+        
     query = gql("""
     mutation ($trait_definition: UpsertRecursiveTraitInputType!) {
         manage_upsertRecursiveTrait(
