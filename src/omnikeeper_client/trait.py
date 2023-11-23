@@ -70,3 +70,72 @@ def upsert_trait(ok_api_client: okc.OkApiClient, trait_definition: TraitDefiniti
         return False
 
     return True
+
+
+
+# TODO: should we change the return to a tri-state? deleted, not deleted, error?
+def delete_trait(ok_api_client: okc.OkApiClient, trait_id: str):
+    """deletes a trait
+
+    Parameters
+    ----------
+    ok_api_client : OkApiClient
+        The OkApiClient instance representing omnikeeper connection
+
+    trait_id : str
+        the trait's ID
+
+    Returns
+    -------
+    bool
+        True, if trait was successfully deleted. False, if it did not exist in the first place, or if something failed
+    """
+        
+    query = gql("""
+    mutation ($trait_id: String!) {
+        manage_removeRecursiveTrait(
+            id: $trait_id
+        )
+    }""")
+    
+    try:
+        ret = ok_api_client.execute_graphql(query, variables=dict(
+            trait_id=trait_id
+        ))
+        return ret['manage_removeRecursiveTrait']
+    except TransportQueryError as e:
+        return False
+
+# TODO: should we change the return to a tri-state? deleted, not deleted, error?
+def check_trait(ok_api_client: okc.OkApiClient, trait_definition: TraitDefinition):
+    """checks if a trait already exists with this exact definition
+
+    Parameters
+    ----------
+    ok_api_client : OkApiClient
+        The OkApiClient instance representing omnikeeper connection
+
+    trait_definition : TraitDefinition
+        the trait's definition
+
+    Returns
+    -------
+    bool
+        True, if trait exists exactly as defined; False if not, or in case of an error
+    """
+        
+    query = gql("""
+    query ($trait_definition: UpsertRecursiveTraitInputType!) {
+        checkTrait(
+            trait: $trait_definition
+        )
+    }""")
+    
+    marshalled_trait = okc_util.to_dict(trait_definition)
+    try:
+        ret = ok_api_client.execute_graphql(query, variables=dict(
+            trait_definition=marshalled_trait
+        ))
+        return ret['checkTrait']
+    except TransportQueryError as e:
+        return False

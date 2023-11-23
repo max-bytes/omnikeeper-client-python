@@ -18,7 +18,9 @@ from .ci import (
 
 from .trait import (
     upsert_trait,
-    
+    delete_trait,
+    check_trait,
+
     TraitDefinition,
     TraitAttributeDefinition,
     TraitRelationDefinition
