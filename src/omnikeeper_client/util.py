@@ -5,7 +5,7 @@ from typing import (
     Any
 )
 
-def hexString2RGBColor(hex: str) -> int:
+def hex_string_to_rgb_color(hex: str) -> int:
     (r,g,b) = webcolors.hex_to_rgb(hex)
     return (r << 16) | (g << 8) | (b)
 

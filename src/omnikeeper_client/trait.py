@@ -2,6 +2,9 @@ import omnikeeper_client as okc
 import omnikeeper_client.typing as okc_typing
 import omnikeeper_client.util as okc_util
 from gql import gql
+from gql.transport.exceptions import (
+    TransportQueryError,
+)
 
 # NOTE: these classes use camelCase members, so they can be easily encoded for GraphQL using okc_util.to_dict()
 class TraitAttributeDefinition:
@@ -46,7 +49,7 @@ def upsert_trait(ok_api_client: okc.OkApiClient, trait_definition: TraitDefiniti
     Returns
     -------
     bool
-        True, if trait was upserted and is ready to use, never returns false. If something goes wrong, an exception is thrown
+        True, if trait was upserted and is ready to use. False, if something fails
     """
         
     query = gql("""
@@ -59,8 +62,11 @@ def upsert_trait(ok_api_client: okc.OkApiClient, trait_definition: TraitDefiniti
     }""")
     
     marshalled_trait = okc_util.to_dict(trait_definition)
-    ok_api_client.execute_graphql(query, variables=dict(
-        trait_definition=marshalled_trait
-    ))
+    try:
+        ok_api_client.execute_graphql(query, variables=dict(
+            trait_definition=marshalled_trait
+        ))
+    except TransportQueryError as e:
+        return False
 
     return True

@@ -18,6 +18,7 @@ from .ci import (
 
 from .trait import (
     upsert_trait,
+    
     TraitDefinition,
     TraitAttributeDefinition,
     TraitRelationDefinition
@@ -25,7 +26,7 @@ from .trait import (
 
 # import util
 from .util import (
-    hexString2RGBColor,
+    hex_string_to_rgb_color,
 )
 
 from .typing import (

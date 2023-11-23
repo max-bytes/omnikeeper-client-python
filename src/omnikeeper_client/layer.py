@@ -5,7 +5,7 @@ from gql.transport.exceptions import (
     TransportQueryError,
 )
 
-def create_layer(ok_api_client: okc.OkApiClient, layer_id: str) -> bool:
+def create_layer(ok_api_client: okc.OkApiClient, layer_id: str, description: str = None, argbColor: int = None) -> bool:
     """creates a layer by specifying layer_id. 
 
     Parameters
@@ -15,6 +15,12 @@ def create_layer(ok_api_client: okc.OkApiClient, layer_id: str) -> bool:
 
     layer_id : str
         id of layer to create, must only contain charaters [A-Za-z_]
+
+    description : str
+        description to set for this layer
+
+    argbColor : int
+        color of layer, see omnikeeperclient.hexString2RGBColor() for more details
 
     Returns
     -------
@@ -31,6 +37,12 @@ def create_layer(ok_api_client: okc.OkApiClient, layer_id: str) -> bool:
     
     try:
         ok_api_client.execute_graphql(query, variables=dict(id=layer_id))
+
+        if description is not None or argbColor is not None:
+            description = description or ""
+            argbColor = argbColor or -1
+            update_layerdata(ok_api_client, layer_id, description, argbColor)
+
         return True
     except TransportQueryError as e:
         return False

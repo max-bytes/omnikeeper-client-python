@@ -98,7 +98,7 @@ def truncate_layer(client: Client, layer_id: str) -> bool:
 
 @deprecated(category=FutureWarning, reason="please use omnikeeper_client.* public functions instead")
 def hexString2RGBColor(hex: str) -> int:
-    return okc.hexString2RGBColor(hex)
+    return okc.hex_string_to_rgb_color(hex)
 
 @deprecated(category=FutureWarning, reason="please use omnikeeper_client.* public functions instead")
 def upsert_layerdata(client: Client, layer_id: str, description: str, argbColor: int) -> bool:
