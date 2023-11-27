@@ -7,7 +7,6 @@ import datetime
 import omnikeeper_client as okc
 from typing import List, Dict, Any
 
-
 def _is_relation_field(type: GraphQLType) -> bool:
     """
     Checks if field is a relation. A typical relation field looks like this:
@@ -128,9 +127,9 @@ def get_latest_trait_change(ok_api_client: okc.OkApiClient, trait_name: str, lay
         timestamp = parser.parse(timestamp_str)
         return timestamp
  
-def get_all_traitentities(ok_api_client: okc.OkApiClient, trait_name: str, layers: [str], keep_ciid_as_column: bool = False) -> List[Dict[str,Any]]:
+def _get_all_traitentities(ok_api_client: okc.OkApiClient, trait_name: str, layers: [str]) -> List[Dict[str,Any]]:
     """
-    Returns all traitentites
+    Internal method used to fetch all traitentites
 
     Parameters
     ----------
@@ -142,9 +141,6 @@ def get_all_traitentities(ok_api_client: okc.OkApiClient, trait_name: str, layer
 
     layers : [str]
         list containing layer_ids to search
-
-    keep_ciid_as_column : bool
-        True if ciid should be returned in result, False otherwise
 
     Returns
     -------
@@ -187,6 +183,221 @@ def get_all_traitentities(ok_api_client: okc.OkApiClient, trait_name: str, layer
             data.update(data.pop('entity'))
 
         return data_list
+    
+def _bulk_replace_trait_entities_by_filter(ok_api_client: okc.OkApiClient, trait_name: str, input: List[Dict[str,Any]], id_attributes: [str], id_relations: [str], write_layer: str, read_layers: [str] = None, filter: object = {}) -> bool:
+    """
+    Internal method used to replace all traitentites in a layer, it can use a filter when updating the trait entities,
+    this will also delete all old trait entities, if there are any
+
+    Parameters
+    ----------
+    ok_api_client : OkApiClient
+        The OkApiClient instance representing omnikeeper connection
+
+    trait_name : str
+        the name of the trait to query the data
+
+    input : List[Dict[str,Any]]
+        Trait entities as list of dictionaries
+
+    id_attributes : [str]
+        attributes to be considered as trait IDs
+    
+    id_relations : [str]
+        ids to be considered as trait relations IDs
+
+    write_layer : str
+        the name of the layer in which the data should be added
+
+    read_layers : [str]
+        A list with names of the layers in which the omnikeeper will look if trait entities already exist
+
+    filter : object
+        a filter object can be used, default {}, example for filter object: {type: {exact: "Validator"}, context: {exact: "test"}, group: {exact: "test"} }
+
+    Returns
+    -------
+    bool 
+        True if the update is successful, False otherwise
+    """
+    
+    escaped_trait_name = _get_escaped_trait_name(trait_name)
+    prefixed_escaped_trait_name = _get_prefixed_trait_name(escaped_trait_name)
+
+    query = gql(f"""
+        mutation($readLayers: [String]!, $writeLayer: String!, $idAttributes: [String!]!, $idRelations: [String!]!, $filter: TE_filter_Input_{escaped_trait_name}!, $input: [TE_Upsert_Input_{escaped_trait_name}]!) {{
+        bulkReplaceByFilter_{prefixed_escaped_trait_name}(
+            layers: $readLayers
+            writeLayer: $writeLayer
+            filter: $filter
+            input: $input
+            idAttributes: $idAttributes
+            idRelations: $idRelations
+        ) {{
+            success
+        }}
+        }}
+        """)
+        
+    if read_layers is None:
+        read_layers = [write_layer]
+
+    result = ok_api_client.execute_graphql(query, variables=dict(
+        writeLayer=write_layer, 
+        readLayers=read_layers, 
+        idAttributes=id_attributes,
+        idRelations=id_relations,
+        filter=filter,
+        input=input
+        ))
+
+    return result[f"bulkReplaceByFilter_{prefixed_escaped_trait_name}"]["success"]
+
+def _bulk_replace_trait_entities(ok_api_client: okc.OkApiClient, trait_name: str, input: List[Dict[str,Any]], write_layer: str, read_layers: [str] = None) -> bool:
+    """
+    Internal method that sets all trait entities, this will also delete all old trait entities, if there are any
+
+    Parameters
+    ----------
+    ok_api_client : OkApiClient
+        The OkApiClient instance representing omnikeeper connection
+
+    trait_name : str
+        the name of the trait to query the data
+
+    input : List[Dict[str,Any]]
+        The cis items which will be added to the layer
+
+    write_layer : str
+        the name of the layer in which the data should be added
+
+    read_layers : [str]
+        A list with names of the layers in which the omnikeeper will look if the cis already exists
+
+    Returns
+    -------
+    bool 
+        True if the update is successful, False otherwise
+    """
+    escaped_trait_name = _get_escaped_trait_name(trait_name)
+    prefixed_escaped_trait_name = _get_prefixed_trait_name(escaped_trait_name)
+
+    query = gql(f"""
+        mutation($readLayers: [String]!, $writeLayer: String!, $input: [TE_CIID_And_Upsert_Attributes_Only_Input_{escaped_trait_name}]!) {{
+        bulkReplace_{prefixed_escaped_trait_name}(
+            layers: $readLayers
+            writeLayer: $writeLayer
+            input: $input
+        ) {{
+            success
+        }}
+        }}
+        """)
+        
+    final_input = [{"ciid": d["ciid"], "attributes": {k: v for k, v in d.items() if k != "ciid"}} for d in input]
+        
+    if read_layers is None:
+        read_layers = [write_layer]
+    result = ok_api_client.execute_graphql(query, variables=dict(
+        writeLayer=write_layer, 
+        readLayers=read_layers, 
+        input=final_input
+        ))
+
+    return result[f"bulkReplace_{prefixed_escaped_trait_name}"]["success"]
+
+def bulk_replace_trait_entities_by_filter_list(ok_api_client: okc.OkApiClient, trait_name: str, input: List[Dict[str,Any]], id_attributes: [str], id_relations: [str], write_layer: str, read_layers: [str] = None, filter: object = {}) -> bool:
+    """
+    Replaces all traitentites in a layer, it can use a filter when updating the trait entities,
+    this will also delete all old trait entities, if there are any
+
+    Parameters
+    ----------
+    ok_api_client : OkApiClient
+        The OkApiClient instance representing omnikeeper connection
+
+    trait_name : str
+        the name of the trait to query the data
+
+    input : List[Dict[str,Any]]
+        Trait entities as list of dictionaries
+
+    id_attributes : [str]
+        attributes to be considered as trait IDs
+    
+    id_relations : [str]
+        ids to be considered as trait relations IDs
+
+    write_layer : str
+        the name of the layer in which the data should be added
+
+    read_layers : [str]
+        A list with names of the layers in which the omnikeeper will look if trait entities already exist
+
+    filter : object
+        a filter object can be used, default {}, example for filter object: {type: {exact: "Validator"}, context: {exact: "test"}, group: {exact: "test"} }
+
+    Returns
+    -------
+    bool 
+        True if the update is successful, False otherwise
+    """
+    result = _bulk_replace_trait_entities_by_filter(ok_api_client, trait_name, input, id_attributes, id_relations, write_layer, read_layers, filter)
+    return result
+
+def bulk_replace_trait_entities_list(ok_api_client: okc.OkApiClient, trait_name: str, input: List[Dict[str,Any]], write_layer: str, read_layers: [str] = None) -> bool:
+    """
+    Sets all trait entities, this will also delete all old trait entities, if there are any
+
+    Parameters
+    ----------
+    ok_api_client : OkApiClient
+        The OkApiClient instance representing omnikeeper connection
+
+    trait_name : str
+        the name of the trait to query the data
+
+    input : List[Dict[str,Any]]
+        The cis items which will be added to the layer
+
+    write_layer : str
+        the name of the layer in which the data should be added
+
+    read_layers : [str]
+        A list with names of the layers in which the omnikeeper will look if the cis already exists
+
+    Returns
+    -------
+    bool 
+        True if the update is successful, False otherwise
+    """
+    result = _bulk_replace_trait_entities(ok_api_client, trait_name, input, write_layer, read_layers)
+    return result
+
+def get_all_traitentities_list(ok_api_client: okc.OkApiClient, trait_name: str, layers: [str]) -> List[Dict[str,Any]]:
+    """
+    Returns all traitentites
+
+    Parameters
+    ----------
+    ok_api_client : OkApiClient
+        The OkApiClient instance representing omnikeeper connection
+
+    trait_name : str
+        the name of the trait to query the data
+
+    layers : [str]
+        list containing layer_ids to search
+
+    Returns
+    -------
+    List[Dict[str,Any]]
+        result containing all traitentites
+    """
+    
+    trait_entities = _get_all_traitentities(ok_api_client, trait_name, layers)
+    return trait_entities
+
 
 def get_trait_relation(ok_api_client: okc.OkApiClient, trait_name: str, relation_name: str, layers: [str], keep_ciid_as_column: bool = False) -> List[Dict[str,Any]]:
     """
@@ -259,126 +470,4 @@ def get_trait_relation(ok_api_client: okc.OkApiClient, trait_name: str, relation
 
         return result_list
 
-# NOTE renamed to bulk_replace_trait_cis based on what the function dos and the similarity with the bulk_replace_trait_cis_by_filter function below
-def bulk_replace_trait_entities(ok_api_client: okc.OkApiClient, trait_name: str, input: List[Dict[str,Any]], write_layer: str, read_layers: [str] = None) -> bool:
-    """
-    Sets all traitentities, this will also delete all old trait entities, if there are any
 
-    Parameters
-    ----------
-    ok_api_client : OkApiClient
-        The OkApiClient instance representing omnikeeper connection
-
-    trait_name : str
-        the name of the trait to query the data
-
-    input : List[Dict[str,Any]]
-        The cis items which will be added to the layer
-
-    write_layer : str
-        the name of the layer in which the data should be added
-
-    read_layers : [str]
-        A list with names of the layers in which the omnikeeper will look if the cis already exists
-
-    Returns
-    -------
-    bool 
-        True if the update is successful, False otherwise
-    """
-    escaped_trait_name = _get_escaped_trait_name(trait_name)
-    prefixed_escaped_trait_name = _get_prefixed_trait_name(escaped_trait_name)
-
-    query = gql(f"""
-        mutation($readLayers: [String]!, $writeLayer: String!, $input: [TE_CIID_And_Upsert_Attributes_Only_Input_{escaped_trait_name}]!) {{
-        bulkReplace_{prefixed_escaped_trait_name}(
-            layers: $readLayers
-            writeLayer: $writeLayer
-            input: $input
-        ) {{
-            success
-        }}
-        }}
-        """)
-        
-    final_input = [{"ciid": d["ciid"], "attributes": {k: v for k, v in d.items() if k != "ciid"}} for d in input]
-        
-    if read_layers is None:
-        read_layers = [write_layer]
-    result = ok_api_client.execute_graphql(query, variables=dict(
-        writeLayer=write_layer, 
-        readLayers=read_layers, 
-        input=final_input
-        ))
-
-    return result[f"bulkReplace_{prefixed_escaped_trait_name}"]["success"]
-
-def bulk_replace_trait_entities_by_filter(ok_api_client: okc.OkApiClient, trait_name: str, input: List[Dict[str,Any]], id_attributes: [str], id_relations: [str], write_layer: str, read_layers: [str] = None, filter: object = {}) -> bool:
-    """
-    Replaces all traitentites in a layer, it can use a filter when updating the traitentities,
-    this will also delete all old trait entities, if there are any
-
-    Parameters
-    ----------
-    ok_api_client : OkApiClient
-        The OkApiClient instance representing omnikeeper connection
-
-    trait_name : str
-        the name of the trait to query the data
-
-    input : List[Dict[str,Any]]
-        The cis items which will be added to the layer
-
-    id_attributes : [str]
-        TODO add description
-    
-    id_relations : [str]
-        TODO add description
-
-    write_layer : str
-        the name of the layer in which the data should be added
-
-    read_layers : [str]
-        A list with names of the layers in which the omnikeeper will look if the cis already exists
-
-    filter : object
-        TODO add description
-
-    Returns
-    -------
-    bool 
-        True if the update is successful, False otherwise
-    """
-    
-    escaped_trait_name = _get_escaped_trait_name(trait_name)
-    prefixed_escaped_trait_name = _get_prefixed_trait_name(escaped_trait_name)
-
-    # example for filter object: {type: {exact: "Validator"}, context: {exact: "test"}, group: {exact: "test"} }
-    query = gql(f"""
-        mutation($readLayers: [String]!, $writeLayer: String!, $idAttributes: [String!]!, $idRelations: [String!]!, $filter: TE_filter_Input_{escaped_trait_name}!, $input: [TE_Upsert_Input_{escaped_trait_name}]!) {{
-        bulkReplaceByFilter_{prefixed_escaped_trait_name}(
-            layers: $readLayers
-            writeLayer: $writeLayer
-            filter: $filter
-            input: $input
-            idAttributes: $idAttributes
-            idRelations: $idRelations
-        ) {{
-            success
-        }}
-        }}
-        """)
-        
-    if read_layers is None:
-        read_layers = [write_layer]
-
-    result = ok_api_client.execute_graphql(query, variables=dict(
-        writeLayer=write_layer, 
-        readLayers=read_layers, 
-        idAttributes=id_attributes,
-        idRelations=id_relations,
-        filter=filter,
-        input=input
-        ))
-
-    return result[f"bulkReplaceByFilter_{prefixed_escaped_trait_name}"]["success"]
