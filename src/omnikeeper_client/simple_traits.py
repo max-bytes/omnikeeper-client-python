@@ -5,7 +5,9 @@ from graphql import GraphQLType
 from gql.dsl import DSLQuery, DSLVariableDefinitions, DSLSchema, dsl_gql
 from dateutil import parser
 import datetime
+from deprecated import deprecated
 
+@deprecated(category=FutureWarning, reason="please use omnikeeper_client.* public functions instead, if really needed, use  OkApiClient()._is_relation_field()")
 def is_relation_field(type: GraphQLType) -> bool:
     # a typical relation field looks like this:
     # GraphQLList <GraphQLObjectType 'TEWrapper_tsa_cmdb__interface'>>
@@ -18,7 +20,7 @@ def is_relation_field(type: GraphQLType) -> bool:
         return False
     return True
 
-
+@deprecated(category=FutureWarning, reason="please use omnikeeper_client.* public functions instead, if really needed, use  OkApiClient()._is_non_trait_hinted_relation_field()")
 def is_non_trait_hinted_relation_field(type: GraphQLType) -> bool:
     if not graphql.type.is_list_type(type):
         return False
@@ -29,14 +31,17 @@ def is_non_trait_hinted_relation_field(type: GraphQLType) -> bool:
         return False
     return True
 
+@deprecated(category=FutureWarning, reason="please use omnikeeper_client.* public functions instead, if really needed, use  OkApiClient()._get_escaped_trait_name()")
 def get_escaped_trait_name(name: str) -> str:
     return str.replace(name, '.', '__')
 
+@deprecated(category=FutureWarning, reason="please use omnikeeper_client.* public functions instead, if really needed, use  OkApiClient()._get_prefixed_trait_name()")
 def get_prefixed_trait_name(name: str) -> str:
     if name.startswith("_"):
         return f"m{name}"
     return name
 
+@deprecated(category=FutureWarning, reason="please use omnikeeper_client public function get_latest_trait_change() instead")
 def get_latest_change_for_all(client: Client, trait_name: str, layers: [str]) -> datetime.datetime:
     with client as session:
         ds = DSLSchema(client.schema)
@@ -65,6 +70,7 @@ def get_latest_change_for_all(client: Client, trait_name: str, layers: [str]) ->
         timestamp = parser.parse(timestamp_str)
         return timestamp
 
+@deprecated(category=FutureWarning, reason="please use omnikeeper_client.* public functions instead, use get_all_traitentities_list() if you want to work with list, use get_all_traitentities_dataframe() if you want to work with dataframes")
 def get_all(client: Client, trait_name: str, layers: [str], keep_ciid_as_column: bool = False) -> pd.DataFrame:
     with client as session:
         ds = DSLSchema(client.schema)
@@ -102,6 +108,7 @@ def get_all(client: Client, trait_name: str, layers: [str], keep_ciid_as_column:
 
         return data_frame
 
+@deprecated(category=FutureWarning, reason="please use omnikeeper_client public function get_trait_relation() instead")
 def get_relation(client: Client, trait_name: str, relation_name: str, layers: [str], keep_ciid_as_column: bool = False) -> pd.DataFrame:
     with client as session:
         ds = DSLSchema(client.schema)
@@ -140,7 +147,7 @@ def get_relation(client: Client, trait_name: str, relation_name: str, layers: [s
 
         return data_frame
     
-
+@deprecated(category=FutureWarning, reason="please use omnikeeper_client.* public functions instead, use bulk_replace_trait_entities_list() if you want to work with list, use bulk_replace_trait_entities_dataframe() if you want to work with dataframes")
 def set_all(client: Client, trait_name: str, input: pd.DataFrame, write_layer: str, read_layers: [str] = None) -> bool:
     escaped_trait_name = get_escaped_trait_name(trait_name)
     prefixed_escaped_trait_name = get_prefixed_trait_name(escaped_trait_name)
@@ -169,7 +176,7 @@ def set_all(client: Client, trait_name: str, input: pd.DataFrame, write_layer: s
             ))
         return result[f"bulkReplace_{prefixed_escaped_trait_name}"]["success"]
 
-    
+@deprecated(category=FutureWarning, reason="please use omnikeeper_client.* public functions instead, use bulk_replace_trait_entities_by_filter_list() if you want to work with list, use bulk_replace_trait_entities_by_filter_dataframe() if you want to work with dataframes")
 def bulk_replace(client: Client, trait_name: str, input: pd.DataFrame, id_attributes: [str], id_relations: [str], write_layer: str, read_layers: [str] = None, filter: object = {}) -> bool:
     escaped_trait_name = get_escaped_trait_name(trait_name)
     prefixed_escaped_trait_name = get_prefixed_trait_name(escaped_trait_name)
