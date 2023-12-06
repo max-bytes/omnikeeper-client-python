@@ -43,7 +43,6 @@ from .typing import (
 from .traitentities import (
     get_latest_trait_change,
     get_all_traitentities_list,
-    get_trait_relation,
     bulk_replace_trait_entities_list,
     bulk_replace_trait_entities_by_filter_list,
 )
@@ -52,4 +51,9 @@ from .dataframes import (
     get_all_traitentities_dataframe,
     bulk_replace_trait_entities_dataframe,
     bulk_replace_trait_entities_by_filter_dataframe,
+)
+
+from .relation import (
+    get_trait_relation,
+    get_traitentities_with_relations_list,
 )
