@@ -55,5 +55,4 @@ from .dataframes import (
 
 from .relation import (
     get_trait_relation,
-    get_traitentities_with_relations_list,
 )
