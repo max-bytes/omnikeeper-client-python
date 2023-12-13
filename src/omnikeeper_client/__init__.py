@@ -55,4 +55,5 @@ from .dataframes import (
 
 from .relation import (
     get_trait_relation,
+    add_trait_relations_by_ciid,
 )
