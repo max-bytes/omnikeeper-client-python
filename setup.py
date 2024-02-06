@@ -5,12 +5,12 @@ setup(
     package_dir={
         'omnikeeper_client': 'src',
     },
-    version='4.0.0',
+    version='5.0.0',
     description='Python library containing helper functions for implementing omnikeeper clients',
     author='Maximilian Csuk',
     license='Apache 2.0',
     install_requires=[
-        "oauthlib-sessionhandler @ git+https://github.com/MHx-Operations/oauthlib-sessionhandler.git@1a87cbc23dba7e0a9b20fe7eb8a19c41ab3f2980"
+        # "oauthlib-sessionhandler @ git+https://github.com/MHx-Operations/oauthlib-sessionhandler.git@1a87cbc23dba7e0a9b20fe7eb8a19c41ab3f2980" NOTE: cannot include dependency to git+https library, manual installation required
         "appengine-python-standard~=1.1",
         "gql~=3.4",
         "oauthlib~=3.2",

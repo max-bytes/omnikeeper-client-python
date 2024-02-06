@@ -47,5 +47,14 @@ https://packaging.python.org/en/latest/tutorials/packaging-projects/#generating-
 
 ~~~bash
 python3 -m pip install --upgrade build
+~~~
 
+### use from PyPi
+
+Note: this project depends on oauthlib-sessionhandler, which is not available on PyPI. One place where you can find it is at: https://github.com/MHx-Operations/oauthlib-sessionhandler.
+
+One way to install oauthlib-sessionhandler is to run the following command:
+
+~~~bash
+python -m pip install 'git+https://github.com/MHx-Operations/oauthlib-sessionhandler.git@8003354b8ff7dde7e0f454e84b154f2930b3e6cd'
 ~~~
