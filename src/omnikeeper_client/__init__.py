@@ -42,17 +42,15 @@ from .typing import (
 
 from .traitentities import (
     get_latest_trait_change,
-    get_all_traitentities_list,
-    bulk_replace_trait_entities_list,
-    bulk_replace_trait_entities_by_filter_list,
+    get_all_traitentities,
+    get_all_traitentity_relations,
+    set_traitentity_relations,
+    bulk_replace_trait_entities,
+    bulk_replace_trait_entities_by_filter,
 )
 
 from .dataframes import (
     get_all_traitentities_dataframe,
     bulk_replace_trait_entities_dataframe,
     bulk_replace_trait_entities_by_filter_dataframe,
-)
-
-from .relation import (
-    get_trait_relation,
 )

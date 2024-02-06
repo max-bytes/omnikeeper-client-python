@@ -92,7 +92,7 @@ def update_layerdata(ok_api_client: okc.OkApiClient, layer_id: str, description:
         return False
     
 def truncate_layer(ok_api_client: okc.OkApiClient, layer_id: str) -> bool:
-    """truncate a layer, means remove every attribute on all CIs on that layer
+    """truncate a layer, removing all attributes and relations on all CIs on that layer
 
     Parameters
     ----------

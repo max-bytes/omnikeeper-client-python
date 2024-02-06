@@ -47,13 +47,10 @@ def create_ci(ok_api_client: okc.OkApiClient, ci_name: Optional[str] = None, lay
         }
     }""")
     
-    try:
-        result = ok_api_client.execute_graphql(query, variables=dict(
-                name=ci_name, layerIDForName=layer_id_for_ci_name, ciid=ciid
-        ))
-        return uuid.UUID(result["createCIs"]['ciids'][0])
-    except TransportQueryError as e:
-        return None
+    result = ok_api_client.execute_graphql(query, variables=dict(
+            name=ci_name, layerIDForName=layer_id_for_ci_name, ciid=ciid
+    ))
+    return uuid.UUID(result["createCIs"]['ciids'][0])
 
 def mutate_ci(ok_api_client: okc.OkApiClient, write_layer_id: str, ciid : uuid.UUID, attribute_upserts: Dict[str, Any]) -> bool:
     return mutate_cis(ok_api_client, write_layer_id, {ciid: attribute_upserts})

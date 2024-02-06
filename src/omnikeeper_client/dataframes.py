@@ -27,7 +27,7 @@ def get_all_traitentities_dataframe(ok_api_client: okc.OkApiClient, trait_name: 
         result containing all traitentites in pandas dataframe format
     """
 
-    data_list = _get_all_traitentities(ok_api_client, trait_name=trait_name, layers=layers)
+    data_list = _get_all_traitentities(ok_api_client, trait_id=trait_name, layers=layers)
     data_df = pd.DataFrame(data_list)
     data_df.set_index('ciid', inplace=True, drop=not keep_ciid_as_column)
 
@@ -56,10 +56,10 @@ def bulk_replace_trait_entities_by_filter_dataframe(ok_api_client: okc.OkApiClie
         ids to be considered as trait relations IDs
 
     write_layer : str
-        the name of the layer in which the data should be added
+        the id of the layer in which the data should be added
 
     read_layers : [str]
-        A list with names of the layers in which the omnikeeper will look if the cis already exists
+        A list with ids of the layers in which the omnikeeper will look if the cis already exists
 
     filter : object
         a filter object can be used, default {}, example for filter object: {type: {exact: "Validator"}, context: {exact: "test"}, group: {exact: "test"} }
@@ -90,10 +90,10 @@ def bulk_replace_trait_entities_dataframe(ok_api_client: okc.OkApiClient, trait_
         traitentities in dataframe format
 
     write_layer : str
-        the name of the layer in which the data should be added
+        the id of the layer in which the data should be added
 
     read_layers : [str]
-        A list with names of the layers in which the omnikeeper will look if the cis already exists
+        A list with ids of the layers in which the omnikeeper will look if the cis already exists
 
     Returns
     -------
