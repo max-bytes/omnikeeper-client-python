@@ -2,8 +2,6 @@ from typing import Union
 from numpy import array
 from requests.structures import CaseInsensitiveDict
 import requests
-from oauthlib.oauth2 import LegacyApplicationClient
-from requests_oauthlib import OAuth2Session
 import hashlib
 import json
 import io
@@ -53,12 +51,6 @@ def build_id_method_related_temp_id(tempID: str, outgoing: bool, predicateID: st
         "predicateID": predicateID
     }
 
-def get_access_token(config: dict) -> str:
-    client = LegacyApplicationClient(client_id=config['client_id'])
-    oauth = OAuth2Session(client=client)
-    token = oauth.fetch_token(token_url=config['token_url'], username=config['username'], password=config['password'])
-    return token["access_token"]
-
 # taken from https://death.andgravity.com/stable-hashing
 def hash_data(data) -> bytes:
     dumped = json.dumps(
@@ -71,6 +63,7 @@ def hash_data(data) -> bytes:
     hash = hashlib.md5(dumped.encode('utf-8')).digest()
     return hash
 
+# TODO: rewrite to use new auth
 def ingest_data(config: dict, data: array, access_token: str):
 
     api_url = f"%s/api/v1/ingest/genericJSON/data" % (config["url"])

@@ -10,6 +10,7 @@ setup(
     author='Maximilian Csuk',
     license='Apache 2.0',
     install_requires=[
+        "oauthlib-sessionhandler @ git+https://github.com/MHx-Operations/oauthlib-sessionhandler.git@1a87cbc23dba7e0a9b20fe7eb8a19c41ab3f2980"
         "appengine-python-standard~=1.1",
         "gql~=3.4",
         "oauthlib~=3.2",
