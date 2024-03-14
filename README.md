@@ -34,6 +34,7 @@ have a look at our [examples](examples/)
 ### build library
 
 ```bash
+rm -rf build
 python setup.py bdist_wheel
 ```
 
@@ -56,5 +57,5 @@ Note: this project depends on oauthlib-sessionhandler, which is not available on
 One way to install oauthlib-sessionhandler is to run the following command:
 
 ~~~bash
-python -m pip install 'git+https://github.com/MHx-Operations/oauthlib-sessionhandler.git@8003354b8ff7dde7e0f454e84b154f2930b3e6cd'
+python -m pip install 'git+https://github.com/MHx-Operations/oauthlib-sessionhandler.git@2de98b3119aa2fa73e5ac8a3ca384573dfaa0f36'
 ~~~
