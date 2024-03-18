@@ -5,7 +5,7 @@ setup(
     package_dir={
         'omnikeeper_client': 'src/omnikeeper_client',
     },
-    version='5.1.0',
+    version='5.1.1',
     description='Python library containing helper functions for implementing omnikeeper clients',
     author='Maximilian Csuk',
     license='Apache 2.0',

@@ -37,7 +37,7 @@ class OkApiClient():
             self._oash = oauthlib_sessionhandler.OAuthLibSessionHandler(
                 wellknown_url=f"{self._backend_url}/.well-known/openid-configuration",
                 client_id=self._client_id,
-                client_secret=self.client_secret,
+                client_secret=self._client_secret,
                 username=self._username,
                 password=self._password,
             )
