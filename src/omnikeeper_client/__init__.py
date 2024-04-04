@@ -54,3 +54,9 @@ from .dataframes import (
     bulk_replace_trait_entities_dataframe,
     bulk_replace_trait_entities_by_filter_dataframe,
 )
+
+from .pyd import (
+    SerializableUUID,
+    get_all_traitentities_pydantic,
+    bulk_replace_trait_entities_pydantic
+)

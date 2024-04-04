@@ -19,5 +19,6 @@ setup(
         "requests-oauthlib~=1.3",
         "requests-toolbelt~=0.10",
         "webcolors~=1.3",
+        "pydantic~=2.6",
     ]
 )
