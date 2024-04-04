@@ -7,6 +7,9 @@ import datetime
 import omnikeeper_client as okc
 from typing import List, Dict, Any
 import uuid
+from typing import (
+    List,
+)
 
 
 def _is_relation_field(type: GraphQLType) -> bool:
@@ -81,7 +84,7 @@ def _get_prefixed_trait_id(name: str) -> str:
         return f"m{name}"
     return name
 
-def get_latest_trait_change(ok_api_client: okc.OkApiClient, trait_id: str, layers: [str]) -> datetime.datetime:
+def get_latest_trait_change(ok_api_client: okc.OkApiClient, trait_id: str, layers: List[str]) -> datetime.datetime:
     """
     Returns the timestamp of the latest change for the provided trait
 
@@ -129,7 +132,7 @@ def get_latest_trait_change(ok_api_client: okc.OkApiClient, trait_id: str, layer
         timestamp = parser.parse(timestamp_str)
         return timestamp
  
-def _get_all_traitentities(ok_api_client: okc.OkApiClient, trait_id: str, layers: [str]) -> List[Dict[str,Any]]:
+def _get_all_traitentities(ok_api_client: okc.OkApiClient, trait_id: str, layers: List[str]) -> List[Dict[str,Any]]:
     """
     Internal method used to fetch all traitentites
 
@@ -186,7 +189,7 @@ def _get_all_traitentities(ok_api_client: okc.OkApiClient, trait_id: str, layers
         return data_list
     
   
-def get_all_traitentities(ok_api_client: okc.OkApiClient, trait_id: str, layers: [str]) -> List[Dict[str,Any]]:
+def get_all_traitentities(ok_api_client: okc.OkApiClient, trait_id: str, layers: List[str]) -> List[Dict[str,Any]]:
     """
     Returns all traitentites
 
@@ -210,7 +213,7 @@ def get_all_traitentities(ok_api_client: okc.OkApiClient, trait_id: str, layers:
     trait_entities = _get_all_traitentities(ok_api_client, trait_id, layers)
     return trait_entities
 
-def get_all_traitentity_relations(ok_api_client: okc.OkApiClient, trait_id: str, traitrelation_id: str, layers: [str]) -> List[Dict[str,Any]]:
+def get_all_traitentity_relations(ok_api_client: okc.OkApiClient, trait_id: str, traitrelation_id: str, layers: List[str]) -> List[Dict[str,Any]]:
     """
     Returns the trait relations for all trait entities of a particular trait
 
@@ -272,7 +275,7 @@ def get_all_traitentity_relations(ok_api_client: okc.OkApiClient, trait_id: str,
 
         return result_list
     
-def set_traitentity_relations(ok_api_client: okc.OkApiClient, trait_id: str, traitrelation_id: str, base_ciid: uuid.UUID | str, related_ciids: List[uuid.UUID | str], write_layer: str, read_layers: [str] = None) -> bool:
+def set_traitentity_relations(ok_api_client: okc.OkApiClient, trait_id: str, traitrelation_id: str, base_ciid: uuid.UUID | str, related_ciids: List[uuid.UUID | str], write_layer: str, read_layers: List[str] = None) -> bool:
     """
     Sets a particular trait relation of a particular trait for a single CI
     Adds new traitrelations and deletes all traitrelations not in the provided list
@@ -333,7 +336,7 @@ def set_traitentity_relations(ok_api_client: okc.OkApiClient, trait_id: str, tra
 
     return True
   
-def _bulk_replace_trait_entities_by_filter(ok_api_client: okc.OkApiClient, trait_id: str, input: List[Dict[str,Any]], id_attributes: [str], id_relations: [str], write_layer: str, read_layers: [str] = None, filter: object = {}) -> bool:
+def _bulk_replace_trait_entities_by_filter(ok_api_client: okc.OkApiClient, trait_id: str, input: List[Dict[str,Any]], id_attributes: List[str], id_relations: List[str], write_layer: str, read_layers: List[str] = None, filter: object = {}) -> bool:
     """
     Internal method used to replace all traitentites in a layer, it can use a filter when updating the trait entities,
     this will also delete all old trait entities, if there are any
@@ -401,7 +404,7 @@ def _bulk_replace_trait_entities_by_filter(ok_api_client: okc.OkApiClient, trait
 
     return result[f"bulkReplaceByFilter_{prefixed_escaped_trait_id}"]["success"]
 
-def _bulk_replace_trait_entities(ok_api_client: okc.OkApiClient, trait_id: str, input: List[Dict[str,Any]], write_layer: str, read_layers: [str] = None) -> bool:
+def _bulk_replace_trait_entities(ok_api_client: okc.OkApiClient, trait_id: str, input: List[Dict[str,Any]], write_layer: str, read_layers: List[str] = None) -> bool:
     """
     Internal method that sets all trait entities, this will also delete all old trait entities, if there are any
 
@@ -457,7 +460,7 @@ def _bulk_replace_trait_entities(ok_api_client: okc.OkApiClient, trait_id: str, 
     return result[f"bulkReplace_{prefixed_escaped_trait_id}"]["success"]
 
 # TODO: support use of uuid.UUID for ciids
-def bulk_replace_trait_entities_by_filter(ok_api_client: okc.OkApiClient, trait_id: str, input: List[Dict[str,Any]], id_attributes: [str], id_relations: [str], write_layer: str, read_layers: [str] = None, filter: object = {}) -> bool:
+def bulk_replace_trait_entities_by_filter(ok_api_client: okc.OkApiClient, trait_id: str, input: List[Dict[str,Any]], id_attributes: List[str], id_relations: List[str], write_layer: str, read_layers: List[str] = None, filter: object = {}) -> bool:
     """
     Replaces all traitentites in a layer, it can use a filter when updating the trait entities,
     this will also delete all old trait entities, if there are any
@@ -499,7 +502,7 @@ def bulk_replace_trait_entities_by_filter(ok_api_client: okc.OkApiClient, trait_
     return result
 
 # TODO: support use of uuid.UUID for ciids
-def bulk_replace_trait_entities(ok_api_client: okc.OkApiClient, trait_id: str, input: List[Dict[str,Any]], write_layer: str, read_layers: [str] = None) -> bool:
+def bulk_replace_trait_entities(ok_api_client: okc.OkApiClient, trait_id: str, input: List[Dict[str,Any]], write_layer: str, read_layers: List[str] = None) -> bool:
     """
     Sets all trait entities, this will also delete all old trait entities, if there are any
 

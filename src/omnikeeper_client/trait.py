@@ -5,6 +5,9 @@ from gql import gql
 from gql.transport.exceptions import (
     TransportQueryError,
 )
+from typing import (
+    List,
+)
 
 # NOTE: these classes use camelCase members, so they can be easily encoded for GraphQL using okc_util.to_dict()
 class TraitAttributeDefinition:
@@ -19,7 +22,7 @@ class TraitAttributeDefinition:
         )
 
 class TraitRelationDefinition:
-    def __init__(self, identifier: str, predicate_id: str, direction_forward: bool, trait_hints: [str] = []):
+    def __init__(self, identifier: str, predicate_id: str, direction_forward: bool, trait_hints: List[str] = []):
         self.identifier = identifier
         self.template = dict(
             predicateID = predicate_id,
@@ -28,7 +31,7 @@ class TraitRelationDefinition:
         )
 
 class TraitDefinition:
-    def __init__(self, trait_id: str, required_attributes: [TraitAttributeDefinition], optional_attributes: [TraitAttributeDefinition] = [], optional_relations: [TraitRelationDefinition] = [], required_traits: [str] = []):
+    def __init__(self, trait_id: str, required_attributes: List[TraitAttributeDefinition], optional_attributes: List[TraitAttributeDefinition] = [], optional_relations: List[TraitRelationDefinition] = [], required_traits: List[str] = []):
         self.id = trait_id
         self.requiredAttributes = required_attributes
         self.optionalAttributes = optional_attributes

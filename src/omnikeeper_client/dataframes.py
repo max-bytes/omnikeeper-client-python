@@ -5,8 +5,11 @@ from .traitentities import (
     _bulk_replace_trait_entities_by_filter,
     _bulk_replace_trait_entities,
 )
+from typing import (
+    List,
+)
 
-def get_all_traitentities_dataframe(ok_api_client: okc.OkApiClient, trait_name: str, layers: [str], keep_ciid_as_column: bool = False) -> pd.DataFrame:
+def get_all_traitentities_dataframe(ok_api_client: okc.OkApiClient, trait_name: str, layers: List[str], keep_ciid_as_column: bool = False) -> pd.DataFrame:
     """
     Returns all traitentites as pandas dataframe 
 
@@ -33,7 +36,7 @@ def get_all_traitentities_dataframe(ok_api_client: okc.OkApiClient, trait_name: 
 
     return data_df
 
-def bulk_replace_trait_entities_by_filter_dataframe(ok_api_client: okc.OkApiClient, trait_name: str, input: pd.DataFrame, id_attributes: [str], id_relations: [str], write_layer: str, read_layers: [str] = None, filter: object = {}) -> bool:
+def bulk_replace_trait_entities_by_filter_dataframe(ok_api_client: okc.OkApiClient, trait_name: str, input: pd.DataFrame, id_attributes: List[str], id_relations: List[str], write_layer: str, read_layers: List[str] = None, filter: object = {}) -> bool:
     """
     Replaces all traitentites in a layer input data is a dataframe, it can use a filter when updating the traitentities,
     this will also delete all old trait entities, if there are any
@@ -74,7 +77,7 @@ def bulk_replace_trait_entities_by_filter_dataframe(ok_api_client: okc.OkApiClie
     result = _bulk_replace_trait_entities_by_filter(ok_api_client, trait_name, input_as_dict, id_attributes, id_relations, write_layer, read_layers, filter)
     return result
 
-def bulk_replace_trait_entities_dataframe(ok_api_client: okc.OkApiClient, trait_name: str, input: pd.DataFrame, write_layer: str, read_layers: [str] = None) -> bool:
+def bulk_replace_trait_entities_dataframe(ok_api_client: okc.OkApiClient, trait_name: str, input: pd.DataFrame, write_layer: str, read_layers: List[str] = None) -> bool:
     """
     Sets all traitentities, the input is a pd.DataFrame, this will also delete all old trait entities, if there are any
 
