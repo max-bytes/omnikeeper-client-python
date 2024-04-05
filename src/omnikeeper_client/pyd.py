@@ -13,6 +13,19 @@ from typing import (
 
 SerializableUUID = Annotated[uuid.UUID, PlainSerializer(lambda x: str(x), return_type=str)]
 
+# experimental ok trait hints
+class AttributeName:
+    def __init__(self, name: str):
+        self.name = name
+class AttributeOptional:
+    def __init__(self, optional: bool = True):
+        self.optional = optional
+class TypeHint:
+    def __init__(self, type: str, is_array: bool = False):
+        self.type = type
+        self.is_array = is_array
+
+
 T = TypeVar("T", bound=BaseModel)
 
 def get_all_traitentities_pydantic(ok_api_client: okc.OkApiClient, trait_name: str, ta: TypeAdapter, layers: List[str]) -> List[T]:

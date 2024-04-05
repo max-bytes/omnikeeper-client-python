@@ -57,6 +57,9 @@ from .dataframes import (
 
 from .pyd import (
     SerializableUUID,
+    AttributeName,
+    AttributeOptional,
+    TypeHint,
     get_all_traitentities_pydantic,
     bulk_replace_trait_entities_pydantic
 )
