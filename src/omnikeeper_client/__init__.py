@@ -47,6 +47,7 @@ from .traitentities import (
     set_traitentity_relations,
     bulk_replace_trait_entities,
     bulk_replace_trait_entities_by_filter,
+    bulk_replace_traitentity_relations,
 )
 
 from .dataframes import (
