@@ -336,7 +336,7 @@ def set_traitentity_relations(ok_api_client: okc.OkApiClient, trait_id: str, tra
 
     return True
 
-def bulk_replace_traitentity_relations(ok_api_client: okc.OkApiClient, trait_id: str, traitrelation_id: str, input: List[Dict[str, Any]], write_layer: str, read_layers: List[str] = None) -> bool:
+def bulk_replace_traitentity_relations(ok_api_client: okc.OkApiClient, trait_id: str, traitrelation_id: str, input: List[Dict[str, Any]], relevant_ciids: List[str], write_layer: str, read_layers: List[str] = None) -> bool:
     """
     Bulk replaces a particular trait relation of a particular trait for ALL trait entities of that trait
     Adds new traitrelations and deletes all relevant traitrelations not in the provided list
@@ -355,6 +355,13 @@ def bulk_replace_traitentity_relations(ok_api_client: okc.OkApiClient, trait_id:
     input: List[Dict[str, Any]]
         a list of dicts, the dicts in the following form: { "baseCIID" = <ciid>, "relatedCIIDs" = [<ciid>, <ciid>, ...] }
 
+    relevant_ciids: List[str]
+        a list of CIIDs, that specifies which CIs are actually relevant for this operation. This is necessary to let omnikeeper know which CIs it should consider for this operation
+        CIs not in the list of relevant_ciids are not changed
+        depending on your usecase..
+        ...you may want to set relevant_ciids equal to the list of baseCIIDs in input
+        ...or you may want to keep track of the relevant_ciids yourself, because you got an initial list from get_all_traitentity_relations()
+
     write_layer : str
         the id of the layer in which the data should be added
 
@@ -370,11 +377,12 @@ def bulk_replace_traitentity_relations(ok_api_client: okc.OkApiClient, trait_id:
     prefixed_escaped_trait_id = _get_prefixed_trait_id(_get_escaped_trait_id(trait_id))
     escaped_traitrelation_id = _get_escaped_trait_id(traitrelation_id)
     query = gql(f"""
-        mutation($readLayers: [String]!, $writeLayer: String!, $input: [TE_Upsert_Relations_Only_Input]!) {{
+        mutation($readLayers: [String]!, $writeLayer: String!, $input: [TE_Upsert_Relations_Only_Input]!, $relevantCIIDs: [Guid]!) {{
         bulkReplaceRelations_{prefixed_escaped_trait_id}_{escaped_traitrelation_id}(
             layers: $readLayers
             writeLayer: $writeLayer
             input: $input
+            relevantCIIDs: $relevantCIIDs
         ) {{
             success
         }}
@@ -387,7 +395,8 @@ def bulk_replace_traitentity_relations(ok_api_client: okc.OkApiClient, trait_id:
     result = ok_api_client.execute_graphql(query, variables=dict(
         writeLayer=write_layer, 
         readLayers=read_layers, 
-        input=input
+        input=input,
+        relevantCIIDs=relevant_ciids
         ))
 
     return result[f"bulkReplaceRelations_{prefixed_escaped_trait_id}_{escaped_traitrelation_id}"]["success"]

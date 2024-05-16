@@ -1,6 +1,6 @@
 # omnikeeper-client-python
 
-Required omnikeeper version: 29.5.0
+Required omnikeeper version: 30.5.0
 
 ## Usage
 
