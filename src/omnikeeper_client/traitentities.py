@@ -5,7 +5,7 @@ from gql.dsl import DSLQuery, DSLVariableDefinitions, DSLSchema, dsl_gql
 from dateutil import parser
 import datetime
 import omnikeeper_client as okc
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Self
 import uuid
 from typing import (
     List,
@@ -597,3 +597,84 @@ def bulk_replace_trait_entities(ok_api_client: okc.OkApiClient, trait_id: str, i
     """
     result = _bulk_replace_trait_entities(ok_api_client, trait_id, input, write_layer, read_layers)
     return result
+
+class OKEntityList:
+    def __init__(self, ok_list: List[Dict[str, Any]]):
+        self.ok_list = ok_list
+        self.ciid_lookup_table = {str(v['ciid']): index for index, v in enumerate(ok_list)}
+
+    def update_or_add_via_ciid(self, item: Dict[str, Any], ciid: str) -> int:
+        item['__keep'] = True
+        index = self.ciid_lookup_table.get(ciid, None)
+        if index is not None:
+            # ci exists in the data already -> update
+            self.ok_list[index].update(item)
+            return index
+        else:
+            # ci does not exist yet -> add
+            item['ciid'] = ciid
+            self.ok_list.append(item)
+            self.ciid_lookup_table[ciid] = len(self.ok_list) - 1
+            return index
+    
+    def get_final_list(self) -> List[Dict[str, Any]]:
+        return [{k: v for k, v in d.items() if k != '__keep'} for d in self.ok_list if '__keep' in d]
+
+class OKRelationList:
+    def __init__(self, ok_list: List[Dict[str, Any]]):
+        self.ok_list = ok_list
+        self.lookup_table = {str(v['base_ciid']): index for index, v in enumerate(ok_list)}
+
+    def add_or_update(self, base_ciid: str, related_ciids: List[str], merge_strategy_related_ciids: str = 'replace'):
+        related_ciids_non_duplicates = list(set(related_ciids)) # NOTE: list(set(...)) ensures uniqueness
+        item = { 'base_ciid': base_ciid, 'related_ciids': related_ciids_non_duplicates, '__keep': True}
+        index = self.lookup_table.get(base_ciid, None)
+        if index is not None:
+            # give caller the choice on how to merge related_ciids
+            if merge_strategy_related_ciids == 'replace':
+                # simply replace existing related_ciids dictionary with new dictionary
+                self.ok_list[index].update(item)
+            elif merge_strategy_related_ciids == 'merge':
+                exsting_related_ciids = self.ok_list[index]['related_ciids']
+                new_related_ciids = item['related_ciids']
+                final_related_ciids = list(set(exsting_related_ciids + new_related_ciids)) # NOTE: list(set(...)) ensures uniqueness
+                item['related_ciids'] = final_related_ciids
+                self.ok_list[index].update(item)
+                pass
+            else:
+                raise Exception(f"Unknown value for merge_strategy_related_ciids: {merge_strategy_related_ciids}")
+        else:
+            self.ok_list.append(item)
+            self.lookup_table[base_ciid] = len(self.ok_list) - 1
+
+    def build_inverse_list(self) -> Self:
+        tmp = dict()
+        for d in self.ok_list:
+            for r in d['related_ciids']:
+                existing = tmp.get(r, None)
+                if existing is None:
+                    tmp[r] = [d['base_ciid']]
+                else:
+                    existing.append(d['base_ciid'])
+        
+        final_list = [{'base_ciid': k, 'related_ciids': v} for k, v in tmp.items()]
+        return OKRelationList(final_list)
+
+    def get_related_ciids(self, base_ciid: str, default = []) -> List[str]:
+        index = self.lookup_table.get(base_ciid, None)
+        if index is None:
+            return default
+        return self.ok_list[index]["related_ciids"]
+    
+    def get_relevant_ciids(self) -> List[str]:
+        return [d['base_ciid'] for d in self.ok_list]
+    
+    def get_final_list(self) -> List[Dict[str, Any]]:
+        tmp = [{k: v for k, v in d.items() if k != '__keep'} for d in self.ok_list if '__keep' in d]
+
+        # HACK, TODO: rework client library to not have to rewrite keys
+        for d in tmp:
+            d['baseCIID'] = d.pop('base_ciid')
+            d['relatedCIIDs'] = d.pop('related_ciids')
+
+        return tmp

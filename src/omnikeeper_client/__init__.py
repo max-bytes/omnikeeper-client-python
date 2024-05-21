@@ -48,6 +48,8 @@ from .traitentities import (
     bulk_replace_trait_entities,
     bulk_replace_trait_entities_by_filter,
     bulk_replace_traitentity_relations,
+    OKEntityList,
+    OKRelationList
 )
 
 from .dataframes import (
@@ -63,4 +65,8 @@ from .pyd import (
     TypeHint,
     get_all_traitentities_pydantic,
     bulk_replace_trait_entities_pydantic
+)
+
+from .issues import (
+    OKIssueList,
 )
