@@ -598,53 +598,69 @@ def bulk_replace_trait_entities(ok_api_client: okc.OkApiClient, trait_id: str, i
     result = _bulk_replace_trait_entities(ok_api_client, trait_id, input, write_layer, read_layers)
     return result
 
+OKEntityItem = Dict[str, Any]
+
 class OKEntityList:
-    def __init__(self, ok_list: List[Dict[str, Any]]):
+    def __init__(self, ok_list: List[OKEntityItem]):
         self.ok_list = ok_list
         self.ciid_lookup_table = {str(v['ciid']): index for index, v in enumerate(ok_list)}
 
-    def update_or_add_via_ciid(self, item: Dict[str, Any], ciid: str) -> int:
-        item['__keep'] = True
+    def update_or_add_via_ciid(self, new_item: OKEntityItem, ciid: str, duplicate_strategy: str = 'update') -> int:
         index = self.ciid_lookup_table.get(ciid, None)
         if index is not None:
             # ci exists in the data already -> update
-            self.ok_list[index].update(item)
+            existing = self.ok_list[index]
+
+            old_update_count = existing.get('__update_count', 0)
+
+            if old_update_count >= 1 and duplicate_strategy is not None:
+                if duplicate_strategy == "skip":
+                    return -1
+                else: # default: update
+                    existing.update(new_item)
+            else:
+                existing.update(new_item)
+                
+            existing['__update_count'] = old_update_count + 1
+
             return index
         else:
             # ci does not exist yet -> add
-            item['ciid'] = ciid
-            self.ok_list.append(item)
+            new_item['ciid'] = ciid
+            new_item['__update_count'] = 1
+            self.ok_list.append(new_item)
             self.ciid_lookup_table[ciid] = len(self.ok_list) - 1
             return index
     
-    def get_final_list(self) -> List[Dict[str, Any]]:
-        return [{k: v for k, v in d.items() if k != '__keep'} for d in self.ok_list if '__keep' in d]
+    def get_final_list(self) -> List[OKEntityItem]:
+        return [{k: v for k, v in d.items() if k != '__update_count'} for d in self.ok_list if '__update_count' in d]
+
 
 class OKRelationList:
     def __init__(self, ok_list: List[Dict[str, Any]]):
         self.ok_list = ok_list
         self.lookup_table = {str(v['base_ciid']): index for index, v in enumerate(ok_list)}
+        self.keeps = set() # set of tuples [(base_ciid, related_ciid)], which tracks what relations we must "keep"
 
     def add_or_update(self, base_ciid: str, related_ciids: List[str], merge_strategy_related_ciids: str = 'replace'):
         related_ciids_non_duplicates = list(set(related_ciids)) # NOTE: list(set(...)) ensures uniqueness
-        item = { 'base_ciid': base_ciid, 'related_ciids': related_ciids_non_duplicates, '__keep': True}
         index = self.lookup_table.get(base_ciid, None)
         if index is not None:
             # give caller the choice on how to merge related_ciids
             if merge_strategy_related_ciids == 'replace':
                 # simply replace existing related_ciids dictionary with new dictionary
-                self.ok_list[index].update(item)
+                self.ok_list[index].update({'related_ciids': related_ciids_non_duplicates})
+                self.keeps.update([(base_ciid, related_ciid) for related_ciid in related_ciids_non_duplicates])
             elif merge_strategy_related_ciids == 'merge':
                 exsting_related_ciids = self.ok_list[index]['related_ciids']
-                new_related_ciids = item['related_ciids']
-                final_related_ciids = list(set(exsting_related_ciids + new_related_ciids)) # NOTE: list(set(...)) ensures uniqueness
-                item['related_ciids'] = final_related_ciids
-                self.ok_list[index].update(item)
-                pass
+                final_related_ciids = list(set(exsting_related_ciids + related_ciids_non_duplicates)) # NOTE: list(set(...)) ensures uniqueness
+                self.ok_list[index].update({'related_ciids': final_related_ciids})
+                self.keeps.update([(base_ciid, related_ciid) for related_ciid in related_ciids_non_duplicates])
             else:
                 raise Exception(f"Unknown value for merge_strategy_related_ciids: {merge_strategy_related_ciids}")
         else:
-            self.ok_list.append(item)
+            self.ok_list.append({'base_ciid': base_ciid, 'related_ciids': related_ciids_non_duplicates})
+            self.keeps.update([(base_ciid, related_ciid) for related_ciid in related_ciids_non_duplicates])
             self.lookup_table[base_ciid] = len(self.ok_list) - 1
 
     def build_inverse_list(self) -> Self:
@@ -660,21 +676,27 @@ class OKRelationList:
         final_list = [{'base_ciid': k, 'related_ciids': v} for k, v in tmp.items()]
         return OKRelationList(final_list)
 
-    def get_related_ciids(self, base_ciid: str, default = []) -> List[str]:
+    def get_related_ciids(self, base_ciid: str, keep_only: bool, default = []) -> List[str]:
         index = self.lookup_table.get(base_ciid, None)
         if index is None:
             return default
-        return self.ok_list[index]["related_ciids"]
+        
+        related_ciids = self.ok_list[index]["related_ciids"]
+        if keep_only:
+            return [related_ciid for related_ciid in related_ciids if (base_ciid, related_ciid) in self.keeps]
+        else:
+            return related_ciids
     
     def get_relevant_ciids(self) -> List[str]:
         return [d['base_ciid'] for d in self.ok_list]
     
     def get_final_list(self) -> List[Dict[str, Any]]:
-        tmp = [{k: v for k, v in d.items() if k != '__keep'} for d in self.ok_list if '__keep' in d]
+        final = []
+        for item in self.ok_list:
+            final_related_ciids = [related_ciid for related_ciid in item['related_ciids'] if (item['base_ciid'], related_ciid) in self.keeps]
+            if len(final_related_ciids) > 0:
+                # HACK, TODO: rework client library to not have to rewrite keys
+                # final.append({'base_ciid': item['base_ciid'], 'related_ciids': final_related_ciids})
+                final.append({'baseCIID': item['base_ciid'], 'relatedCIIDs': final_related_ciids})
 
-        # HACK, TODO: rework client library to not have to rewrite keys
-        for d in tmp:
-            d['baseCIID'] = d.pop('base_ciid')
-            d['relatedCIIDs'] = d.pop('related_ciids')
-
-        return tmp
+        return final
