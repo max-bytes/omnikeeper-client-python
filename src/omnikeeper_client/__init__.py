@@ -49,7 +49,8 @@ from .traitentities import (
     bulk_replace_trait_entities_by_filter,
     bulk_replace_traitentity_relations,
     OKEntityList,
-    OKRelationList
+    OKRelationList,
+    OKEntityItem
 )
 
 from .dataframes import (
