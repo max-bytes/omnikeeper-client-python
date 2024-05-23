@@ -186,7 +186,11 @@ def _get_all_traitentities(ok_api_client: okc.OkApiClient, trait_id: str, layers
         for data in data_list:
             data.update(data.pop('entity'))
 
-        return data_list
+        def unescape_trait_attribute_name(name: str) -> str:
+            return name.replace("__", ".")
+        final_output = [{unescape_trait_attribute_name(k): v for k, v in d.items()} for d in data_list]
+        
+        return final_output
     
   
 def get_all_traitentities(ok_api_client: okc.OkApiClient, trait_id: str, layers: List[str]) -> List[Dict[str,Any]]:
@@ -511,8 +515,10 @@ def _bulk_replace_trait_entities(ok_api_client: okc.OkApiClient, trait_id: str, 
         }}
         }}
         """)
-        
-    final_input = [{"ciid": d["ciid"], "attributes": {k: v for k, v in d.items() if k != "ciid"}} for d in input]
+
+    def escape_trait_attribute_name(name: str) -> str:
+        return name.replace(".", "__")
+    final_input = [{"ciid": d["ciid"], "attributes": {escape_trait_attribute_name(k): v for k, v in d.items() if k != "ciid"}} for d in input]
         
     if read_layers is None:
         read_layers = [write_layer]
