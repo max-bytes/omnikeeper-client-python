@@ -53,11 +53,52 @@ def create_ci(ok_api_client: okc.OkApiClient, ci_name: Optional[str] = None, lay
     return uuid.UUID(result["createCIs"]['ciids'][0])
 
 def mutate_ci(ok_api_client: okc.OkApiClient, write_layer_id: str, ciid : uuid.UUID, attribute_upserts: Dict[str, Any]) -> bool:
+    """
+    Insert/Update attributes of a single ci
+
+    Parameters
+    ----------
+    ok_api_client : OkApiClient
+        The OkApiClient instance representing omnikeeper connection
+    
+    write_layer_id : str
+        id of the layer to mutate attributes from
+    
+    ciid : uuid.UUID
+        id of the ci to mutate
+    
+    attribute_upserts : Dict[str, Any]
+        a dict containing attributes to mutate
+    
+    Returns
+    -------
+    result : bool
+        True if successful, False otherwise
+    """
+    
     return mutate_cis(ok_api_client, write_layer_id, {ciid: attribute_upserts})
 
 def mutate_cis(ok_api_client: okc.OkApiClient, write_layer_id: str, attribute_upserts: Dict[str, Dict[str, Any]]) -> bool:
-    # TODO doc
+    """
+    Insert/Update attributes of multiple cis
 
+    Parameters
+    ----------
+    ok_api_client : OkApiClient
+        The OkApiClient instance representing omnikeeper connection
+    
+    write_layer_id : str
+        id of the layer to mutate attributes from
+    
+    attribute_upserts : Dict[str, Dict[str, Any]]
+        a dict containing attributes to mutate in form: 
+        {"ciid1": {"attr1_name": "attr1_value", ...}, ...}
+    
+    Returns
+    -------
+    result : bool
+        True if successful, False otherwise
+    """
     insertAttributes = []
     for ciid, attributes in attribute_upserts.items():
         # TODO add hinting

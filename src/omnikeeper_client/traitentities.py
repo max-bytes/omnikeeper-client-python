@@ -607,11 +607,43 @@ def bulk_replace_trait_entities(ok_api_client: okc.OkApiClient, trait_id: str, i
 OKEntityItem = Dict[str, Any]
 
 class OKEntityList:
+    """
+    Represents a Omnikeeper entities list that can be modified
+
+    Parameters
+    ----------
+    ok_list : List[OKEntityItem]
+        A list of OKEntityItem objects
+
+    Methods
+    -------
+    - update_or_add_via_ciid(new_item: OKEntityItem, ciid: str, duplicate_strategy: str = 'update') -> int
+    - get_final_list() -> List[OKEntityItem]
+    """
     def __init__(self, ok_list: List[OKEntityItem]):
         self.ok_list = ok_list
         self.ciid_lookup_table = {str(v['ciid']): index for index, v in enumerate(ok_list)}
 
     def update_or_add_via_ciid(self, new_item: OKEntityItem, ciid: str, duplicate_strategy: str = 'update') -> int:
+        """
+        Add/Update new ci to the ok_list based on ciid
+
+        Parameters
+        ----------
+        new_item : OKEntityItem
+            the item to be added to the sits, if exists will be updated
+        
+        ciid : str
+            id of the ci to be mutated
+
+        duplicate_strategy : str
+            strategy to be used in case of duplicates, available are [skip, update],  defaults to update
+
+        Returns
+        -------
+        index : int
+            int index of the mutated item
+        """
         index = self.ciid_lookup_table.get(ciid, None)
         if index is not None:
             # ci exists in the data already -> update
@@ -639,16 +671,56 @@ class OKEntityList:
             return index
     
     def get_final_list(self) -> List[OKEntityItem]:
+        """
+        Returns the updated version of the list excluding removed cis
+
+        Returns
+        -------
+        result : List[OKEntityItem]
+        """
         return [{k: v for k, v in d.items() if k != '__update_count'} for d in self.ok_list if '__update_count' in d]
 
 
 class OKRelationList:
+    """
+    Represents a Omnikeepr entities relations list
+
+    Parameters
+    ----------
+    ok_list : List[Dict[str, Any]]
+        A list with relations
+
+    Methods
+    -------
+    - add_or_update(base_ciid: str, related_ciids: List[str], merge_strategy_related_ciids: str = 'replace')
+    - build_inverse_list() -> Self
+    - get_related_ciids(base_ciid: str, keep_only: bool, default = []) -> List[str]
+    - get_relevant_ciids() -> List[str]
+    - get_final_list() -> List[Dict[str, Any]]
+    """
     def __init__(self, ok_list: List[Dict[str, Any]]):
         self.ok_list = ok_list
         self.lookup_table = {str(v['base_ciid']): index for index, v in enumerate(ok_list)}
         self.keeps = set() # set of tuples [(base_ciid, related_ciid)], which tracks what relations we must "keep"
 
     def add_or_update(self, base_ciid: str, related_ciids: List[str], merge_strategy_related_ciids: str = 'replace'):
+        """
+        Add/Update relations for a specific ci
+
+        Parameters
+        ----------
+        base_ciid : str
+            id of the ci that is considered as base
+        
+        related_ciids : List[str]
+            a list with related ci ids to the base ci
+            
+        new_item : OKEntityItem
+            the item to be added to the sits, if exists will be updated
+        
+        merge_strategy_related_ciids : str
+            strategy to be used in case of duplicates, available are [replace, merge],  defaults to replace
+        """
         related_ciids_non_duplicates = list(set(related_ciids)) # NOTE: list(set(...)) ensures uniqueness
         index = self.lookup_table.get(base_ciid, None)
         if index is not None:
@@ -670,6 +742,16 @@ class OKRelationList:
             self.lookup_table[base_ciid] = len(self.ok_list) - 1
 
     def build_inverse_list(self) -> Self:
+        """
+        Builds inverse list for relations, relations are in {"base_ciid": [related_ciid1, ...], ...} format.
+        In the result the inverted relations will be returned such that each "related_ciid" becomes a "base_ciid"
+        and the original "base_ciid" is added to the list of "related_ciids" for the new "base_ciid"
+
+        Returns
+        -------
+        Self
+            An instance of OKRelationList containing the inverted relations.
+        """
         tmp = dict()
         for d in self.ok_list:
             for r in d['related_ciids']:
@@ -683,6 +765,25 @@ class OKRelationList:
         return OKRelationList(final_list)
 
     def get_related_ciids(self, base_ciid: str, keep_only: bool, default = []) -> List[str]:
+        """
+        Returns related ciids for a specific ci
+
+        Parameters
+        ----------
+        base_ciid : str
+            id of the ci for which the relations will be returned
+        
+        keep_only : bool
+            return only the relations that must be kept
+
+        default : list 
+            list to be returned if ci with the base id is not found, default = []
+
+        Returns
+        -------
+        result : List[str]
+            result containing related ciids 
+        """
         index = self.lookup_table.get(base_ciid, None)
         if index is None:
             return default
@@ -694,9 +795,25 @@ class OKRelationList:
             return related_ciids
     
     def get_relevant_ciids(self) -> List[str]:
+        """
+        Get only the relevant ciids, excluding old cis
+
+        Returns
+        -------
+        result : List[str]
+            a list with base ciids
+        """
         return [d['base_ciid'] for d in self.ok_list]
     
     def get_final_list(self) -> List[Dict[str, Any]]:
+        """
+        get the updated final relations list
+
+        Returns
+        -------
+        result : List[Dict[str, Any]]
+            a list with final relations in the format [{"base_ciid": [related_ciid1, ...], ...}]
+        """
         final = []
         for item in self.ok_list:
             final_related_ciids = [related_ciid for related_ciid in item['related_ciids'] if (item['base_ciid'], related_ciid) in self.keeps]

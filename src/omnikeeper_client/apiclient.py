@@ -12,7 +12,14 @@ from typing import (
 )
 
 class OkApiClient():
-    # TODO doc class
+    """
+    A client for interacting with Omnikeeper using GraphQL. Provides methods to execute GraphQL queries.
+
+    Methods
+    -------
+        execute_graphql(self, query: Union[str, DocumentNode], variables: Optional[Dict[str, Any]] = None)
+            Executes a GraphQL query against the specified endpoint.
+    """
 
     def __init__(self,
                  backend_url : str,
@@ -52,8 +59,23 @@ class OkApiClient():
         transport = RequestsHTTPTransport(url=self.graphql_url, headers=headers, verify=True)
         return GqlClient(transport=transport, fetch_schema_from_transport=True)
     
-    # TODO doc at least public functions
     def execute_graphql(self, query: Union[str, DocumentNode], variables: Optional[Dict[str, Any]] = None):
+        """
+        Executes a GraphQL query against Omnikeeper
+
+        Parameters
+        ----------
+        query : Union[str, DocumentNode]
+            The GraphQL query
+        
+        variables : Optional[Dict[str, Any]]
+            variables to be used in the query defaults to None
+        
+        Returns
+        -------
+        data : Dict[str, Any]
+            The GraphQL response from the Omnikeeper
+        """
         client = self._get_graphql_client()
         
         prepared_query = gql(query) if query is str else query
